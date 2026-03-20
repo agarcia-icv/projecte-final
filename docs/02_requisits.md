@@ -8,26 +8,28 @@ Pot:
 * Visualitzar els posts de la wiki.
 * Cercar eines pel seu nom.
 * Accedir als detalls de cada post, mostrarà la informació completa d'aquest.
-* Veure les valoracions del post.
+* Visualitzar les valoracions del post.
+* Visualitzar el comentaris dels usuaris registrats
 
 ### Usuari registrat
 
 Pot:
+* Tot el que pot fer un usuari no registrat.
 * Registrar-se com a nou usuari.
 * Iniciar sessió com a usuari existent.
 * Valorar els posts ja existents.
-* Modificar la valoració d’un post.
-* Tot el que pot fer un usuari no registrat.
+* Comentar
+* Modificar la seva valoració d’un post.
+
 
 ### Administrador
 
 Pot:
+* Tot el que pot fer un usuari registrat
 * Crear nous posts.
 * Editar posts existents.
 * Eliminar posts.
 * Gestionar tot el contingut de la pàgina.
-* Tot el que pot fer un usuari registrat
-
 
 
 ## 2.2 Requisits no funcionals
@@ -51,7 +53,7 @@ Pot:
 ### Accessibilitat
 
 * Es garantirà un contrast adequat de colors llegible per tothom.
-* La navegació dins de la pàgina serà accessible i fàcil.
+* La navegació dins de la pàgina serà accessible i fàcil d'entendre.
 * La interfície de la web serà clara i intuïtiva per a l’usuari.
 * El disseny serà responsive, adaptant-se a dispositius mòbils i tauletes.
 * Es farà ús de Bootstrap per una millor experiència visual.
