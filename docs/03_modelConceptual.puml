@@ -41,11 +41,9 @@ class TipusEina {
   nom : string
 }
 
-
 Usuari "1" -- "0..*" Post : crea
 Usuari "1" -- "0..*" Comentari : escriu
 Usuari "1" -- "0..*" Valoracio : fa
-
 Post "1" -- "0..*" Comentari : te
 Post "1" -- "0..*" Valoracio : rep
 
