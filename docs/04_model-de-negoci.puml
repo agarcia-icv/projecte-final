@@ -1,0 +1,36 @@
+@startuml Wiki sobre Eines de forja
+left to right direction
+
+actor "Usuari no registrat" as noUsuari
+actor "Usuari registrat" as Usuari
+actor Editor
+actor Administrador
+
+rectangle Forja {
+  usecase "Registrar-se / Iniciar sessió" as UC1
+  usecase "Visualitzar posts" as UC2
+  usecase "Veure detalls del post" as UC3
+  usecase "Filtrar per nom del post" as UC4
+  usecase "Valorar + comentar en un post" as UC5
+  usecase "Crear post" as UC6
+  usecase "Editar post" as UC7
+  usecase "Eliminar post" as UC8
+  usecase "Gestionar el contingut de la pàgina" as UC9
+  usecase "Gestionar usuaris" as UC10
+}
+
+noUsuari --> UC1
+noUsuari --> UC2
+noUsuari --> UC3
+noUsuari --> UC4
+
+Usuari --> UC5
+
+Editor --> UC6
+Editor --> UC7
+
+Administrador --> UC8
+Administrador --> UC9
+Administrador --> UC10
+
+@enduml
