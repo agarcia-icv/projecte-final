@@ -21,14 +21,19 @@ Pot:
 * Comentar
 * Modificar la seva valoració d’un post.
 
+### Editor
+
+Pot:
+* Tot el que pot fer un usuari registrat.
+* Crear nous posts.
+* Editar posts existents.
 
 ### Administrador
 
 Pot:
-* Tot el que pot fer un usuari registrat
-* Crear nous posts.
-* Editar posts existents.
+* Tot el que pot fer un usuari editor
 * Eliminar posts.
+* Gestionar tots els usuaris.
 * Gestionar tot el contingut de la pàgina.
 
 
