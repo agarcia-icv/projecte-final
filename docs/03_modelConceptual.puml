@@ -41,7 +41,6 @@ class TipusEina {
   nom : string
 }
 
-' ================= RELACIONS =================
 
 Usuari "1" -- "0..*" Post : crea
 Usuari "1" -- "0..*" Comentari : escriu
@@ -49,8 +48,6 @@ Usuari "1" -- "0..*" Valoracio : fa
 
 Post "1" -- "0..*" Comentari : te
 Post "1" -- "0..*" Valoracio : rep
-
-Rol "1" -- "0..*" Usuari : assigna
 
 TipusEina "1" -- "0..*" Post : classifica
 
