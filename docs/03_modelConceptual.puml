@@ -1,4 +1,4 @@
-@startuml
+@startuml Wiki sobre eines de forja
 
 class Usuari {
   id : bigint <<PK>>
@@ -8,14 +8,11 @@ class Usuari {
   rol : string 
 }
 
-
 class Post {
   id : bigint <<PK>>
   titol : string
   descripcio : text
-  contingut : text
-  historia : text
-  tecnica : text
+  dataPost : date
   epoca : string
   imatge : string
   usuari_id : bigint <<FK>>
