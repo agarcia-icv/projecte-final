@@ -7,7 +7,9 @@ Actualment, no existeixen moltes pàgines sobre aquest tema i amb la nostra pàg
 Aquesta aplicació pretén oferir un espai orientat tant aficionats com professionals, que vulguin consultar informació de manera ràpida i visual. Podran trobar informació sobre diferents eines, incloent-hi la seva descripció, època i imatges representatives.
 
 El sistema definirà diferents rols d’usuari amb funcionalitats diferents.
-Els usuaris "no registrats" podran consultar i cercar contingut dins la wiki, els usuaris "registrats" podran interactuar amb el contingut mitjançant valoracions dels posts i comentaris, hi hauran uns usuaris "editor" que podran crear i editar entrades de la wiki i els usuaris "administradors" seran els encarregats de gestionar tot el contingut, podent crear, editar i eliminar les entrades de la pàgina i gestionar els usuaris.
+Els usuaris "no registrats" podran consultar i cercar contingut dins la wiki, els usuaris "registrats" podran interactuar amb el contingut mitjançant valoracions dels posts i comentaris, hi hauran uns usuaris "editor" que podran crear i editar entrades de la wiki i els usuaris "administradors" seran els encarregats de gestionar tot el contingut, podent crear, editar i eliminar les entrades de la pàgina i gestionar els usuaris. 
 
-L’aplicació es desenvoluparà seguint una arquitectura full-stack, utilitzant React per al frontend i Laravel per al backend, amb una base de dades MYSQL per gestionar la informació.
+En general a la nostre wiki es podrà Crear, editar i eliminar posts segons el teu rol d'usuari i afegir comentaris i valoracions.
+
+L’aplicació es desenvoluparà seguint una arquitectura full-stack, utilitzant React per al frontend i Laravel per al backend, amb una base de dades amb MariaDB. Per carregar les dades de la wiki no farem ús de cap API externa.
 L’objectiu principal del projecte és crear una aplicació funcional, usable i ben estructurada que permeti posar en pràctica els coneixements adquirits durant el cicle, com el desenvolupament d’interfícies d’usuari, la implementació de lògica de negoci, la gestió de bases de dades i el desplegament d’una aplicació web completa.
