@@ -7,7 +7,8 @@ actor Editor
 actor Administrador
 
 rectangle Forja {
-  usecase "Registrar-se / Iniciar sessió" as UC1
+  usecase "Registrar-se" as UC1
+  usecase "Iniciar sessió" as UC12
   usecase "Visualitzar posts" as UC2
   usecase "Veure detalls del post" as UC3
   usecase "Filtrar per nom del post" as UC4
@@ -25,10 +26,17 @@ noUsuari --> UC2
 noUsuari --> UC3
 noUsuari --> UC4
 
+Usuari --> noUsuari
+
+Usuari --> UC12
 Usuari --> UC5
+
+Editor --> Usuari
 
 Editor --> UC6
 Editor --> UC7
+
+Administrador --> Editor
 
 Administrador --> UC8
 Administrador --> UC9
