@@ -10,12 +10,12 @@ Pot:
 * Accedir als detalls de cada post, mostrarà la informació completa d'aquest.
 * Visualitzar les valoracions del post.
 * Visualitzar el comentaris dels usuaris registrats
+* Registrar-se com a nou usuari.
 
 ### Usuari registrat
 
 Pot:
 * Tot el que pot fer un usuari no registrat.
-* Registrar-se com a nou usuari.
 * Iniciar sessió com a usuari existent.
 * Valorar els posts ja existents.
 * Comentar
@@ -45,12 +45,11 @@ Pot:
 * El sistema implementarà control d’accés segons el rol de cada usuari.
 * Es realitzaran validacions de dades per evitar atacs com SQL Injection.
 * El sistema protegirà les rutes del backend.
-* Es farà ús de control de versions amb Git.
+* Es farà ús del control de versions amb Git, així podrem disposar de copies de seguretat recuperables de tot el que s’hagi fet.
 
 ### Rendiment
 
 * El temps de resposta del sistema serà breu.
-* El sistema optimitzarà les consultes a la base de dades.
 * El projecte seguirà una estructura clara separant frontend i backend.
 * L’arquitectura permetrà afegir noves funcionalitats en el futur (com comentaris o categories).
 * Es fara documentacio de tot el projecte per facilitar la comprensió d'aquest.
