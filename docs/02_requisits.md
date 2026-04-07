@@ -41,8 +41,8 @@ Pot:
 
 ### Seguretat
 
-* Les contrasenyes dels usuaris es guardaran encriptades.
-* El sistema implementarà control d’accés segons el rol de cada usuari.
+* Les contrasenyes dels usuaris es guardaran encriptades. Farem servir bycript que esta incorporat al laravel
+* El sistema implementarà control d’accés segons el rol de cada usuari (Els administradors tenen control total).
 * Es realitzaran validacions de dades per evitar atacs com SQL Injection.
 * El sistema protegirà les rutes del backend.
 * Es farà ús del control de versions amb Git, així podrem disposar de copies de seguretat recuperables de tot el que s’hagi fet.
