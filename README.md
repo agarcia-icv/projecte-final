@@ -21,3 +21,7 @@ La documentació del projecte es troba a la carpeta `/docs`:
 * Requisits
 * Model conceptual
 * Model de negoci
+* Wireframe
+* estimacio de temps
+* planificacio
+
