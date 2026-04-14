@@ -18,13 +18,14 @@ class Post {
   usuari_id : bigint <<FK>>
   tipus_eina_id : bigint <<FK>>
 }
-
 class Comentari {
   id : bigint <<PK>>
   contingut : text
   usuari_id : bigint <<FK>>
   post_id : bigint <<FK>>
+  parent_id : bigint <<FK>>  ''parent_id = id del comentari pare, si no hi ha resposta "null"''
 }
+
 
 class Valoracio {
   id : bigint <<PK>>
@@ -44,6 +45,7 @@ Usuari "1" -- "0..*" Valoracio : fa
 Usuari "1" -- "0.." TipusEina : crea
 Post "1" -- "0..*" Comentari : te
 Post "1" -- "0..*" Valoracio : rep
+Comentari "1" -- "0..*" Comentari : respon a
 
 TipusEina "1" -- "0..*" Post : classifica
 
