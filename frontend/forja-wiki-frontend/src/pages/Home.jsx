@@ -1,7 +1,19 @@
+import { useEffect, useState } from "react"
 import PostCard from "../components/PostCard.jsx"
-import posts from "../services/mockData.js"
-
+import { getPosts } from "../services/api.js"
 function Home() {
+  const [posts, setPosts] = useState([])
+
+  useEffect(() => {
+    async function loadPosts() {
+      const data = await getPosts()
+      console.log("POSTS:", data) 
+      setPosts(data)
+    }
+
+    loadPosts()
+  }, [])
+
   return (
     <div className="container mt-4">
       <h1 className="mb-4">Posts de la Wiki</h1>

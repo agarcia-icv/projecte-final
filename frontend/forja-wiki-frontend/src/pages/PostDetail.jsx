@@ -1,16 +1,22 @@
 import { useParams } from "react-router-dom"
-import posts from "../services/mockData.js"
-import CommentSection from "../components/CommentSection.jsx"
+import { useEffect, useState } from "react"
+import { getPost } from "../services/api.js"
+
 function PostDetail() {
   const { id } = useParams()
+  const [post, setPost] = useState(null)
 
-  // IMPORTANT: convertim id a número
-  const post = posts.find(p => p.id === parseInt(id))
+  useEffect(() => {
+    async function loadPost() {
+      const data = await getPost(id)
+      console.log("POST:", data) // 👈 DEBUG
+      setPost(data)
+    }
 
-  // Si no existeix
-  if (!post) {
-    return <h2 className="text-center mt-5">Post no trobat</h2>
-  }
+    loadPost()
+  }, [id])
+
+  if (!post) return <p>Carregant...</p>
 
   return (
     <div className="container mt-5 pt-4">
