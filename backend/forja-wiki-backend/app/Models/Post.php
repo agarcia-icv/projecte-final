@@ -10,6 +10,14 @@ use App\Models\TipusEina;
 
 class Post extends Model
 {
+    protected $fillable = [
+    'titol',
+    'descripcio',
+    'epoca',
+    'imatge',
+    'user_id',
+    'tipus_eina_id'
+];
     public function user() {
         return $this->belongsTo(User::class);
     }

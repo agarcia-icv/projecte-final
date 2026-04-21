@@ -23,6 +23,7 @@ class PostController extends Controller
         $request->validate([
             'titol' => 'required',
             'descripcio' => 'required',
+            'tipus_eina_id' => 'required|exists:tipus_eines,id',
         ]);
 
         return Post::create([
