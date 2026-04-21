@@ -22,4 +22,4 @@ DB_PORT=3307 (port de mariaDB)
 ``php artisan migrate``
 
 **Iniciar api:**  
-php artisan serve
+``php artisan serve``
