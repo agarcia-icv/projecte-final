@@ -18,7 +18,8 @@ Pot:
 * Tot el que pot fer un usuari no registrat.
 * Iniciar sessió com a usuari existent.
 * Valorar els posts ja existents.
-* Comentar
+* Comentar en els posts
+* Respondre a comentaris
 * Modificar la seva valoració d’un post.
 
 ### Editor
@@ -26,7 +27,7 @@ Pot:
 Pot:
 * Tot el que pot fer un usuari registrat.
 * Crear nous posts.
-* Editar posts existents.
+* Editar posts propis existents.
 
 ### Administrador
 
@@ -41,7 +42,7 @@ Pot:
 
 ### Seguretat
 
-* Les contrasenyes dels usuaris es guardaran encriptades. Farem servir bycript que esta incorporat al laravel
+* Les contrasenyes dels usuaris es guardaran encriptades. Farem servir bycript que esta incorporat al Laravel
 * El sistema implementarà control d’accés segons el rol de cada usuari (Els administradors tenen control total).
 * Es realitzaran validacions de dades per evitar atacs com SQL Injection.
 * El sistema protegirà les rutes del backend.
@@ -51,7 +52,7 @@ Pot:
 
 * El temps de resposta del sistema serà breu.
 * El projecte seguirà una estructura clara separant frontend i backend.
-* L’arquitectura permetrà afegir noves funcionalitats en el futur (com comentaris o categories).
+* L’arquitectura permetrà afegir noves funcionalitats en el futur.
 * Es fara documentacio de tot el projecte per facilitar la comprensió d'aquest.
 
 ### Accessibilitat
