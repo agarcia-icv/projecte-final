@@ -1,27 +1,75 @@
-import { useEffect, useState } from "react"
-import PostCard from "../components/PostCard.jsx"
-import { getPosts } from "../services/api.js"
+import { Link } from "react-router-dom"
+
 function Home() {
-  const [posts, setPosts] = useState([])
 
-  useEffect(() => {
-    async function loadPosts() {
-      const data = await getPosts()
-      console.log("POSTS:", data) 
-      setPosts(data)
+  const posts = [
+    {
+      id: 1,
+      titol: "Martell de forja",
+      descripcio: "Eina utilitzada per treballar el ferro...",
+      dataPost: "2024-01-10",
+      usuari: "Adria",
+      epoca: "Edat Mitjana",
+      imatge: "https://picsum.photos/600/400?1"
+    },
+    {
+      id: 2,
+      titol: "Enclusa",
+      descripcio: "Base on es colpeja el metall...",
+      dataPost: "2024-01-12",
+      usuari: "Daniel",
+      epoca: "Edat Antiga",
+      imatge: "https://picsum.photos/600/400?2"
+    },
+    {
+       id: 3,
+      titol: "Espasa",
+      descripcio: "Base on es colpeja el metall...",
+      dataPost: "2024-01-12",
+      usuari: "Daniel",
+      epoca: "Edat Antiga",
+      imatge: "https://picsum.photos/600/400?2"
     }
-
-    loadPosts()
-  }, [])
+  ]
 
   return (
-    <div className="container mt-4">
-      <h1 className="mb-4">Posts de la Wiki</h1>
+    <div className="container mt-5">
+      <h1>ForjaWiki</h1>
 
       <div className="row">
         {posts.map(post => (
-          <div className="col-md-4 mb-4" key={post.id}>
-            <PostCard post={post} />
+          <div key={post.id} className="col-md-6 mb-4">
+            
+            <Link to={`/post/${post.id}`} style={{ textDecoration: "none" }}>
+              
+              <div className="card text-white" style={{ height: "250px", overflow: "hidden" }}>
+                
+                <img
+                  src={post.imatge}
+                  alt={post.titol}
+                  style={{
+                    height: "100%",
+                    width: "100%",
+                    objectFit: "cover"
+                  }}
+                />
+
+                <div
+                  style={{
+                    position: "absolute",
+                    bottom: 0,
+                    width: "100%",
+                    background: "rgba(0,0,0,0.6)",
+                    padding: "10px"
+                  }}
+                >
+                  <h5>{post.titol}</h5>
+                </div>
+
+              </div>
+
+            </Link>
+
           </div>
         ))}
       </div>
