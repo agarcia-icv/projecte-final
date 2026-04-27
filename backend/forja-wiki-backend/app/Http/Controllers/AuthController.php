@@ -81,4 +81,20 @@ class AuthController extends Controller
 
         return response()->json($user);
     }
+
+    public function updateRole(Request $request, User $user)
+    {
+        $request->validate([
+            'rol' => 'required|in:user,editor,admin'
+        ]);
+
+        $user->update([
+            'rol' => $request->rol
+        ]);
+
+        return response()->json([
+            'message' => 'Rol actualitzat correctament',
+            'user' => $user
+        ]);
+    }
 }

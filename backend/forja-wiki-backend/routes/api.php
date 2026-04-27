@@ -18,5 +18,5 @@ Route::middleware(['auth:sanctum', 'role:editor,admin'])->group(function () {
 });
 
 Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
-    Route::post('/users/create-with-role', [AuthController::class, 'createWithRole']);
+    Route::post('/users/{user}/role', [AuthController::class, 'updateRole']);
 });
