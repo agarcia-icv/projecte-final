@@ -41,13 +41,41 @@ class PostController extends Controller
 
     public function update(Request $request, Post $post)
     {
-        $post->update($request->all());
+        if ($post->user_id !== auth()->id()) {
+            return response()->json([
+                'message' => 'No autoritzat'
+            ], 403);
+        }
+
+        $request->validate([
+            'titol' => 'required',
+            'descripcio' => 'required',
+            'tipus_eina_id' => 'required|exists:tipus_eines,id',
+        ]);
+
+        $post->update([
+            'titol' => $request->titol,
+            'descripcio' => $request->descripcio,
+            'tipus_eina_id' => $request->tipus_eina_id,
+            'epoca' => $request->epoca,
+            'imatge' => $request->imatge,
+        ]);
+
         return $post;
     }
 
     public function destroy(Post $post)
     {
+        if ($post->user_id !== auth()->id()) {
+            return response()->json([
+                'message' => 'No autoritzat'
+            ], 403);
+        }
+
         $post->delete();
-        return response()->json(['ok' => true]);
+
+        return response()->json([
+            'message' => 'Post eliminat correctament'
+        ]);
     }
 }
