@@ -35,10 +35,10 @@ Editor --> Usuari
 
 Editor --> UC6
 Editor --> UC7
+Editor --> UC8
 
 Administrador --> Editor
 
-Administrador --> UC8
 Administrador --> UC9
 Administrador --> UC10
 Administrador --> UC11
