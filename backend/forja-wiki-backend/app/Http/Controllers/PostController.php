@@ -24,13 +24,21 @@ class PostController extends Controller
             'titol' => 'required',
             'descripcio' => 'required',
             'tipus_eina_id' => 'required|exists:tipus_eines,id',
+            'imatge' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
         ]);
+
+        $path = null;
+
+        if ($request->hasFile('imatge')) {
+            $path = $request->file('imatge')->store('posts', 'public');
+        }
 
         return Post::create([
             'titol' => $request->titol,
             'descripcio' => $request->descripcio,
             'user_id' => auth()->id(),
-            'tipus_eina_id' => $request->tipus_eina_id
+            'tipus_eina_id' => $request->tipus_eina_id,
+            'imatge' => $path
         ]);
     }
 
@@ -42,24 +50,28 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         if ($post->user_id !== auth()->id()) {
-            return response()->json([
-                'message' => 'No autoritzat'
-            ], 403);
+            return response()->json(['message' => 'No autoritzat'], 403);
         }
 
         $request->validate([
             'titol' => 'required',
             'descripcio' => 'required',
             'tipus_eina_id' => 'required|exists:tipus_eines,id',
+            'imatge' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
         ]);
 
-        $post->update([
+        $data = [
             'titol' => $request->titol,
             'descripcio' => $request->descripcio,
             'tipus_eina_id' => $request->tipus_eina_id,
             'epoca' => $request->epoca,
-            'imatge' => $request->imatge,
-        ]);
+        ];
+
+        if ($request->hasFile('imatge')) {
+            $data['imatge'] = $request->file('imatge')->store('posts', 'public');
+        }
+
+        $post->update($data);
 
         return $post;
     }
