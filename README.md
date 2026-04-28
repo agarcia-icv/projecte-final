@@ -1,12 +1,12 @@
 # Wiki sobre Eines de Forja
 
-La nostra pàgina web consisteix en una wiki on pots crear, editar, consultar i valorar articles sobre eines de forja.
+La nostra pàgina web consisteix en una wiki on pots crear, editar, consultar, comentar i valorar articles sobre eines de forja.
 
 ## Tecnologies
 
 * Frontend: React + Bootstrap
 * Backend: Laravel
-* Base de dades: MySQL
+* Base de dades: MariaDB
 
 ## Membres
 
@@ -15,13 +15,12 @@ La nostra pàgina web consisteix en una wiki on pots crear, editar, consultar i 
 
 ## Documentació
 
-La documentació del projecte es troba a la carpeta `/docs`:
+La documentació del projecte es troba a la carpeta `/docs`, dins hi ha:
 
 * Descripció del sistema i context
 * Requisits
 * Model conceptual
 * Model de negoci
 * Wireframe
-* estimacio de temps
-* planificacio
-
+* Estimació de temps
+* Planificació del projecte

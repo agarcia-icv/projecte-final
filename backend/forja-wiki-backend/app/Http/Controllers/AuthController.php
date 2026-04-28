@@ -62,4 +62,39 @@ class AuthController extends Controller
             'message' => 'Logout correcte'
         ]);
     }
+
+    public function createWithRole(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:6',
+            'rol' => 'required|in:user,editor,admin'
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password,
+            'rol' => $request->rol
+        ]);
+
+        return response()->json($user);
+    }
+
+    public function updateRole(Request $request, User $user)
+    {
+        $request->validate([
+            'rol' => 'required|in:user,editor,admin'
+        ]);
+
+        $user->update([
+            'rol' => $request->rol
+        ]);
+
+        return response()->json([
+            'message' => 'Rol actualitzat correctament',
+            'user' => $user
+        ]);
+    }
 }
