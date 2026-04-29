@@ -33,4 +33,9 @@ class Post extends Model
     public function tipus() {
         return $this->belongsTo(TipusEina::class, 'tipus_eina_id');
     }
+
+    public function getAverageRatingAttribute()
+    {
+        return $this->valoracions()->avg('puntuacio');
+    }
 }

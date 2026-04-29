@@ -11,6 +11,13 @@ use App\Models\TipusEina;
 
 class Comentari extends Model
 {
+    protected $fillable = [
+        'contingut',
+        'user_id',
+        'post_id',
+        'parent_id',
+    ];
+    
     public function user() {
         return $this->belongsTo(User::class);
     }
