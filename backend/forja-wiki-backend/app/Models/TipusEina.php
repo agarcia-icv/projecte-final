@@ -15,6 +15,8 @@ class TipusEina extends Model
 
     protected $table = 'tipus_eines';
 
+    public $timestamps = false;
+    
     protected $fillable = [
         'nom'
     ];
