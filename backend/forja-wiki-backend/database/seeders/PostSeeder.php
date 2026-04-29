@@ -10,7 +10,6 @@ class PostSeeder extends Seeder
 {
     public function run(): void
     {
-        // Busquem els tipus pel nom
         $proteccio = TipusEina::where('nom', 'Proteccio')->first();
         $armes = TipusEina::where('nom', 'Armes')->first();
         $agricoles = TipusEina::where('nom', 'Eines agricoles')->first();
