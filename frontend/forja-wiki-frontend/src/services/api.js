@@ -1,34 +1,55 @@
+const API_URL = "http://127.0.0.1:8000/api"
 
-
-// MOCK DATA
-
-const posts = [
-  {
-    id: 1,
-    titol: "Martell de forja",
-    descripcio: "Eina utilitzada per treballar el ferro...",
-    dataPost: "2024-01-10",
-    usuari: "Adria",
-    epoca: "Edat Mitjana",
-    imatge: "https://picsum.photos/600/400?1",
-    tipus: "Martell"
-  },
-  {
-    id: 2,
-    titol: "Enclusa",
-    descripcio: "Base on es colpeja el metall...",
-    dataPost: "2024-01-12",
-    usuari: "Daniel",
-    epoca: "Edat Antiga",
-    imatge: "https://picsum.photos/600/400?2",
-    tipus: "Base"
-  }
-]
-
+// 🔹 POSTS
 export async function getPosts() {
-  return posts
+  const res = await fetch(`${API_URL}/posts`)
+  const data = await res.json()
+  return data.data
 }
 
 export async function getPost(id) {
-  return posts.find(p => p.id === parseInt(id))
+  const res = await fetch(`${API_URL}/posts/${id}`)
+  return await res.json()
+}
+
+// 🔹 LOGIN
+export async function loginUser(form) {
+  const res = await fetch(`${API_URL}/login`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(form)
+  })
+
+  return await res.json()
+}
+
+// 🔹 REGISTER
+export async function registerUser(form) {
+  const res = await fetch(`${API_URL}/register`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(form)
+  })
+
+  return await res.json()
+}
+
+// 🔹 CREAR COMENTARI
+export async function createComment(data) {
+  const token = localStorage.getItem("token")
+
+  const res = await fetch(`${API_URL}/comentaris`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`
+    },
+    body: JSON.stringify(data)
+  })
+
+  return await res.json()
 }

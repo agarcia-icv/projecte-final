@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tipus_eines', function (Blueprint $table) {
-            $table->id();
-            $table->string('nom');
-        });
+   Schema::create('tipus_eines', function (Blueprint $table) {
+    $table->id();
+    $table->string('nom');
+});
     }
 
     /**

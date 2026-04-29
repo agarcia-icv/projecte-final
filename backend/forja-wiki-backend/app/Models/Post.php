@@ -3,13 +3,19 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
-use App\Models\Comentari;
-use App\Models\Valoracio;
-use App\Models\TipusEina;
 
 class Post extends Model
 {
+    protected $fillable = [
+        'titol',
+        'descripcio',
+        'dataPost',
+        'epoca',
+        'imatge',
+        'user_id',
+        'tipus_eina_id'
+    ];
+
     public function user() {
         return $this->belongsTo(User::class);
     }
@@ -25,4 +31,9 @@ class Post extends Model
     public function tipus() {
         return $this->belongsTo(TipusEina::class, 'tipus_eina_id');
     }
+
+    protected $casts = [
+    'created_at' => 'datetime',
+    'updated_at' => 'datetime',
+];
 }

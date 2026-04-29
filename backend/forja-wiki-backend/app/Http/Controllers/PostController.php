@@ -33,10 +33,22 @@ class PostController extends Controller
         ]);
     }
 
-    public function show(Post $post)
-    {
-        return $post->load('comentaris', 'valoracions');
-    }
+public function show(Post $post)
+{
+    return $post->load([
+        'user',
+        'tipus',
+        'comentaris' => function ($query) {
+            $query->whereNull('parent_id')
+                  ->with([
+                      'user',
+                      'replies.user'
+                  ])
+                  ->latest();
+        },
+        'valoracions'
+    ]);
+}
 
     public function update(Request $request, Post $post)
     {
@@ -49,4 +61,7 @@ class PostController extends Controller
         $post->delete();
         return response()->json(['ok' => true]);
     }
+
+
+    
 }
