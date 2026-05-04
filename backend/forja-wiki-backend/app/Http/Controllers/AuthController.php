@@ -63,6 +63,13 @@ class AuthController extends Controller
         ]);
     }
 
+    public function indexUsers()
+    {
+        $users = User::all();
+
+        return response()->json($users);
+    }
+
     public function createWithRole(Request $request)
     {
         $request->validate([
@@ -95,6 +102,33 @@ class AuthController extends Controller
         return response()->json([
             'message' => 'Rol actualitzat correctament',
             'user' => $user
+        ]);
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $request->validate([
+            'name' => 'sometimes|required',
+            'avatar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
+        ]);
+
+        $user = auth()->user();
+
+        if ($request->has('name')) {
+            $user->name = $request->name;
+        }
+
+        if ($request->hasFile('avatar')) {
+            $path = $request->file('avatar')->store('users', 'public');
+            $user->avatar = $path;
+        }
+
+        $user->save();
+
+        return response()->json([
+            'message' => 'Perfil actualitzat correctament',
+            'user' => $user,
+            'avatar_url' => $user->avatar ? asset('storage/' . $user->avatar) : null
         ]);
     }
 }

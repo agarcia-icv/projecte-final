@@ -15,6 +15,16 @@ Route::get('/posts/{id}', [PostController::class, 'show']);
 
 Route::get('/posts/{post}/comentaris', [ComentariController::class, 'index']);
 
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/posts/{post}/comentaris', [ComentariController::class, 'store']);
+    Route::delete('/comentaris/{comentari}', [ComentariController::class, 'destroy']);
+
+    Route::post('/posts/{post}/valoracio', [ValoracioController::class, 'storeOrUpdate']);
+    Route::delete('/posts/{post}/valoracio', [ValoracioController::class, 'destroy']);
+
+    Route::post('/user/profile', [AuthController::class, 'updateProfile']);
+});
+
 Route::middleware(['auth:sanctum', 'role:editor,admin'])->group(function () {
     Route::post('/posts', [PostController::class, 'store']);
     Route::put('/posts/{post}', [PostController::class, 'update']);
@@ -22,15 +32,6 @@ Route::middleware(['auth:sanctum', 'role:editor,admin'])->group(function () {
 });
 
 Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
+    Route::get('/users', [AuthController::class, 'indexUsers']);
     Route::post('/users/{user}/role', [AuthController::class, 'updateRole']);
-});
-
-Route::middleware('auth:sanctum')->group(function () {
-    Route::post('/posts/{post}/valoracio', [ValoracioController::class, 'storeOrUpdate']);
-    Route::delete('/posts/{post}/valoracio', [ValoracioController::class, 'destroy']);
-});
-
-Route::middleware('auth:sanctum')->group(function () {
-    Route::post('/posts/{post}/comentaris', [ComentariController::class, 'store']);
-    Route::delete('/comentaris/{comentari}', [ComentariController::class, 'destroy']);
 });
