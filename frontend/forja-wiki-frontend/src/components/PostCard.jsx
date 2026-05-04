@@ -7,43 +7,42 @@ function PostCard({ post }) {
     navigate(`/post/${post.id}`)
   }
 
+  // 🔥 fix imatge Laravel storage + fallback
+  const imageUrl = post.imatge
+    ? `http://127.0.0.1:8000/storage/${post.imatge}`
+    : "https://picsum.photos/600/400"
+
   return (
     <div
-      className="card shadow-sm border-0 overflow-hidden"
-      style={{ cursor: "pointer" }}
+      className="card text-white shadow-sm border-0"
+      style={{
+        height: "250px",
+        overflow: "hidden",
+        cursor: "pointer",
+        position: "relative"
+      }}
       onClick={handleClick}
     >
+      <img
+        src={imageUrl}
+        alt={post.titol}
+        style={{
+          height: "100%",
+          width: "100%",
+          objectFit: "cover"
+        }}
+      />
+
       <div
         style={{
-          position: "relative",
-          height: "250px",
+          position: "absolute",
+          bottom: 0,
+          width: "100%",
+          background: "rgba(0,0,0,0.6)",
+          padding: "10px"
         }}
       >
-        <img
-          src={post.imatge}
-          alt={post.titol}
-          style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-          }}
-        />
-
-        {/* Overlay fosc */}
-        <div
-          style={{
-            position: "absolute",
-            bottom: 0,
-            width: "100%",
-            padding: "10px",
-            background:
-              "linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0))",
-          }}
-        >
-          <h5 style={{ color: "white", margin: 0 }}>
-            {post.titol}
-          </h5>
-        </div>
+        <h5>{post.titol}</h5>
       </div>
     </div>
   )
