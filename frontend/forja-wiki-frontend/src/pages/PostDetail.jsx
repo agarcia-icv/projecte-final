@@ -172,7 +172,7 @@ function PostDetail() {
             </button>
           </div>
 
-          {/* 🗨️ LLISTA */}
+          
           <h3 className="mt-5">Comentaris</h3>
 
           {post.comentaris?.length === 0 && <p>No hi ha comentaris</p>}
