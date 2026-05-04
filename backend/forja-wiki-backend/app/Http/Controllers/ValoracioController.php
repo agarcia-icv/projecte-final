@@ -44,4 +44,15 @@ class ValoracioController extends Controller
 
         return response()->json(['message' => 'Valoració eliminada']);
     }
+
+    public function average(Post $post)
+    {
+        $avg = Valoracio::where('post_id', $post->id)->avg('puntuacio');
+
+        return response()->json([
+            'post_id' => $post->id,
+            'valoracio_mitjana' => round($avg, 2),
+            'total_valoracions' => Valoracio::where('post_id', $post->id)->count()
+        ]);
+    }
 }

@@ -9,7 +9,8 @@ class PostController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Post::with('user', 'tipus');
+        $query = Post::with('user', 'tipus')
+            ->withAvg('valoracions', 'puntuacio');
 
         if ($request->has('search') && $request->search) {
             $query->where('titol', 'like', '%' . $request->search . '%');
