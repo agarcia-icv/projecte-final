@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import api from "../services/api";
 
 function Login() {
 
@@ -17,30 +18,24 @@ function Login() {
     })
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    // 👤 usuari mock
-    if (form.email === "daniel@test.com" && form.password === "123456") {
+    try {
+      const res = await api.post("/login", form);
 
-      const user = {
-        id: 1,
-        name: "Daniel",
-        email: form.email,
-        bio: "Apasionat de la forja 🔨",
-        avatar: "https://i.pravatar.cc/300"
-      }
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("user", JSON.stringify(res.data.user));
 
-      localStorage.setItem("user", JSON.stringify(user))
+      alert("Login correcte!");
 
-      alert("Login correcte!")
+      navigate("/profile");
 
-      navigate("/profile")
-
-    } else {
-      alert("Credencials incorrectes")
+    } catch (error) {
+      console.error(error);
+      alert("Credencials incorrectes");
     }
-  }
+  };
 
   return (
     <div className="container mt-5">

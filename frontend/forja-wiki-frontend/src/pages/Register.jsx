@@ -1,6 +1,9 @@
 import { useState } from "react"
+import api from "../services/api";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -16,46 +19,27 @@ function Register() {
     })
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-
-    setLoading(true)
+ const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
 
     try {
-      console.log("REGISTER ENVIANT:", form)
+      const res = await api.post("/register", form);
 
-      const response = await fetch("http://127.0.0.1:8000/api/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(form)
-      })
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("user", JSON.stringify(res.data.user));
 
-      console.log("STATUS:", response.status)
-      console.log("URL:", response.url)
+      alert("Registre correcte!");
 
-      const data = await response.json()
-
-      console.log("RESPOSTA BACKEND:", data)
-
-      if (!response.ok) {
-        console.error("ERROR BACKEND:", data)
-      }
-
-      if (data.token) {
-        localStorage.setItem("token", data.token)
-        localStorage.setItem("user", JSON.stringify(data.user))
-        console.log("USUARI GUARDAT")
-      }
+      navigate("/profile");
 
     } catch (error) {
-      console.error("ERROR FETCH:", error)
+      console.error(error);
+      alert("Error al registrar usuari");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
-
+  };
   return (
     <div className="container mt-5">
       <h2>Register</h2>

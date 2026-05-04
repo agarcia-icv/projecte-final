@@ -10,7 +10,6 @@ function AppRouter() {
   return (
     <BrowserRouter>
 
-      {/* 🔝 Navbar sempre visible */}
       <Navbar />
 
       <Routes>
@@ -19,7 +18,6 @@ function AppRouter() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
-        {/* 👤 NOVA RUTA PERFIL */}
         <Route path="/profile" element={<Profile />} />
       </Routes>
 
