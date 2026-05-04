@@ -1,20 +1,61 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 function Navbar() {
-  return (
-    <nav className="navbar navbar-dark bg-dark px-3">
-      <Link to="/" className="navbar-brand">Wiki Forja</Link>
+  const navigate = useNavigate();
+  const [user, setUser] = useState(null);
 
-      <div>
-        <Link to="/login" className="btn btn-outline-light me-2">
-          Login
-        </Link>
-        <Link to="/register" className="btn btn-warning">
-          Register
-        </Link>
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+
+    setUser(null);
+
+    navigate("/login");
+  };
+
+  return (
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-3">
+      <Link className="navbar-brand" to="/">
+        ForjaWiki
+      </Link>
+
+      <div className="ms-auto">
+
+        {!user && (
+          <>
+            <Link className="btn btn-outline-light me-2" to="/login">
+              Login
+            </Link>
+
+            <Link className="btn btn-light" to="/register">
+              Register
+            </Link>
+          </>
+        )}
+
+        {user && (
+          <>
+            <Link className="btn btn-outline-light me-2" to="/profile">
+              Profile
+            </Link>
+
+            <button className="btn btn-danger" onClick={handleLogout}>
+              Logout
+            </button>
+          </>
+        )}
+
       </div>
     </nav>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;
