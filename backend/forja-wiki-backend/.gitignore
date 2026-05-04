@@ -15,7 +15,6 @@
 /node_modules
 /public/build
 /public/hot
-/public/
 /vendor
 _ide_helper.php
 Homestead.json
