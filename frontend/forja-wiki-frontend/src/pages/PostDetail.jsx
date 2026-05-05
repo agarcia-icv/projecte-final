@@ -1,129 +1,133 @@
 import { useParams } from "react-router-dom"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import api from "../services/api"
 
 function PostDetail() {
-
   const { id } = useParams()
 
-  const post = {
-    id: id,
-    titol: "Martell de forja",
-    descripcio: "Descripció completa molt més llarga de l'eina.",
-    dataPost: "2024-01-10",
-    usuari: "Adria",
-    epoca: "Edat Mitjana",
-    imatge: "https://picsum.photos/600/400?1"
-  }
+  const [post, setPost] = useState(null)
+  const [comments, setComments] = useState([])
+  const [average, setAverage] = useState(0)
+  const [newComment, setNewComment] = useState("")
+  const [userRating, setUserRating] = useState(0)
 
+  const currentUser = JSON.parse(localStorage.getItem("user"))
+  const isLogged = !!currentUser
 
-  const currentUser = {
-    id: 1,
-    name: "Daniel"
-  }
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const postRes = await api.get(`/posts/${id}`)
 
-  const [ratings, setRatings] = useState([
-    { id: 1, usuari_id: 2, puntuacio: 5 },
-    { id: 2, usuari_id: 3, puntuacio: 4 }
-  ])
+        const postData = postRes.data.data ?? postRes.data
 
-  const existingRating = ratings.find(r => r.usuari_id === currentUser.id)
+        setPost(postData)
 
-  const [userRating, setUserRating] = useState(existingRating ? existingRating.puntuacio : 0)
+        const myRating = postData.valoracions?.find(
+          v => v.user_id === currentUser?.id
+        )
 
-  const average =
-    ratings.length > 0
-      ? (ratings.reduce((acc, r) => acc + r.puntuacio, 0) / ratings.length).toFixed(1)
-      : 0
+        if (myRating) {
+          setUserRating(myRating.puntuacio)
+        }
 
-  const handleRate = (value) => {
+        const adaptedComments = (postData.comentaris || []).map(c => ({
+          id: c.id,
+          parent_id: c.parent_id,
+          text: c.contingut,
+          usuari: c.user?.name || "Usuari"
+        }))
 
-    setUserRating(value)
+        setComments(adaptedComments)
 
-    if (existingRating) {
-      const updatedRatings = ratings.map(r =>
-        r.usuari_id === currentUser.id
-          ? { ...r, puntuacio: value }
-          : r
-      )
+        const avgRes = await api.get(`/posts/${id}/valoracio-mitjana`)
+        setAverage(avgRes.data.valoracio_mitjana)
 
-      setRatings(updatedRatings)
+      } catch (error) {
+        console.error("ERROR LOAD POST:", error)
+      }
+    }
 
-    } else {
-      const newRating = {
-        id: Date.now(),
-        usuari_id: currentUser.id,
+    fetchData()
+  }, [id])
+
+  const handleRate = async (value) => {
+    if (!isLogged) return
+
+    try {
+      await api.post(`/posts/${id}/valoracio`, {
         puntuacio: value
+      })
+
+      setUserRating(value)
+
+      const avgRes = await api.get(`/posts/${id}/valoracio-mitjana`)
+      setAverage(avgRes.data.valoracio_mitjana)
+
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  const handleAddComment = async () => {
+    if (!newComment.trim() || !isLogged) return
+
+    try {
+      const res = await api.post(`/posts/${id}/comentaris`, {
+        contingut: newComment
+      })
+
+      const newCommentObj = {
+        id: res.data.id,
+        parent_id: null,
+        text: res.data.contingut,
+        usuari: res.data.user?.name || currentUser?.name || "Usuari"
       }
 
-      setRatings([...ratings, newRating])
+      setComments([...comments, newCommentObj])
+      setNewComment("")
+
+    } catch (error) {
+      console.error(error)
     }
   }
 
-  const Stars = ({ current, onClick }) => {
-    return (
-      <div style={{ fontSize: "25px", cursor: "pointer" }}>
-        {[1, 2, 3, 4, 5].map(num => (
-          <span
-            key={num}
-            onClick={() => onClick(num)}
-            style={{
-              color: num <= current ? "gold" : "gray"
-            }}
-          >
-            ★
-          </span>
-        ))}
-      </div>
-    )
+  const handleReply = async (parentId, text) => {
+    if (!text.trim() || !isLogged) return
+
+    try {
+      const res = await api.post(`/posts/${id}/comentaris`, {
+        contingut: text,
+        parent_id: parentId
+      })
+
+      const newReply = {
+        id: res.data.id,
+        parent_id: res.data.parent_id,
+        text: res.data.contingut,
+        usuari: res.data.user?.name || currentUser?.name || "Usuari"
+      }
+
+      setComments([...comments, newReply])
+
+    } catch (error) {
+      console.error(error)
+    }
   }
 
-  const [comments, setComments] = useState([
-    {
-      id: 1,
-      usuari: "Adria",
-      contingut: "Molt interessant!",
-      parent_id: null,
-      data: new Date().toLocaleString()
-    },
-    {
-      id: 2,
-      usuari: "Daniel",
-      contingut: "Totalment d'acord",
-      parent_id: 1,
-      data: new Date().toLocaleString()
-    }
-  ])
-
-  const [newComment, setNewComment] = useState("")
-
-  const handleAddComment = () => {
-    if (!newComment.trim()) return
-
-    const newEntry = {
-      id: Date.now(),
-      usuari: currentUser.name,
-      contingut: newComment,
-      parent_id: null,
-      data: new Date().toLocaleString()
-    }
-
-    setComments([...comments, newEntry])
-    setNewComment("")
-  }
-
-  const handleReply = (parentId, text) => {
-    if (!text.trim()) return
-
-    const newReply = {
-      id: Date.now(),
-      usuari: currentUser.name,
-      contingut: text,
-      parent_id: parentId,
-      data: new Date().toLocaleString()
-    }
-
-    setComments([...comments, newReply])
-  }
+  const Stars = ({ current, onClick }) => (
+    <div style={{ fontSize: "25px", cursor: isLogged ? "pointer" : "default" }}>
+      {[1, 2, 3, 4, 5].map(num => (
+        <span
+          key={num}
+          onClick={() => isLogged && onClick(num)}
+          style={{ color: num <= current ? "gold" : "gray" }}
+        >
+          ★
+        </span>
+      ))}
+    </div>
+  )
 
   const Comment = ({ comment }) => {
     const [showReply, setShowReply] = useState(false)
@@ -137,24 +141,25 @@ function PostDetail() {
         className="mb-3 border p-2 rounded bg-light"
       >
         <strong>{comment.usuari}</strong>
-        <small className="text-muted ms-2">({comment.data})</small>
 
-        <p>{comment.contingut}</p>
+        <p>{comment.text}</p>
 
-        <button
-          className="btn btn-sm btn-outline-secondary"
-          onClick={() => setShowReply(!showReply)}
-        >
-          Respondre
-        </button>
+        {isLogged && (
+          <button
+            className="btn btn-sm btn-outline-secondary"
+            onClick={() => setShowReply(!showReply)}
+          >
+            Respondre
+          </button>
+        )}
 
-        {showReply && (
+        {showReply && isLogged && (
           <div className="mt-2">
             <input
               className="form-control mb-2"
-              placeholder="Escriu resposta..."
               value={replyText}
               onChange={(e) => setReplyText(e.target.value)}
+              placeholder="Resposta..."
             />
 
             <button
@@ -177,12 +182,18 @@ function PostDetail() {
     )
   }
 
+  if (!post) return <p className="container mt-5">Carregant...</p>
+
+  const imageUrl = post.imatge
+    ? `http://127.0.0.1:8000/storage/${post.imatge}`
+    : ""
+
   return (
     <div className="container mt-5">
 
       <div className="mb-4">
         <h1>{post.titol}</h1>
-        <p>{post.dataPost} | {post.usuari}</p>
+        <p>{post.created_at} | {post.user?.name}</p>
       </div>
 
       <div className="row">
@@ -191,44 +202,45 @@ function PostDetail() {
 
           <p>{post.descripcio}</p>
 
-          {/*VALORACIONS */}
           <div className="mt-4">
             <h4>Valoració</h4>
 
-            <Stars current={userRating} onClick={handleRate} />
+            {isLogged ? (
+              <Stars current={userRating} onClick={handleRate} />
+            ) : (
+              <Stars current={average} onClick={() => {}} />
+            )}
 
             <p className="mt-2">
-              Mitjana: <strong>{average}</strong> ({ratings.length} vots)
+              Mitjana: <strong>{average}</strong>
             </p>
-
-            {existingRating && (
-              <small className="text-muted">
-                Has valorat aquest post (pots modificar-ho)
-              </small>
-            )}
           </div>
 
-          {/* FORMULARI */}
-          <div className="mt-4">
-            <h4>Afegir comentari</h4>
+          {isLogged ? (
+            <div className="mt-4">
+              <h4>Afegir comentari</h4>
 
-            <input
-              className="form-control mb-2"
-              placeholder="Escriu un comentari..."
-              value={newComment}
-              onChange={(e) => setNewComment(e.target.value)}
-            />
+              <input
+                className="form-control mb-2"
+                value={newComment}
+                onChange={(e) => setNewComment(e.target.value)}
+                placeholder="Escriu un comentari..."
+              />
 
-            <button className="btn btn-success" onClick={handleAddComment}>
-              Publicar
-            </button>
-          </div>
+              <button className="btn btn-success" onClick={handleAddComment}>
+                Publicar
+              </button>
+            </div>
+          ) : (
+            <p className="mt-4 text-muted">
+              Inicia sessió per escriure comentaris
+            </p>
+          )}
 
-          {/* COMENTARIS */}
           <h3 className="mt-5">Comentaris</h3>
 
           {comments
-            .filter(c => c.parent_id === null)
+            .filter(c => !c.parent_id)
             .map(c => (
               <Comment key={c.id} comment={c} />
             ))}
@@ -236,21 +248,26 @@ function PostDetail() {
         </div>
 
         <div className="col-md-4">
+
           <div className="card">
+
             <img
-              src={post.imatge}
+              src={imageUrl}
               alt={post.titol}
               style={{
                 height: "280px",
                 objectFit: "cover"
               }}
             />
+
             <div className="card-body">
               <h5>{post.titol}</h5>
               <p><strong>Època:</strong> {post.epoca}</p>
-              <p><strong>Autor:</strong> {post.usuari}</p>
+              <p><strong>Autor:</strong> {post.user?.name}</p>
             </div>
+
           </div>
+
         </div>
 
       </div>

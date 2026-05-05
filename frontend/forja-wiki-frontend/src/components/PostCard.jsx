@@ -6,10 +6,7 @@ function PostCard({ post }) {
   const handleClick = () => {
     navigate(`/post/${post.id}`)
   }
-
-  const imageUrl = post.imatge
-    ? `http://127.0.0.1:8000/storage/${post.imatge}`
-    : "https://picsum.photos/600/400"
+  const imageUrl = `http://127.0.0.1:8000/storage/${post.imatge}`
 
   return (
     <div
