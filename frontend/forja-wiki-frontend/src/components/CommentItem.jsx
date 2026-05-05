@@ -1,6 +1,7 @@
 import { useState } from "react"
 
 function CommentItem({ comment, allComments, onAddReply }) {
+
   const [showReply, setShowReply] = useState(false)
   const [replyText, setReplyText] = useState("")
 
@@ -11,12 +12,14 @@ function CommentItem({ comment, allComments, onAddReply }) {
   const handleReply = () => {
     if (replyText.trim() === "") return
 
-    onAddReply({
+    const newReply = {
       id: Date.now(),
       usuari: "UsuariActual",
       text: replyText,
       parent_id: comment.id,
-    })
+    }
+
+    onAddReply(newReply)
 
     setReplyText("")
     setShowReply(false)
@@ -26,7 +29,9 @@ function CommentItem({ comment, allComments, onAddReply }) {
     <div style={{ marginLeft: comment.parent_id ? "20px" : "0px" }}>
 
       <div className="card mb-2 p-2">
+
         <strong>{comment.usuari}</strong>
+
         <p className="mb-1">{comment.text}</p>
 
         <button
@@ -38,22 +43,26 @@ function CommentItem({ comment, allComments, onAddReply }) {
 
         {showReply && (
           <div className="mt-2">
+
             <textarea
               className="form-control mb-2"
               value={replyText}
               onChange={(e) => setReplyText(e.target.value)}
+              placeholder="Escriu resposta..."
             />
+
             <button
               className="btn btn-sm btn-primary"
               onClick={handleReply}
             >
               Enviar resposta
             </button>
+
           </div>
         )}
+
       </div>
 
-      {/* RESPOSTES (recursiu) */}
       {replies.map(r => (
         <CommentItem
           key={r.id}
@@ -62,6 +71,7 @@ function CommentItem({ comment, allComments, onAddReply }) {
           onAddReply={onAddReply}
         />
       ))}
+
     </div>
   )
 }

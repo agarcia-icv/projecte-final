@@ -43,9 +43,16 @@ class PostController extends Controller
         ]);
     }
 
-    public function show(Post $post)
+    public function show($id)
     {
-        return $post->load('comentaris', 'valoracions');
+        $post = Post::with(['user', 'tipus', 'comentaris.user', 'valoracions'])
+            ->find($id);
+
+        if (!$post) {
+            return response()->json(['message' => 'Not found'], 404);
+        }
+
+        return response()->json($post);
     }
 
     public function update(Request $request, Post $post)
