@@ -19,15 +19,35 @@ function Home() {
   }, [])
 
   return (
-    <div className="container mt-5">
-      <h1>ForjaWiki</h1>
+    <div
+      style={{
+        backgroundColor: "#bac4be", // 🔥 gris ferro clar
+        minHeight: "100vh",
+        paddingTop: "30px",
+        paddingBottom: "30px"
+      }}
+    >
+      <div className="container">
+        <h1
+  style={{
+    textAlign: "center",
+    fontFamily: "'Cinzel', serif",
+    fontSize: "48px",
+    letterSpacing: "2px",
+    color: "#f7770f",
+    marginBottom: "30px"
+  }}
+>
+  ForjaWiki
+</h1>
 
-      <div className="row">
-        {posts.map((post) => (
-          <div key={post.id} className="col-md-6 mb-4">
-            <PostCard post={post} />
-          </div>
-        ))}
+        <div className="row">
+          {posts.map((post) => (
+            <div key={post.id} className="col-md-6 mb-4">
+              <PostCard post={post} />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   )
