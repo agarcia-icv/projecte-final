@@ -15,36 +15,31 @@ function PostDetail() {
     imatge: "https://picsum.photos/600/400?1"
   }
 
-  // 👤 usuari mock (simula login)
+
   const currentUser = {
     id: 1,
     name: "Daniel"
   }
 
-  // ⭐ VALORACIONS (ara amb usuari_id)
   const [ratings, setRatings] = useState([
     { id: 1, usuari_id: 2, puntuacio: 5 },
     { id: 2, usuari_id: 3, puntuacio: 4 }
   ])
 
-  // trobar si usuari ja ha votat
   const existingRating = ratings.find(r => r.usuari_id === currentUser.id)
 
   const [userRating, setUserRating] = useState(existingRating ? existingRating.puntuacio : 0)
 
-  // calcular mitjana
   const average =
     ratings.length > 0
       ? (ratings.reduce((acc, r) => acc + r.puntuacio, 0) / ratings.length).toFixed(1)
       : 0
 
-  // ⭐ votar (1 cop o modificar)
   const handleRate = (value) => {
 
     setUserRating(value)
 
     if (existingRating) {
-      // ✏️ modificar vot existent
       const updatedRatings = ratings.map(r =>
         r.usuari_id === currentUser.id
           ? { ...r, puntuacio: value }
@@ -54,7 +49,6 @@ function PostDetail() {
       setRatings(updatedRatings)
 
     } else {
-      // ➕ nou vot
       const newRating = {
         id: Date.now(),
         usuari_id: currentUser.id,
@@ -65,7 +59,6 @@ function PostDetail() {
     }
   }
 
-  // ⭐ COMPONENT ESTRELLES
   const Stars = ({ current, onClick }) => {
     return (
       <div style={{ fontSize: "25px", cursor: "pointer" }}>
@@ -84,7 +77,6 @@ function PostDetail() {
     )
   }
 
-  // 🗨️ COMENTARIS
   const [comments, setComments] = useState([
     {
       id: 1,
@@ -199,7 +191,7 @@ function PostDetail() {
 
           <p>{post.descripcio}</p>
 
-          {/* ⭐ VALORACIONS */}
+          {/*VALORACIONS */}
           <div className="mt-4">
             <h4>Valoració</h4>
 

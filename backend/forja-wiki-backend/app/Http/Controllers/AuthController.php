@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class AuthController extends Controller
 {
@@ -26,7 +27,7 @@ class AuthController extends Controller
         $token = $user->createToken('token')->plainTextToken;
 
         return response()->json([
-            'user' => $user,
+            'user' => $this->formatUser($user),
             'token' => $token
         ]);
     }
@@ -49,76 +50,30 @@ class AuthController extends Controller
         $token = $user->createToken('token')->plainTextToken;
 
         return response()->json([
-            'user' => $user,
+            'user' => $this->formatUser($user),
             'token' => $token
-        ]);
-    }
-
-    public function logout(Request $request)
-    {
-        $request->user()->currentAccessToken()->delete();
-
-        return response()->json([
-            'message' => 'Logout correcte'
-        ]);
-    }
-
-    public function indexUsers()
-    {
-        $users = User::all();
-
-        return response()->json($users);
-    }
-
-    public function createWithRole(Request $request)
-    {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6',
-            'rol' => 'required|in:user,editor,admin'
-        ]);
-
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => $request->password,
-            'rol' => $request->rol
-        ]);
-
-        return response()->json($user);
-    }
-
-    public function updateRole(Request $request, User $user)
-    {
-        $request->validate([
-            'rol' => 'required|in:user,editor,admin'
-        ]);
-
-        $user->update([
-            'rol' => $request->rol
-        ]);
-
-        return response()->json([
-            'message' => 'Rol actualitzat correctament',
-            'user' => $user
         ]);
     }
 
     public function updateProfile(Request $request)
     {
         $request->validate([
-            'name' => 'sometimes|required',
+            'bio' => 'nullable|string',
             'avatar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
         ]);
 
         $user = auth()->user();
 
-        if ($request->has('name')) {
-            $user->name = $request->name;
+        if ($request->has('bio')) {
+            $user->bio = $request->bio;
         }
 
         if ($request->hasFile('avatar')) {
+
+            if ($user->avatar && Storage::disk('public')->exists($user->avatar)) {
+                Storage::disk('public')->delete($user->avatar);
+            }
+
             $path = $request->file('avatar')->store('users', 'public');
             $user->avatar = $path;
         }
@@ -126,9 +81,23 @@ class AuthController extends Controller
         $user->save();
 
         return response()->json([
-            'message' => 'Perfil actualitzat correctament',
-            'user' => $user,
-            'avatar_url' => $user->avatar ? asset('storage/' . $user->avatar) : null
+            'user' => $this->formatUser($user)
         ]);
+    }
+
+    private function formatUser($user)
+    {
+        return [
+            'id' => $user->id,
+            'name' => $user->name,
+            'email' => $user->email,
+            'bio' => $user->bio,
+            'rol' => $user->rol,
+
+            // 🔥 SEMPRE URL ABSOLUTA
+            'avatar' => $user->avatar
+                ? asset('storage/' . $user->avatar)
+                : null
+        ];
     }
 }

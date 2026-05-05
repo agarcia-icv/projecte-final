@@ -7,7 +7,6 @@ function PostCard({ post }) {
     navigate(`/post/${post.id}`)
   }
 
-  // 🔥 fix imatge Laravel storage + fallback
   const imageUrl = post.imatge
     ? `http://127.0.0.1:8000/storage/${post.imatge}`
     : "https://picsum.photos/600/400"
