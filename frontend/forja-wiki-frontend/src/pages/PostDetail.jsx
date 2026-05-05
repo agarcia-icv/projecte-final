@@ -9,6 +9,7 @@ function PostDetail() {
   const [comments, setComments] = useState([])
   const [average, setAverage] = useState(0)
   const [newComment, setNewComment] = useState("")
+  const [userRating, setUserRating] = useState(0)
 
   const currentUser = JSON.parse(localStorage.getItem("user"))
 
@@ -17,13 +18,30 @@ function PostDetail() {
       try {
         const postRes = await api.get(`/posts/${id}`)
 
-        console.log("POST API:", postRes.data)
-
         const postData = postRes.data.data ?? postRes.data
 
         setPost(postData)
-        setComments(postData.comentaris || [])
 
+        // ⭐ valoració usuari
+        const myRating = postData.valoracions?.find(
+          v => v.user_id === currentUser?.id
+        )
+
+        if (myRating) {
+          setUserRating(myRating.puntuacio)
+        }
+
+        // 💬 comentaris normalitzats
+        const adaptedComments = (postData.comentaris || []).map(c => ({
+          id: c.id,
+          parent_id: c.parent_id,
+          text: c.contingut,
+          usuari: c.user?.name || "Usuari"
+        }))
+
+        setComments(adaptedComments)
+
+        // 📊 mitjana
         const avgRes = await api.get(`/posts/${id}/valoracio-mitjana`)
         setAverage(avgRes.data.valoracio_mitjana)
 
@@ -41,6 +59,8 @@ function PostDetail() {
         puntuacio: value
       })
 
+      setUserRating(value)
+
       const avgRes = await api.get(`/posts/${id}/valoracio-mitjana`)
       setAverage(avgRes.data.valoracio_mitjana)
 
@@ -57,7 +77,14 @@ function PostDetail() {
         contingut: newComment
       })
 
-      setComments([...comments, res.data])
+      const newCommentObj = {
+        id: res.data.id,
+        parent_id: null,
+        text: res.data.contingut,
+        usuari: res.data.user?.name || currentUser?.name || "Usuari"
+      }
+
+      setComments([...comments, newCommentObj])
       setNewComment("")
 
     } catch (error) {
@@ -74,7 +101,14 @@ function PostDetail() {
         parent_id: parentId
       })
 
-      setComments([...comments, res.data])
+      const newReply = {
+        id: res.data.id,
+        parent_id: res.data.parent_id,
+        text: res.data.contingut,
+        usuari: res.data.user?.name || currentUser?.name || "Usuari"
+      }
+
+      setComments([...comments, newReply])
 
     } catch (error) {
       console.error(error)
@@ -106,9 +140,9 @@ function PostDetail() {
         style={{ marginLeft: comment.parent_id ? "30px" : "0" }}
         className="mb-3 border p-2 rounded bg-light"
       >
-        <strong>{comment.user?.name || "Usuari"}</strong>
+        <strong>{comment.usuari}</strong>
 
-        <p>{comment.contingut}</p>
+        <p>{comment.text}</p>
 
         <button
           className="btn btn-sm btn-outline-secondary"
@@ -146,7 +180,6 @@ function PostDetail() {
     )
   }
 
-  // 🔥 IMPORTANT: abans de tot render
   if (!post) return <p className="container mt-5">Carregant...</p>
 
   const imageUrl = post.imatge
@@ -170,7 +203,7 @@ function PostDetail() {
           <div className="mt-4">
             <h4>Valoració</h4>
 
-            <Stars current={0} onClick={handleRate} />
+            <Stars current={userRating} onClick={handleRate} />
 
             <p className="mt-2">
               Mitjana: <strong>{average}</strong>

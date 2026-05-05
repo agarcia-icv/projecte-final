@@ -18,13 +18,13 @@ function CommentSection({ comentaris }) {
   }, [comentaris])
 
   const handleAddComment = () => {
-    if (newComment.trim() === "") return
+    if (!newComment.trim()) return
 
     const newObj = {
       id: Date.now(),
-      usuari: "UsuariActual",
-      text: newComment,
       parent_id: null,
+      text: newComment,
+      usuari: "UsuariActual",
     }
 
     setComments([...comments, newObj])
@@ -35,7 +35,7 @@ function CommentSection({ comentaris }) {
     setComments([...comments, reply])
   }
 
-  const rootComments = comments.filter(c => c.parent_id === null)
+  const rootComments = comments.filter(c => !c.parent_id)
 
   return (
     <div className="mt-5">
