@@ -21,6 +21,9 @@ DB_PORT=3307 (port de mariaDB)
 **Executar migracions:**  
 ``php artisan migrate``
 
+**Executar seeders:**  
+``php artisan db:seed``
+
 **Linkejar storage:**  
 ``php artisan storage:link``
 
