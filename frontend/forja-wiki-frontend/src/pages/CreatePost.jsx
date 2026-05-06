@@ -72,7 +72,7 @@ function CreatePost() {
         }
       })
 
-      navigate("/")
+      navigate("/", { state: { refresh: true } })
 
     } catch (error) {
       console.error("ERROR CREATE POST:", error)

@@ -10,20 +10,22 @@ class PostController extends Controller
     public function index(Request $request)
     {
         $query = Post::with('user', 'tipus')
-            ->withAvg('valoracions', 'puntuacio');
+            ->withAvg('valoracions', 'puntuacio')
+            ->orderBy('created_at', 'desc');
 
         if ($request->has('search') && $request->search) {
             $query->where('titol', 'like', '%' . $request->search . '%');
         }
 
-        return $query->paginate(10);
+        return $query->get();
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'titol' => 'required',
-            'descripcio' => 'required',
+            'titol' => 'required|string|max:255',
+            'descripcio' => 'required|string',
+            'epoca' => 'required|string|max:255',
             'tipus_eina_id' => 'required|exists:tipus_eines,id',
             'imatge' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
         ]);
@@ -34,13 +36,16 @@ class PostController extends Controller
             $path = $request->file('imatge')->store('posts', 'public');
         }
 
-        return Post::create([
+        $post = Post::create([
             'titol' => $request->titol,
             'descripcio' => $request->descripcio,
+            'epoca' => $request->epoca,
             'user_id' => auth()->id(),
             'tipus_eina_id' => $request->tipus_eina_id,
             'imatge' => $path
         ]);
+
+        return response()->json($post, 201);
     }
 
     public function show($id)
@@ -62,8 +67,9 @@ class PostController extends Controller
         }
 
         $request->validate([
-            'titol' => 'required',
-            'descripcio' => 'required',
+            'titol' => 'required|string|max:255',
+            'descripcio' => 'required|string',
+            'epoca' => 'required|string|max:255',
             'tipus_eina_id' => 'required|exists:tipus_eines,id',
             'imatge' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
         ]);
@@ -71,8 +77,8 @@ class PostController extends Controller
         $data = [
             'titol' => $request->titol,
             'descripcio' => $request->descripcio,
-            'tipus_eina_id' => $request->tipus_eina_id,
             'epoca' => $request->epoca,
+            'tipus_eina_id' => $request->tipus_eina_id,
         ];
 
         if ($request->hasFile('imatge')) {
@@ -81,7 +87,7 @@ class PostController extends Controller
 
         $post->update($data);
 
-        return $post;
+        return response()->json($post);
     }
 
     public function destroy(Post $post)
