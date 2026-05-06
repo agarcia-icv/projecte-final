@@ -83,14 +83,14 @@ function Profile() {
           <div className="form-control bg-light">{user.email}</div>
         </div>
 
-        {/* AVATAR INPUT */}
+   {/*   
         {editing && (
           <div className="mb-3">
             <label>Avatar</label>
             <input type="file" className="form-control" onChange={handleAvatarChange} />
           </div>
         )}
-
+*/}
         {/* BIO */}
         <div className="mb-3">
           <label>Bio</label>
