@@ -5,6 +5,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ValoracioController;
 use App\Http\Controllers\ComentariController;
+use App\Http\Controllers\TipusEinaController;
 use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
 
 Route::post('/register', [AuthController::class, 'register']);
@@ -15,6 +16,8 @@ Route::get('/posts/{id}', [PostController::class, 'show']);
 
 Route::get('/posts/{post}/comentaris', [ComentariController::class, 'index']);
 Route::get('/posts/{post}/valoracio-mitjana', [ValoracioController::class, 'average']);
+
+Route::get('/tipus-eines', [TipusEinaController::class, 'index']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/posts/{post}/comentaris', [ComentariController::class, 'store']);

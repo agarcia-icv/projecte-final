@@ -17,15 +17,24 @@ function Navbar() {
     localStorage.removeItem("user");
 
     setUser(null);
-
     navigate("/login");
   };
 
+  const canCreate =
+    user && (user.rol === "admin" || user.rol === "editor");
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-3">
+      
       <Link className="navbar-brand" to="/">
         ForjaWiki
       </Link>
+
+      {canCreate && (
+        <Link className="btn btn-warning ms-3" to="/create-post">
+          Crear Post
+        </Link>
+      )}
 
       <div className="ms-auto">
 
