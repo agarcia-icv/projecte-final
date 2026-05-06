@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
 import { useEffect, useState } from "react"
 import api from "../services/api"
 
@@ -14,6 +14,9 @@ function PostDetail() {
   const currentUser = JSON.parse(localStorage.getItem("user"))
   const isLogged = !!currentUser
 
+  const canEdit =
+    currentUser?.rol === "admin" || currentUser?.rol === "editor"
+
   useEffect(() => {
     fetchData()
   }, [id])
@@ -25,7 +28,6 @@ function PostDetail() {
 
       setPost(postData)
 
-  
       const myRating = postData.valoracions?.find(
         v => v.user_id === currentUser?.id
       )
@@ -76,7 +78,7 @@ function PostDetail() {
       })
 
       setNewComment("")
-      fetchData() 
+      fetchData()
 
     } catch (error) {
       console.error(error)
@@ -135,9 +137,10 @@ function PostDetail() {
         className="mb-3 p-3"
       >
         <strong>{comment.usuari}</strong>
-      <small className="ms-2 text-white">
-  {formatDate(comment.created_at)}
-</small>
+
+        <small className="ms-2 text-white">
+          {formatDate(comment.created_at)}
+        </small>
 
         <p className="mt-2">{comment.text}</p>
 
@@ -196,10 +199,22 @@ function PostDetail() {
     >
 
       <div className="mb-4 text-center text-white">
+
         <h1 style={{ fontFamily: "serif" }}>{post.titol}</h1>
+
         <p className="text-light">
           {formatDate(post.created_at)} | {post.user?.name}
         </p>
+
+        {canEdit && (
+          <Link
+            to={`/post/${post.id}/edit`}
+            className="btn btn-warning ms-2"
+          >
+            Editar Post
+          </Link>
+        )}
+
       </div>
 
       <div className="row">
@@ -275,6 +290,7 @@ function PostDetail() {
             </div>
           </div>
         </div>
+
       </div>
     </div>
   )

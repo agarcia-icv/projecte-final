@@ -6,6 +6,7 @@ import Login from "../pages/Login.jsx"
 import Register from "../pages/Register.jsx"
 import Profile from "../pages/Profile.jsx"
 import CreatePost from "../pages/CreatePost.jsx"
+import UpdatePost from "../pages/UpdatePost.jsx"
 
 function AppRouter() {
   return (
@@ -18,6 +19,7 @@ function AppRouter() {
         <Route path="/post/:id" element={<PostDetail />} />
 
         <Route path="/create-post" element={<CreatePost />} />
+        <Route path="/post/:id/edit" element={<UpdatePost />} />
 
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
