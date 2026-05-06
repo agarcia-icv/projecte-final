@@ -22,6 +22,7 @@ function Home() {
     <div
       style={{
         backgroundColor: "#bac4be", 
+
         minHeight: "100vh",
         paddingTop: "30px",
         paddingBottom: "30px"
