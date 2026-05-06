@@ -21,7 +21,7 @@ function Home() {
   return (
     <div
       style={{
-        backgroundColor: "#bac4be", // 🔥 gris ferro clar
+        backgroundColor: "#bac4be", 
         minHeight: "100vh",
         paddingTop: "30px",
         paddingBottom: "30px"
@@ -34,7 +34,7 @@ function Home() {
     fontFamily: "'Cinzel', serif",
     fontSize: "48px",
     letterSpacing: "2px",
-    color: "#f7770f",
+    color: "#e44d12",
     marginBottom: "30px"
   }}
 >

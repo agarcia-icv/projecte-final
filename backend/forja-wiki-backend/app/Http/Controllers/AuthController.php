@@ -94,7 +94,6 @@ class AuthController extends Controller
             'bio' => $user->bio,
             'rol' => $user->rol,
 
-            // 🔥 SEMPRE URL ABSOLUTA
             'avatar' => $user->avatar
                 ? asset('storage/' . $user->avatar)
                 : null
