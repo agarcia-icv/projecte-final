@@ -37,7 +37,6 @@ function UpdatePost() {
           api.get("/tipus-eines")
         ])
 
-        // 🔥 IMPORTANT: backend pot retornar data o directe
         const post = postRes.data.data ?? postRes.data
 
         setTitol(post.titol || "")
@@ -45,7 +44,6 @@ function UpdatePost() {
         setEpoca(post.epoca || "")
         setTipusEinaId(post.tipus_eina_id || "")
 
-        // 🔥 IMPORTANT: assegurar array
         const tipus = tipusRes.data.data ?? tipusRes.data ?? []
         setTipusEines(Array.isArray(tipus) ? tipus : [])
 
