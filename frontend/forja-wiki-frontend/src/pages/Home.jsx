@@ -1,47 +1,143 @@
-import { useEffect, useState } from "react"
-import api from "../services/api"
 import PostCard from "../components/PostCard"
-import { useLocation } from "react-router-dom"
 
 function Home() {
-  const [posts, setPosts] = useState([])
-  const location = useLocation()
 
-  const fetchPosts = async () => {
-    try {
-      const res = await api.get("/posts")
-
-      setPosts(res.data)
-
-    } catch (error) {
-      console.error("ERROR GET POSTS:", error)
+  const categories = [
+    {
+      id: 1,
+      nom: "Protecció",
+      imatge: "https://picsum.photos/600/400?armor"
+    },
+    {
+      id: 2,
+      nom: "Armes",
+      imatge: "https://picsum.photos/600/400?sword"
+    },
+    {
+      id: 3,
+      nom: "Eines Agrícoles",
+      imatge: "https://picsum.photos/600/400?farm"
+    },
+    {
+      id: 4,
+      nom: "Materials",
+      imatge: "https://picsum.photos/600/400?metal"
+    },
+    {
+      id: 5,
+      nom: "Tècniques",
+      imatge: "https://picsum.photos/600/400?blacksmith"
+    },
+    {
+      id: 6,
+      nom: "Estris varis",
+      imatge: "https://picsum.photos/600/400?tools"
     }
-  }
-
-  useEffect(() => {
-    fetchPosts()
-  }, [])
-
-  useEffect(() => {
-    if (location.state?.refresh) {
-      fetchPosts()
-    }
-  }, [location.state])
+  ]
 
   return (
-    <div style={{ backgroundColor: "#bac4be", minHeight: "100vh", paddingTop: "30px", paddingBottom: "30px" }}>
-      <div className="container">
+    <div
+      style={{
+        backgroundColor: "#2f2f2f",
+        minHeight: "100vh",
+        paddingBottom: "50px"
+      }}
+    >
+      <div className="container pt-5">
 
-        <h1 style={{ textAlign: "center", fontFamily: "'Cinzel', serif", fontSize: "48px", color: "#e44d12", marginBottom: "30px" }}>
+        {/* 🔥 TÍTOL */}
+        <h1
+          className="text-center mb-5"
+          style={{
+            fontFamily: "'Cinzel', serif",
+            color: "#f5f5f5",
+            fontSize: "3rem",
+            letterSpacing: "2px"
+          }}
+        >
           ForjaWiki
         </h1>
 
+        {/* 🧱 CATEGORIES */}
         <div className="row">
-          {posts.map((post) => (
-            <div key={post.id} className="col-md-6 mb-4">
-              <PostCard post={post} />
+
+          {categories.map((cat) => (
+            <div key={cat.id} className="col-md-4 mb-4">
+
+              <div
+                className="card shadow"
+                style={{
+                  cursor: "pointer",
+                  border: "2px solid #ff6a00",
+                  overflow: "hidden",
+                  height: "200px",
+                  position: "relative"
+                }}
+              >
+
+                <img
+                  src={cat.imatge}
+                  alt={cat.nom}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    filter: "brightness(0.7)"
+                  }}
+                />
+
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    color: "white",
+                    fontSize: "1.5rem",
+                    fontWeight: "bold",
+                    textAlign: "center",
+                    textShadow: "2px 2px 5px black"
+                  }}
+                >
+                  {cat.nom}
+                </div>
+
+              </div>
+
             </div>
           ))}
+
+        </div>
+
+        {/* 📜 QUI SOM */}
+        <div
+          className="mt-5 p-4"
+          style={{
+            backgroundColor: "#3a3a3a",
+            borderRadius: "10px",
+            color: "#ddd"
+          }}
+        >
+          <h2
+            className="text-center mb-3"
+            style={{ fontFamily: "'Cinzel', serif" }}
+          >
+            Qui som
+          </h2>
+
+          <p>
+            ForjaWiki és una plataforma dedicada a preservar i compartir el coneixement
+            sobre la forja tradicional, eines històriques i tècniques artesanals.
+          </p>
+
+          <p>
+            Aquí podràs descobrir armes, eines agrícoles, materials i processos que han
+            format part de la història de la humanitat.
+          </p>
+
+          <p>
+            Aquesta secció s’omplirà amb informació detallada pròximament.
+          </p>
         </div>
 
       </div>
