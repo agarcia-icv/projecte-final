@@ -27,7 +27,18 @@ function Navbar() {
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-3">
       
       <Link className="navbar-brand" to="/">
-        ForjaWiki
+        <img
+            src="/logo_forjawiki.png"
+            alt="ForjaWiki"
+            style={{
+              height: "60px",
+              width: "auto",
+              display: "block",
+              margin: "0 auto",
+              objectFit: "contain",
+              filter: "drop-shadow(0 0 10px #ff6a00) drop-shadow(0 0 25px #ff2a00)",
+            }}
+          />
       </Link>
 
       {canCreate && (

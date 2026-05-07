@@ -45,22 +45,23 @@ function Home() {
         paddingBottom: "50px"
       }}
     >
-      <div className="container pt-5">
+      <div className="container pt-2">
 
-        {/* 🔥 TÍTOL */}
-        <h1
-          className="text-center mb-5"
-          style={{
-            fontFamily: "'Cinzel', serif",
-            color: "#f5f5f5",
-            fontSize: "3rem",
-            letterSpacing: "2px"
-          }}
-        >
-          ForjaWiki
-        </h1>
+        <div className="text-center mb-5">
+          <img
+            src="/logo_forjawiki.png"
+            alt="ForjaWiki"
+            style={{
+              height: "250px",
+              width: "auto",
+              display: "block",
+              margin: "0 auto",
+              objectFit: "contain",
+              filter: "drop-shadow(0 0 10px #ff6a00) drop-shadow(0 0 25px #ff2a00)",
+            }}
+          />
+        </div>
 
-        {/* 🧱 CATEGORIES */}
         <div className="row">
 
           {categories.map((cat) => (
@@ -68,7 +69,7 @@ function Home() {
 
               <div
                 className="card shadow"
-                onClick={() => navigate(`/category/${cat.id}`)} // 🔥 AIXÒ ÉS EL PAS 5
+                onClick={() => navigate(`/category/${cat.id}`)}
                 style={{
                   cursor: "pointer",
                   border: "2px solid #ff6a00",
@@ -112,7 +113,6 @@ function Home() {
 
         </div>
 
-        {/* 📜 QUI SOM */}
         <div
           className="mt-5 p-4"
           style={{
