@@ -7,18 +7,23 @@ use App\Models\Post;
 
 class PostController extends Controller
 {
-    public function index(Request $request)
-    {
-        $query = Post::with('user', 'tipus')
-            ->withAvg('valoracions', 'puntuacio')
-            ->orderBy('created_at', 'desc');
+  public function index(Request $request)
+{
+    $query = Post::with('user', 'tipus')
+        ->withAvg('valoracions', 'puntuacio')
+        ->orderBy('created_at', 'desc');
 
-        if ($request->has('search') && $request->search) {
-            $query->where('titol', 'like', '%' . $request->search . '%');
-        }
-
-        return $query->get();
+    if ($request->has('search') && $request->search) {
+        $query->where('titol', 'like', '%' . $request->search . '%');
     }
+
+    
+    if ($request->has('tipus') && $request->tipus) {
+        $query->where('tipus_eina_id', $request->tipus);
+    }
+
+    return $query->get();
+}
 
     public function store(Request $request)
     {

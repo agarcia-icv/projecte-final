@@ -1,6 +1,8 @@
-import PostCard from "../components/PostCard"
+import { useNavigate } from "react-router-dom"
 
 function Home() {
+
+  const navigate = useNavigate()
 
   const categories = [
     {
@@ -66,6 +68,7 @@ function Home() {
 
               <div
                 className="card shadow"
+                onClick={() => navigate(`/category/${cat.id}`)} // 🔥 AIXÒ ÉS EL PAS 5
                 style={{
                   cursor: "pointer",
                   border: "2px solid #ff6a00",
