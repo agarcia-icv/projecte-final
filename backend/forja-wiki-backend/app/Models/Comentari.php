@@ -26,12 +26,22 @@ class Comentari extends Model
         return $this->belongsTo(Post::class);
     }
 
-    public function replies() {
-        return $this->hasMany(Comentari::class, 'parent_id');
-    }
-
     public function parent()
     {
         return $this->belongsTo(Comentari::class, 'parent_id');
     }
-}
+    
+    public function replies()
+    {
+        return $this->hasMany(Comentari::class, 'parent_id');
+    }
+
+    public function deleteWithChildren()
+    {
+        foreach ($this->replies as $reply) {
+            $reply->deleteWithChildren();
+        }
+
+        $this->delete();
+    }
+    }

@@ -1,9 +1,10 @@
-import { useParams, Link } from "react-router-dom"
+import { useParams, useNavigate, Link } from "react-router-dom"
 import { useEffect, useState } from "react"
 import api from "../services/api"
 
 function PostDetail() {
   const { id } = useParams()
+  const navigate = useNavigate()
 
   const [post, setPost] = useState(null)
   const [comments, setComments] = useState([])
@@ -97,6 +98,29 @@ function PostDetail() {
       fetchData()
     } catch (error) {
       console.error(error)
+    }
+  }
+
+  const handleDelete = async () => {
+    const confirmDelete = window.confirm(
+      "Segur que vols eliminar aquest post?"
+    )
+
+    if (!confirmDelete) return
+
+    try {
+
+      const res = await api.delete(`/posts/${id}`)
+
+      console.log(res.data)
+
+      navigate("/")
+
+    } catch (error) {
+
+      console.log(error.response)
+
+      console.error("ERROR DELETE POST:", error)
     }
   }
 
@@ -203,16 +227,27 @@ function PostDetail() {
         <h1 style={{ fontFamily: "serif" }}>{post.titol}</h1>
 
         <p className="text-light">
-          {formatDate(post.created_at)} | {post.user?.name}
+          {formatDate(post.created_at ?? post.created_at)} | {post.user?.name}
         </p>
 
         {canEdit && (
-          <Link
-            to={`/post/${post.id}/edit`}
-            className="btn btn-warning ms-2"
-          >
-            Editar Post
-          </Link>
+          <div className="mt-3 d-flex justify-content-center gap-2">
+
+                  <Link
+                    to={`/post/${post.id}/edit`}
+                    className="btn btn-warning ms-2"
+                  >
+                    Editar Post
+                  </Link>
+
+            <button
+              className="btn btn-danger"
+              onClick={handleDelete}
+            >
+              Eliminar Post
+            </button>
+
+          </div>
         )}
 
       </div>

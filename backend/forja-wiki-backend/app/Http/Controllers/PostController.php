@@ -92,11 +92,22 @@ class PostController extends Controller
 
     public function destroy(Post $post)
     {
-        if ($post->user_id !== auth()->id()) {
+        $user = auth()->user();
+
+        if (
+            $user->rol !== 'admin' &&
+            $user->rol !== 'editor'
+        ) {
             return response()->json([
                 'message' => 'No autoritzat'
             ], 403);
         }
+
+        foreach ($post->comentaris as $comentari) {
+            $comentari->deleteWithChildren();
+        }
+
+        $post->valoracions()->delete();
 
         $post->delete();
 
