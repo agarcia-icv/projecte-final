@@ -32,7 +32,7 @@ class PostController extends Controller
             'descripcio' => 'required|string',
             'epoca' => 'required|string|max:255',
             'tipus_eina_id' => 'required|exists:tipus_eines,id',
-            'imatge' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
+            'imatge' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048'
         ]);
 
         $path = null;
