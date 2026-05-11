@@ -11,23 +11,25 @@ function AllPosts() {
   useEffect(() => {
 
     const fetchPosts = async () => {
-
       try {
 
         const params = new URLSearchParams(location.search)
-        const search = params.get("search")
+        const search = params.get("search") || ""
+
+        console.log("SEARCH PARAM:", search)
 
         const res = await api.get("/posts", {
           params: {
-            search: search || ""
+            search: search
           }
         })
 
-        console.log("URL search:", search)
-        console.log("RESPOSTA BACKEND:", res.data)
-        console.log("POSTS REBUDS:", res.data.posts)
+        console.log("RESPONSE BACKEND:", res.data)
 
-        setPosts(res.data.posts || res.data)
+        const data = res.data.posts ?? res.data ?? []
+
+
+        setPosts(data)
 
       } catch (error) {
         console.error("ERROR POSTS:", error)
@@ -42,16 +44,35 @@ function AllPosts() {
     <div style={{ backgroundColor: "#2f2f2f", minHeight: "100vh", paddingBottom: "50px" }}>
       <div className="container pt-5">
 
-        <h1 className="text-center mb-5" style={{ fontFamily: "'Cinzel', serif", color: "#f5f5f5", fontSize: "3rem" }}>
+        <h1
+          className="text-center mb-5"
+          style={{
+            fontFamily: "'Cinzel', serif",
+            color: "#f5f5f5",
+            fontSize: "3rem"
+          }}
+        >
           Tots els Posts
         </h1>
 
+        <p className="text-center text-light">
+          Resultats: {posts.length}
+        </p>
+
         <div className="row">
-          {posts.map((post) => (
-            <div key={post.id} className="col-md-6 mb-4">
-              <PostCard post={post} />
-            </div>
-          ))}
+
+          {posts.length > 0 ? (
+            posts.map((post) => (
+              <div key={post.id} className="col-md-6 mb-4">
+                <PostCard post={post} />
+              </div>
+            ))
+          ) : (
+            <p className="text-center text-light">
+              No s’han trobat posts
+            </p>
+          )}
+
         </div>
 
       </div>
