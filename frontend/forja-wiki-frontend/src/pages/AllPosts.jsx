@@ -8,6 +8,9 @@ function AllPosts() {
   const [posts, setPosts] = useState([])
   const location = useLocation()
 
+  const [sort, setSort] = useState("created_at")
+  const [direction, setDirection] = useState("desc")
+
   useEffect(() => {
 
     const fetchPosts = async () => {
@@ -16,29 +19,41 @@ function AllPosts() {
         const params = new URLSearchParams(location.search)
         const search = params.get("search") || ""
 
-        console.log("SEARCH PARAM:", search)
+        console.log("🔎 SEARCH:", search)
+        console.log("↕️ SORT:", sort, direction)
 
         const res = await api.get("/posts", {
           params: {
-            search: search
+            search: search,
+            sort: sort,
+            direction: direction
           }
         })
 
-        console.log("RESPONSE BACKEND:", res.data)
+        console.log("📦 BACKEND RESPONSE:", res.data)
 
         const data = res.data.posts ?? res.data ?? []
-
 
         setPosts(data)
 
       } catch (error) {
-        console.error("ERROR POSTS:", error)
+
+        console.error("❌ ERROR POSTS:", error)
+
+        try {
+          const fallback = await api.get("/posts")
+          const data = fallback.data.posts ?? fallback.data ?? []
+          setPosts(data)
+        } catch (e) {
+          console.error("❌ FALLBACK ERROR:", e)
+        }
+
       }
     }
 
     fetchPosts()
 
-  }, [location.search])
+  }, [location.search, sort, direction])
 
   return (
     <div style={{ backgroundColor: "#2f2f2f", minHeight: "100vh", paddingBottom: "50px" }}>
@@ -59,6 +74,35 @@ function AllPosts() {
           Resultats: {posts.length}
         </p>
 
+        {/* SORT CONTROLS */}
+        <div className="row mb-4">
+
+          <div className="col-md-6">
+            <select
+              className="form-select"
+              value={sort}
+              onChange={(e) => setSort(e.target.value)}
+            >
+              <option value="created_at">Data</option>
+              <option value="titol">Títol</option>
+              <option value="valoracions_avg_puntuacio">Valoracions</option>
+            </select>
+          </div>
+
+          <div className="col-md-6">
+            <select
+              className="form-select"
+              value={direction}
+              onChange={(e) => setDirection(e.target.value)}
+            >
+              <option value="desc">Descendent</option>
+              <option value="asc">Ascendent</option>
+            </select>
+          </div>
+
+        </div>
+
+        {/* POSTS */}
         <div className="row">
 
           {posts.length > 0 ? (
