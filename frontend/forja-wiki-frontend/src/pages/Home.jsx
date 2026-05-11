@@ -7,13 +7,11 @@ function Home() {
   const categories = [
     {
       id: 1,
-      nom: "Protecció",
-      imatge: "https://picsum.photos/600/400?armor"
+        imatge: "/Proteccio.png"
     },
     {
       id: 2,
-      nom: "Armes",
-      imatge: "https://picsum.photos/600/400?sword"
+      imatge: "/Armes.png"
     },
     {
       id: 3,
