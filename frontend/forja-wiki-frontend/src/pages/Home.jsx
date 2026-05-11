@@ -1,53 +1,34 @@
 import { useNavigate } from "react-router-dom"
+import { useState } from "react"
 
 function Home() {
 
   const navigate = useNavigate()
+  const [search, setSearch] = useState("")
 
   const categories = [
-    {
-      id: 1,
-      nom: "Protecció",
-      imatge: "https://picsum.photos/600/400?armor"
-    },
-    {
-      id: 2,
-      nom: "Armes",
-      imatge: "https://picsum.photos/600/400?sword"
-    },
-    {
-      id: 3,
-      nom: "Eines Agrícoles",
-      imatge: "https://picsum.photos/600/400?farm"
-    },
-    {
-      id: 4,
-      nom: "Materials",
-      imatge: "https://picsum.photos/600/400?metal"
-    },
-    {
-      id: 5,
-      nom: "Tècniques",
-      imatge: "https://picsum.photos/600/400?blacksmith"
-    },
-    {
-      id: 6,
-      nom: "Estris varis",
-      imatge: "https://picsum.photos/600/400?tools"
-    }
+    { id: 1, nom: "Protecció", imatge: "/proteccio.png" },
+    { id: 2, nom: "Armes", imatge: "/armes.png" },
+    { id: 3, nom: "Eines Agrícoles", imatge: "/agricoles.png" },
+    { id: 4, nom: "Materials", imatge: "/materials.png" },
+    { id: 5, nom: "Tècniques", imatge: "/tecniques.png" },
+    { id: 6, nom: "Estris varis", imatge: "/estris.png" }
   ]
 
+  const handleSearch = (e) => {
+    e.preventDefault()
+
+    const query = search.trim()
+    if (!query) return
+
+    navigate(`/posts?search=${encodeURIComponent(query)}`)
+  }
+
   return (
-    <div
-      style={{
-        backgroundColor: "#2f2f2f",
-        minHeight: "100vh",
-        paddingBottom: "50px"
-      }}
-    >
+    <div style={{ backgroundColor: "#2f2f2f", minHeight: "100vh", paddingBottom: "50px" }}>
       <div className="container pt-2">
 
-        <div className="text-center mb-5">
+        <div className="text-center mb-4">
           <img
             src="/logo_forjawiki.png"
             alt="ForjaWiki"
@@ -62,8 +43,36 @@ function Home() {
           />
         </div>
 
-        <div className="row">
+        <div className="row justify-content-center mb-5">
+          <div className="col-md-8">
 
+            <form onSubmit={handleSearch}>
+              <div className="input-group">
+
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Buscar posts per nom (ex: espa...)"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  style={{
+                    backgroundColor: "#3a3a3a",
+                    color: "white",
+                    border: "2px solid #ff6a00"
+                  }}
+                />
+
+                <button className="btn btn-warning" type="submit">
+                  Buscar
+                </button>
+
+              </div>
+            </form>
+
+          </div>
+        </div>
+
+        <div className="row">
           {categories.map((cat) => (
             <div key={cat.id} className="col-md-4 mb-4">
 
@@ -78,7 +87,6 @@ function Home() {
                   position: "relative"
                 }}
               >
-
                 <img
                   src={cat.imatge}
                   alt={cat.nom}
@@ -99,7 +107,6 @@ function Home() {
                     color: "white",
                     fontSize: "1.5rem",
                     fontWeight: "bold",
-                    textAlign: "center",
                     textShadow: "2px 2px 5px black"
                   }}
                 >
@@ -110,7 +117,6 @@ function Home() {
 
             </div>
           ))}
-
         </div>
 
         <div
@@ -121,46 +127,32 @@ function Home() {
             color: "#ddd"
           }}
         >
-          <h2
-            className="text-center mb-3"
-            style={{ fontFamily: "'Cinzel', serif" }}
-          >
+          <h2 className="text-center mb-3" style={{ fontFamily: "'Cinzel', serif" }}>
             Qui som
           </h2>
 
           <p>
-            ForjaWiki és una plataforma dedicada a preservar i compartir el coneixement
-            sobre la forja tradicional, eines històriques i tècniques artesanals.
-          </p>
-
-          <p>
-            Aquí podràs descobrir armes, eines agrícoles, materials i processos que han
-            format part de la història de la humanitat.
-          </p>
-
-          <p>
-            Aquesta secció s’omplirà amb informació detallada pròximament.
+            ForjaWiki és una plataforma dedicada a preservar el coneixement de la forja tradicional.
           </p>
         </div>
 
+        <div className="text-center mt-5">
+          <button
+            className="btn btn-lg"
+            style={{
+              backgroundColor: "#ff6a00",
+              color: "white",
+              border: "none",
+              padding: "12px 30px",
+              fontWeight: "bold"
+            }}
+            onClick={() => navigate("/posts")}
+          >
+            Veure tots els posts
+          </button>
+        </div>
+
       </div>
-      <div className="text-center mt-5">
-
-  <button
-    className="btn btn-lg"
-    style={{
-      backgroundColor: "#ff6a00",
-      color: "white",
-      border: "none",
-      padding: "12px 30px",
-      fontWeight: "bold"
-    }}
-    onClick={() => window.location.href = "/posts"}
-  >
-    Veure tots els posts
-  </button>
-
-</div>
     </div>
   )
 }

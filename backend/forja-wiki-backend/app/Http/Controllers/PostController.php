@@ -13,8 +13,10 @@ class PostController extends Controller
         ->withAvg('valoracions', 'puntuacio')
         ->orderBy('created_at', 'desc');
 
-    if ($request->has('search') && $request->search) {
-        $query->where('titol', 'like', '%' . $request->search . '%');
+    $search = $request->input('search');
+
+    if ($search) {
+        $query->where('titol', 'like', '%' . $search . '%');
     }
 
     
