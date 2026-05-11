@@ -22,17 +22,17 @@ function Home() {
     },
     {
       id: 4,
-      nom: "Estris varis",
+      nom: "Materials",
       imatge: "https://picsum.photos/600/400?metal"
     },
     {
       id: 5,
-      nom: "Materials",
+      nom: "Tècniques",
       imatge: "https://picsum.photos/600/400?blacksmith"
     },
     {
       id: 6,
-      nom: "Tècniques",
+      nom: "Estris varis",
       imatge: "https://picsum.photos/600/400?tools"
     }
   ]
