@@ -12,8 +12,10 @@ public function index(Request $request)
     $query = Post::with('user', 'tipus')
         ->withAvg('valoracions', 'puntuacio');
 
-    if ($request->has('search') && $request->search) {
-        $query->where('titol', 'like', '%' . $request->search . '%');
+    $search = $request->input('search');
+
+    if ($search) {
+        $query->where('titol', 'like', '%' . $search . '%');
     }
 
     if ($request->has('tipus') && $request->tipus) {
