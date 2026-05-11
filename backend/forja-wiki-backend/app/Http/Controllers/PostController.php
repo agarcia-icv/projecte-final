@@ -7,32 +7,65 @@ use App\Models\Post;
 
 class PostController extends Controller
 {
-  public function index(Request $request)
+public function index(Request $request)
 {
     $query = Post::with('user', 'tipus')
-        ->withAvg('valoracions', 'puntuacio')
-        ->orderBy('created_at', 'desc');
+        ->withAvg('valoracions', 'puntuacio');
 
     if ($request->has('search') && $request->search) {
         $query->where('titol', 'like', '%' . $request->search . '%');
     }
 
-    
     if ($request->has('tipus') && $request->tipus) {
         $query->where('tipus_eina_id', $request->tipus);
     }
 
+    $sort = $request->get('sort', 'created_at');
+    $direction = $request->get('direction', 'desc');
+
+    $allowedSorts = [
+        'titol',
+        'created_at',
+        'valoracions_avg_puntuacio'
+    ];
+
+    if (!in_array($sort, $allowedSorts)) {
+        $sort = 'created_at';
+    }
+
+    if (!in_array($direction, ['asc', 'desc'])) {
+        $direction = 'desc';
+    }
+
+    if ($sort === 'valoracions_avg_puntuacio') {
+
+    $query->orderByRaw(
+        "COALESCE(valoracions_avg_puntuacio, 0) $direction"
+    );
+
+} else {
+
+    $query->orderBy($sort, $direction);
+
+}
+
     $posts = $query->get();
 
-$tipusNom = null;
+    $tipusNom = null;
 
-if ($request->has('tipus')) {
-    $tipus = \App\Models\TipusEina::find($request->tipus);
+    if ($request->has('tipus')) {
+        $tipus = \App\Models\TipusEina::find($request->tipus);
 
-    if ($tipus) {
-        $tipusNom = $tipus->nom;
+        if ($tipus) {
+            $tipusNom = $tipus->nom;
+        }
     }
-}
+
+    return response()->json([
+        'categoria' => $tipusNom,
+        'posts' => $posts
+    ]);
+
 
 return response()->json([
     'categoria' => $tipusNom,

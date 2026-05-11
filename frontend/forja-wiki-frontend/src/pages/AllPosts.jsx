@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react"
-import api from "../services/api"
+import { getSortedPosts } from "../services/api"
 import PostCard from "../components/PostCard"
 
 function AllPosts() {
 
   const [posts, setPosts] = useState([])
+
+  const [sort, setSort] = useState("created_at")
+  const [direction, setDirection] = useState("desc")
 
   useEffect(() => {
 
@@ -12,20 +15,20 @@ function AllPosts() {
 
       try {
 
-        const res = await api.get("/posts")
+        const data = await getSortedPosts(sort, direction)
 
-        setPosts(res.data.posts || res.data)
+        setPosts(data)
 
       } catch (error) {
 
-        console.error("ERROR POSTS:", error)
+        console.error(error)
 
       }
     }
 
     fetchPosts()
 
-  }, [])
+  }, [sort, direction])
 
   return (
     <div
@@ -41,13 +44,44 @@ function AllPosts() {
           className="text-center mb-5"
           style={{
             fontFamily: "'Cinzel', serif",
-            color: "#f5f5f5",
-            fontSize: "3rem",
-            letterSpacing: "2px"
+            color: "#f5f5f5"
           }}
         >
           Tots els Posts
         </h1>
+
+        <div className="row mb-4">
+
+          <div className="col-md-6">
+
+            <select
+              className="form-select"
+              value={sort}
+              onChange={(e) => setSort(e.target.value)}
+            >
+              <option value="created_at">Data</option>
+              <option value="titol">Títol</option>
+              <option value="valoracions_avg_puntuacio">
+                Valoracions
+              </option>
+            </select>
+
+          </div>
+
+          <div className="col-md-6">
+
+            <select
+              className="form-select"
+              value={direction}
+              onChange={(e) => setDirection(e.target.value)}
+            >
+              <option value="desc">Descendent</option>
+<option value="asc">Ascendent</option>
+            </select>
+
+          </div>
+
+        </div>
 
         <div className="row">
 

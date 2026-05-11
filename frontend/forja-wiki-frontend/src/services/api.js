@@ -30,7 +30,17 @@ export const getPostsByCategory = async (id) => {
   return res.data
 }
 
+export const getSortedPosts = async (
+  sort = "created_at",
+  direction = "desc"
+) => {
 
+  const res = await api.get(
+    `/posts?sort=${sort}&direction=${direction}`
+  )
+
+  return res.data.posts || res.data
+}
 
 export const loginUser = async (form) => {
   const res = await api.post("/login", form);
