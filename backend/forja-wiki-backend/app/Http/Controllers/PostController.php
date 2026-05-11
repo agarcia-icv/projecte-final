@@ -22,7 +22,22 @@ class PostController extends Controller
         $query->where('tipus_eina_id', $request->tipus);
     }
 
-    return $query->get();
+    $posts = $query->get();
+
+$tipusNom = null;
+
+if ($request->has('tipus')) {
+    $tipus = \App\Models\TipusEina::find($request->tipus);
+
+    if ($tipus) {
+        $tipusNom = $tipus->nom;
+    }
+}
+
+return response()->json([
+    'categoria' => $tipusNom,
+    'posts' => $posts
+]);
 }
 
     public function store(Request $request)

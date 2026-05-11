@@ -25,11 +25,10 @@ export const getPost = async (id) => {
   const res = await api.get(`/posts/${id}`);
   return res.data;
 };
-
-export const getPostsByCategory = async (tipusId) => {
-  const res = await api.get(`/posts?tipus=${tipusId}`);
-  return res.data;
-};
+export const getPostsByCategory = async (id) => {
+  const res = await api.get(`/posts?tipus=${id}`)
+  return res.data
+}
 
 
 

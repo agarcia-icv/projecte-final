@@ -7,13 +7,17 @@ function Category() {
   const { id } = useParams()
 
   const [posts, setPosts] = useState([])
+  const [categoria, setCategoria] = useState("")
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
         const data = await getPostsByCategory(id)
-        setPosts(data || [])
+
+        setPosts(data.posts || [])
+        setCategoria(data.categoria || "Categoria")
+
       } catch (error) {
         console.error("ERROR CATEGORY:", error)
       } finally {
@@ -42,18 +46,18 @@ function Category() {
     >
       <div className="container pt-5">
 
-        {/* 🔥 TÍTOL */}
         <h1
           className="text-center mb-5"
           style={{
             fontFamily: "'Cinzel', serif",
-            color: "#f5f5f5"
+            color: "#f5f5f5",
+            fontSize: "3rem",
+            letterSpacing: "2px"
           }}
         >
-          Categoria
+          {categoria}
         </h1>
 
-        {/* 🧱 POSTS */}
         <div className="row">
 
           {posts.length === 0 ? (

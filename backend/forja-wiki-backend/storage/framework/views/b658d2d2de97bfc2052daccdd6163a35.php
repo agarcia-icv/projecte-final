@@ -32,4 +32,4 @@
         </div>
     </body>
 </html>
-<?php /**PATH /media/adria/NTFS1/2-DAW/Projecte/projecte-final/backend/forja-wiki-backend/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/views/minimal.blade.php ENDPATH**/ ?>
+<?php /**PATH /media/daniel/NTFS7/projecte Final/projecte-final/backend/forja-wiki-backend/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/views/minimal.blade.php ENDPATH**/ ?>
