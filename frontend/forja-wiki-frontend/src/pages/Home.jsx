@@ -7,12 +7,12 @@ function Home() {
   const [search, setSearch] = useState("")
 
   const categories = [
-    { id: 1, nom: "Protecció", imatge: "/Proteccio.png" },
-    { id: 2, nom: "Armes", imatge: "/Armes.png" },
-    { id: 3, nom: "Eines Agrícoles", imatge: "/agricoles.png" },
-    { id: 4, nom: "Materials", imatge: "/materials.png" },
-    { id: 5, nom: "Tècniques", imatge: "/tecniques.png" },
-    { id: 6, nom: "Estris varis", imatge: "/estris.png" }
+    { id: 1,  imatge: "/Proteccio.png" },
+    { id: 2,  imatge: "/Armes.png" },
+    { id: 3,  imatge: "/agricoles.png" },
+    { id: 4,  imatge: "/materials.png" },
+    { id: 5,  imatge: "/tecniques.png" },
+    { id: 6,  imatge: "/estris.png" }
   ]
 
   const handleSearch = (e) => {
