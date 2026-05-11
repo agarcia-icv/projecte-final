@@ -144,6 +144,23 @@ function Home() {
         </div>
 
       </div>
+      <div className="text-center mt-5">
+
+  <button
+    className="btn btn-lg"
+    style={{
+      backgroundColor: "#ff6a00",
+      color: "white",
+      border: "none",
+      padding: "12px 30px",
+      fontWeight: "bold"
+    }}
+    onClick={() => window.location.href = "/posts"}
+  >
+    Veure tots els posts
+  </button>
+
+</div>
     </div>
   )
 }
