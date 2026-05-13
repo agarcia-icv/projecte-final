@@ -9,10 +9,10 @@ function Home() {
   const categories = [
     { id: 1,  imatge: "/Proteccio.png" },
     { id: 2,  imatge: "/Armes.png" },
-    { id: 3,  imatge: "/agricoles.png" },
-    { id: 4,  imatge: "/materials.png" },
-    { id: 5,  imatge: "/tecniques.png" },
-    { id: 6,  imatge: "/estris.png" }
+    { id: 3,  imatge: "/EinesAgricoles.png" },
+    { id: 4,  imatge: "/estris.png" },
+    { id: 5,  imatge: "/materials.png" },
+    { id: 6,  imatge: "/tecniques.png" }
   ]
 
   const handleSearch = (e) => {
@@ -94,7 +94,8 @@ function Home() {
                     width: "100%",
                     height: "100%",
                     objectFit: "cover",
-                    filter: "brightness(0.7)"
+                    filter: "brightness(0.7)",
+                    backgroundColor: "#2f2f2f"
                   }}
                 />
 
