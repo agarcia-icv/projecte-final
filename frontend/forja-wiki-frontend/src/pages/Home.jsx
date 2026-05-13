@@ -37,7 +37,6 @@ function Home() {
 
       <div className="container pt-3">
 
-        {/* LOGO */}
         <div className="text-center mb-4">
           <img
             src="/logo_forjawiki.png"
@@ -51,7 +50,6 @@ function Home() {
           />
         </div>
 
-        {/* SEARCH */}
         <div className="row justify-content-center mb-5">
           <div className="col-md-8">
 
@@ -89,7 +87,6 @@ function Home() {
           </div>
         </div>
 
-        {/* CATEGORIES */}
         <div className="row">
 
           {categories.map((cat) => (
@@ -107,7 +104,7 @@ function Home() {
                   overflow: "hidden",
 
                   filter:
-                    "drop-shadow(0 0 8px #ff6a00) drop-shadow(0 0 18px #ff2a00)"
+                    "drop-shadow(0 0 18px #54504a)"
                 }}
               >
 
