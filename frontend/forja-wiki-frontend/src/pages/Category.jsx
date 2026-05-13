@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { getPostsByCategory } from "../services/api"
 import PostCard from "../components/PostCard"
+import metalBg from "../assets/fons.avif"
 
 function Category() {
   const { id } = useParams()
@@ -30,8 +31,16 @@ function Category() {
 
   if (loading) {
     return (
-      <div className="container mt-5 text-white">
-        <p>Carregant...</p>
+      <div
+        style={{
+          backgroundImage: `url(${metalBg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          minHeight: "100vh"
+        }}
+        className="text-white d-flex justify-content-center align-items-center"
+      >
+        Carregant...
       </div>
     )
   }
@@ -39,7 +48,11 @@ function Category() {
   return (
     <div
       style={{
-        backgroundColor: "#2f2f2f",
+        backgroundImage: `url(${metalBg})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundAttachment: "fixed",
         minHeight: "100vh",
         paddingBottom: "50px"
       }}
@@ -52,7 +65,8 @@ function Category() {
             fontFamily: "'Cinzel', serif",
             color: "#f5f5f5",
             fontSize: "3rem",
-            letterSpacing: "2px"
+            letterSpacing: "2px",
+            textShadow: "0 0 10px black"
           }}
         >
           {categoria}

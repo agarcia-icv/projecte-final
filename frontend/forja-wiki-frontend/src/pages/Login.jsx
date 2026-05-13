@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import api from "../services/api";
 
+
 function Login() {
 
   const navigate = useNavigate()
@@ -65,7 +66,12 @@ function Login() {
         </button>
 
       </form>
-
+<div
+  style={{
+    minHeight: "100vh",
+    background: "transparent"
+  }}
+></div>
     </div>
   )
 }

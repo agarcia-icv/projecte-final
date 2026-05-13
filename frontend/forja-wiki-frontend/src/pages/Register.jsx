@@ -2,6 +2,7 @@ import { useState } from "react"
 import api from "../services/api";
 import { useNavigate } from "react-router-dom";
 
+
 function Register() {
   const navigate = useNavigate();
   const [form, setForm] = useState({
@@ -76,6 +77,12 @@ function Register() {
         </button>
 
       </form>
+      <div
+  style={{
+    minHeight: "100vh",
+    background: "transparent"
+  }}
+></div>
     </div>
   )
 }

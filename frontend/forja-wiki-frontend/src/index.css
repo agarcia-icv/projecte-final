@@ -1,0 +1,11 @@
+html, body, #root {
+  margin: 0;
+}
+
+body {
+  background-image: url("./assets/fons.avif");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}

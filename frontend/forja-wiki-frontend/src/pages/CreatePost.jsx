@@ -149,6 +149,12 @@ function CreatePost() {
         </button>
 
       </form>
+      <div
+  style={{
+    minHeight: "100vh",
+    background: "transparent"
+  }}
+></div>
     </div>
   )
 }

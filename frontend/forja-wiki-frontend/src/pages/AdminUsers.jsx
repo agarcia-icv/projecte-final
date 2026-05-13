@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import api from "../services/api"
+import metalBg from "../assets/fons.avif"
 
 function AdminUsers() {
 
@@ -70,26 +71,57 @@ function AdminUsers() {
 
   if (currentUser?.rol !== "admin") {
     return (
-      <div className="container mt-5 text-white">
-        <h3>No tens permisos per accedir aquí</h3>
+      <div
+        style={{
+          backgroundImage: `url(${metalBg})`,
+          backgroundSize: "cover",
+          minHeight: "100vh"
+        }}
+        className="text-white d-flex justify-content-center align-items-center"
+      >
+        No tens permisos per accedir aquí
       </div>
     )
   }
 
   return (
-    <div style={{ backgroundColor: "#2f2f2f", minHeight: "100vh", padding: "30px" }}>
+    <div
+      style={{
+        backgroundImage: `url(${metalBg})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+        minHeight: "100vh",
+        padding: "40px 0"
+      }}
+    >
       <div className="container">
 
-        <h1 className="text-center text-white mb-4">
+        <h1
+          className="text-center text-white mb-4"
+          style={{
+            fontFamily: "'Cinzel', serif",
+            textShadow: "0 0 10px #ff6a00"
+          }}
+        >
           Panell d’Administració
         </h1>
 
         {loading ? (
-          <p className="text-white text-center">Carregant usuaris...</p>
+          <p className="text-white text-center">
+            Carregant usuaris...
+          </p>
         ) : (
           <div className="table-responsive">
 
-            <table className="table table-dark table-hover">
+            <table
+              className="table table-hover text-white"
+              style={{
+                background: "rgba(0,0,0,0.5)",
+                borderRadius: "10px",
+                overflow: "hidden"
+              }}
+            >
 
               <thead>
                 <tr>

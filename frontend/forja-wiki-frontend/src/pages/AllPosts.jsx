@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import api from "../services/api"
 import PostCard from "../components/PostCard"
 import { useLocation } from "react-router-dom"
+import metalBg from "../assets/fons.avif"
 
 function AllPosts() {
 
@@ -19,35 +20,19 @@ function AllPosts() {
         const params = new URLSearchParams(location.search)
         const search = params.get("search") || ""
 
-        console.log("🔎 SEARCH:", search)
-        console.log("↕️ SORT:", sort, direction)
-
         const res = await api.get("/posts", {
           params: {
-            search: search,
-            sort: sort,
-            direction: direction
+            search,
+            sort,
+            direction
           }
         })
 
-        console.log("📦 BACKEND RESPONSE:", res.data)
-
         const data = res.data.posts ?? res.data ?? []
-
         setPosts(data)
 
       } catch (error) {
-
         console.error("❌ ERROR POSTS:", error)
-
-        try {
-          const fallback = await api.get("/posts")
-          const data = fallback.data.posts ?? fallback.data ?? []
-          setPosts(data)
-        } catch (e) {
-          console.error("❌ FALLBACK ERROR:", e)
-        }
-
       }
     }
 
@@ -56,7 +41,17 @@ function AllPosts() {
   }, [location.search, sort, direction])
 
   return (
-    <div style={{ backgroundColor: "#2f2f2f", minHeight: "100vh", paddingBottom: "50px" }}>
+    <div
+      style={{
+        backgroundImage: `url(${metalBg})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundAttachment: "fixed",
+        minHeight: "100vh",
+        paddingBottom: "50px"
+      }}
+    >
       <div className="container pt-5">
 
         <h1
@@ -64,7 +59,8 @@ function AllPosts() {
           style={{
             fontFamily: "'Cinzel', serif",
             color: "#f5f5f5",
-            fontSize: "3rem"
+            fontSize: "3rem",
+            textShadow: "0 0 10px black"
           }}
         >
           Tots els Posts

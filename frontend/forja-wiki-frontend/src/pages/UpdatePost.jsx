@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import api from "../services/api"
 
+
 function UpdatePost() {
   const { id } = useParams()
   const navigate = useNavigate()
@@ -171,6 +172,12 @@ function UpdatePost() {
         </button>
 
       </form>
+      <div
+  style={{
+    minHeight: "100vh",
+    background: "transparent"
+  }}
+></div>
     </div>
   )
 }
