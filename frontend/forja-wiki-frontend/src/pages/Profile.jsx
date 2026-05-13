@@ -3,9 +3,10 @@ import api from "../services/api";
 
 function Profile() {
 
+  const DEFAULT_AVATAR = "http://127.0.0.1:8000/storage/users/default.png";
+
   const [user, setUser] = useState(null);
   const [editing, setEditing] = useState(false);
-  const DEFAULT_AVATAR = "http://127.0.0.1:8000/storage/users/default.png";
 
   const [form, setForm] = useState({
     bio: "",
@@ -23,7 +24,7 @@ function Profile() {
         bio: storedUser.bio || "",
         avatar: null
       });
-      setPreview(storedUser.avatar || null);
+      setPreview(null);
     }
   }, []);
 
@@ -39,26 +40,37 @@ function Profile() {
     setPreview(URL.createObjectURL(file));
   };
 
+  const getAvatarUrl = (avatar) => {
+    if (!avatar) return DEFAULT_AVATAR;
+    if (avatar.startsWith("http")) return avatar;
+    return `http://127.0.0.1:8000/storage/${avatar}`;
+  };
+
   const handleSave = async () => {
     try {
       const formData = new FormData();
       formData.append("bio", form.bio || "");
 
-      if (form.avatar instanceof File) {
+      if (form.avatar) {
         formData.append("avatar", form.avatar);
       }
 
-      const res = await api.post("/user/profile", formData);
+      const res = await api.post("/user/profile", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
+      });
 
-      const updatedUser = res.data.user;
+      const updatedUser = res.data.user ?? res.data;
 
       setUser(updatedUser);
       localStorage.setItem("user", JSON.stringify(updatedUser));
 
       setEditing(false);
+      setPreview(null);
 
     } catch (err) {
-      console.log(err.response?.data);
+      console.log("ERROR SAVE PROFILE:", err.response?.data || err);
     }
   };
 
@@ -66,24 +78,16 @@ function Profile() {
     return <div className="container mt-5">No estàs logejat</div>;
   }
 
-  const getAvatar = (avatar) => {
-    if (!avatar) return "https://i.pravatar.cc/150";
-    return avatar;
-  };
-
   return (
     <div className="container mt-5">
 
       <div className="card p-4">
 
+        {/* AVATAR */}
         <div className="text-center mb-4">
 
           <img
-            src={
-              preview
-                ? (preview instanceof File ? URL.createObjectURL(preview) : preview)
-                : user.avatar || DEFAULT_AVATAR
-            }
+            src={preview || getAvatarUrl(user.avatar)}
             alt="avatar"
             style={{
               width: "120px",
@@ -106,16 +110,19 @@ function Profile() {
 
         </div>
 
+        {/* NOM */}
         <div className="mb-3">
           <label>Nom</label>
           <div className="form-control bg-light">{user.name}</div>
         </div>
 
+        {/* EMAIL */}
         <div className="mb-3">
           <label>Email</label>
           <div className="form-control bg-light">{user.email}</div>
         </div>
 
+        {/* BIO */}
         <div className="mb-3">
           <label>Bio</label>
 
@@ -132,6 +139,7 @@ function Profile() {
           )}
         </div>
 
+        {/* BOTONS */}
         {editing ? (
           <>
             <button className="btn btn-success me-2" onClick={handleSave}>
@@ -148,12 +156,9 @@ function Profile() {
         )}
 
       </div>
-      <div
-  style={{
-    minHeight: "100vh",
-    background: "transparent"
-  }}
-></div>
+
+      <div style={{ minHeight: "100vh", background: "transparent" }}></div>
+
     </div>
   );
 }

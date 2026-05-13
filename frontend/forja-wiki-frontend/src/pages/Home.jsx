@@ -106,7 +106,6 @@ function Home() {
                   borderRadius: "18px",
                   overflow: "hidden",
 
-                  // 🔥 AURA FORJA
                   filter:
                     "drop-shadow(0 0 8px #ff6a00) drop-shadow(0 0 18px #ff2a00)"
                 }}
@@ -168,13 +167,31 @@ function Home() {
             Qui som
           </h2>
 
-          <p>
-            ForjaWiki és una plataforma dedicada a preservar el coneixement de la forja tradicional.
-          </p>
+   <p>
+  ForjaWiki és una plataforma dedicada a preservar i difondre el coneixement
+  de la forja tradicional i l’art de treballar el metall al llarg de la història.
+  El nostre objectiu és recopilar tècniques, eines i objectes que han marcat
+  l’evolució de la metal·lúrgia des de l’antiguitat fins a l’era moderna.
+</p>
 
-          <p>
-            Aquí trobaràs armes, proteccions, eines agrícoles i tècniques històriques.
-          </p>
+<p>
+  Aquí trobaràs armes, proteccions, eines agrícoles i estris d’ús quotidià,
+  tots ells documentats amb descripcions detallades, imatges i context històric.
+  Cada peça està organitzada per categories perquè puguis explorar fàcilment
+  segons el teu interès.
+</p>
+
+<p>
+  També podràs descobrir les tècniques de forja més importants, com el trempat,
+  el martelleig o el tractament del metall en calent, que van permetre crear
+  eines més resistents i eficients al llarg dels segles.
+</p>
+
+<p>
+  Aquesta plataforma està pensada tant per curiosos com per estudiants,
+  artesans o aficionats a la història. L’objectiu és mantenir viu aquest
+  coneixement i fer-lo accessible a tothom.
+</p>
 
         </div>
 

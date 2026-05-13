@@ -59,7 +59,7 @@ class AuthController extends Controller
     {
         $request->validate([
             'bio' => 'nullable|string',
-            'avatar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
+            'avatar' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048'
         ]);
 
         $user = auth()->user();
