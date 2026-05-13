@@ -5,6 +5,7 @@ function Profile() {
 
   const [user, setUser] = useState(null);
   const [editing, setEditing] = useState(false);
+  const DEFAULT_AVATAR = "http://127.0.0.1:8000/storage/users/default.png";
 
   const [form, setForm] = useState({
     bio: "",
@@ -81,7 +82,7 @@ function Profile() {
             src={
               preview
                 ? (preview instanceof File ? URL.createObjectURL(preview) : preview)
-                : user.avatar || "https://i.pravatar.cc/150"
+                : user.avatar || DEFAULT_AVATAR
             }
             alt="avatar"
             style={{
