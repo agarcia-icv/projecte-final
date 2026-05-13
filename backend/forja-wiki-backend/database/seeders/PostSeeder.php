@@ -49,7 +49,7 @@ class PostSeeder extends Seeder
                 L’ús del trident requereix habilitat, coordinació i una comprensió profunda del comportament dels peixos i del moviment de l’aigua, convertint-lo en una extensió del cos del pescador més que en una simple eina. Amb el pas del temps, aquesta eina ha evolucionat, però la seva essència continua essent fidel als seus orígens: la captura eficient i precisa en entorns aquàtics.',
                 'epoca' => 'Antiguitat',
                 'imatge' => 'posts/trident.jpg',
-                'user_id' => 1,
+                'user_id' => 2,
                 'tipus_eina_id' => $armes->id,
             ],
             [
@@ -69,7 +69,7 @@ class PostSeeder extends Seeder
                 Amb el temps, l’escut metàl·lic reforçat es va convertir en un símbol de resistència i supervivència, associat a la perseverança dels guerrers que depenien de la seva solidesa per mantenir-se vius enmig del caos de la guerra medieval.',
                 'epoca' => 'Edat Mitjana',
                 'imatge' => 'posts/escut.jpg',
-                'user_id' => 1,
+                'user_id' => 2,
                 'tipus_eina_id' => $proteccio->id,
             ],
             [
@@ -91,7 +91,7 @@ class PostSeeder extends Seeder
                 Aquesta peça representa no només una eina de guerra, sinó també el resultat d’un coneixement artesanal avançat, on la metal·lúrgia, l’enginyeria i l’art convergeixen per crear una de les formes de protecció més sofisticades de l’època medieval.',
                 'epoca' => 'Edat Mitjana',
                 'imatge' => 'posts/armadura.jpg',
-                'user_id' => 1,
+                'user_id' => 2,
                 'tipus_eina_id' => $proteccio->id,
             ],
             [
@@ -111,7 +111,7 @@ class PostSeeder extends Seeder
                 Amb el pas del temps, tot i la introducció de maquinària moderna, la falç continua essent utilitzada en contextos rurals i agrícoles específics, mantenint viu un sistema de treball manual que connecta amb les pràctiques agrícoles més antigues de la humanitat.',
                 'epoca' => 'Tradicional',
                 'imatge' => 'posts/falc.jpg',
-                'user_id' => 1,
+                'user_id' => 3,
                 'tipus_eina_id' => $agricoles->id,
             ],
             [
@@ -169,7 +169,7 @@ class PostSeeder extends Seeder
                 Més enllà de la seva funció pràctica, la ferradura també ha adquirit un fort simbolisme cultural associat a la bona sort i la protecció, convertint-se en un element present en tradicions i creences populars en diverses cultures.',
                 'epoca' => 'Tradicional',
                 'imatge' => 'posts/ferradura.jpg',
-                'user_id' => 1,
+                'user_id' => 3,
                 'tipus_eina_id' => $estris->id,
             ],
             [
@@ -189,7 +189,7 @@ class PostSeeder extends Seeder
                 Actualment, el lingot de ferro continua essent una peça clau en la indústria metal·lúrgica moderna, servint com a base per a processos de fabricació massiva i producció de materials d’enginyeria avançada.',
                 'epoca' => 'General',
                 'imatge' => 'posts/lingot.jpg',
-                'user_id' => 1,
+                'user_id' => 3,
                 'tipus_eina_id' => $materials->id,
             ],
             [
@@ -209,7 +209,7 @@ class PostSeeder extends Seeder
                 Encara avui, el carbó vegetal continua essent utilitzat en determinats processos artesanals i recreacions històriques, mantenint viu el coneixement ancestral de les tècniques de treball del metall en forja tradicional.',
                 'epoca' => 'Tradicional',
                 'imatge' => 'posts/carbo.jpg',
-                'user_id' => 1,
+                'user_id' => 2,
                 'tipus_eina_id' => $materials->id,
             ],
             [
@@ -249,6 +249,95 @@ class PostSeeder extends Seeder
                 Encara avui, aquesta tècnica continua essent utilitzada en la forja artesanal i en determinats processos industrials, mantenint viu el coneixement ancestral de la manipulació del metall a través del foc i la força manual.',
                 'epoca' => 'General',
                 'imatge' => 'posts/martelleig.jpg',
+                'user_id' => 1,
+                'tipus_eina_id' => $tecniques->id,
+            ],
+            [
+                'titol' => 'Llança de cavalleria',
+                'descripcio' => 'Arma ofensiva de gran longitud utilitzada principalment per unitats de cavalleria durant l’Edat Mitjana i èpoques posteriors, dissenyada per aprofitar la velocitat del cavall i la força de l’impacte en càrrega. La seva estructura consisteix en un llarg eix de fusta resistent, habitualment de freixe o roure, amb una punta metàl·lica forjada a l’extrem superior, afilada per penetrar armadures lleugeres i escuts enemics.
+
+                El procés de fabricació de la llança requereix una selecció acurada de la fusta, que ha de ser flexible però alhora capaç de suportar fortes tensions durant la càrrega. Un cop tallat i polit el mànec, es reforça amb anelles metàl·liques en punts estratègics per evitar fractures durant l’impacte. La punta, elaborada en ferro o acer, és forjada i esmolada fins aconseguir una forma allargada i penetrant.
+
+                Aquesta arma era especialment efectiva en formacions de cavalleria pesada, on diversos cavallers carregaven de manera coordinada contra les línies enemigues, aprofitant la inèrcia del moviment per augmentar la força de penetració. El seu ús requeria una gran habilitat per mantenir l’equilibri i dirigir el cop amb precisió en moviment.
+
+                A més de la seva funció militar, la llança també simbolitzava estatus i poder dins de les societats feudals, essent un element habitual en torneigs i cerimònies cavalleresques. Amb el temps, va evolucionar en diverses variants adaptades a diferents tàctiques de combat.',
+                'epoca' => 'Edat Mitjana',
+                'imatge' => 'posts/llanca.jpg',
+                'user_id' => 2,
+                'tipus_eina_id' => $armes->id,
+            ],
+
+            [
+                'titol' => 'Casco tancat medieval',
+                'descripcio' => 'Element de protecció cranial utilitzat per guerrers i cavallers medievals, fabricat en acer reforçat i dissenyat per cobrir completament el cap, incloent la cara, amb obertures estratègiques per a la respiració i la visió. Aquest tipus de casc representa una evolució avançada dels sistemes de protecció personal, pensat per oferir la màxima seguretat en combat cos a cos.
+
+                La seva fabricació implica la conformació de làmines d’acer escalfades que són modelades fins aconseguir una estructura arrodonida i resistent. Les unions entre peces són reforçades amb reblons i soldadures artesanals que asseguren la integritat estructural davant impactes directes. L’interior es folra amb cuir i materials encoixinats per absorbir cops i millorar la comoditat.
+
+                El disseny del casc inclou ranures per a la visió lateral i frontal, així com perforacions per facilitar la respiració durant esforços prolongats. Alguns models incorporen viseres mòbils que es poden aixecar o abaixar segons la necessitat tàctica del combat.
+
+                Aquest tipus de protecció era essencial en camps de batalla intensos, ja que reduïa significativament lesions mortals al cap, una de les zones més vulnerables del cos humà. També era un símbol de rang i prestigi dins de l’estructura militar medieval.',
+                'epoca' => 'Edat Mitjana',
+                'imatge' => 'posts/casco.jpg',
+                'user_id' => 3,
+                'tipus_eina_id' => $proteccio->id,
+            ],
+
+            [
+                'titol' => 'Arada de fusta reforçada',
+                'descripcio' => 'Eina agrícola fonamental utilitzada per llaurar la terra i preparar els camps per al cultiu, formada per una estructura principal de fusta robusta reforçada amb peces metàl·liques en les zones de major desgast. L’arada és un dels instruments més importants en el desenvolupament de l’agricultura tradicional, ja que permet obrir solcs profunds al sòl i millorar-ne l’aireació.
+
+                La seva construcció combina fusta dura per al cos principal i ferro forjat per a la punta i la fulla de tall, que són les parts en contacte directe amb la terra. Aquest disseny permet augmentar la durabilitat de l’eina i reduir el desgast provocat per l’ús continuat en terrenys durs o pedregosos.
+
+                L’arada és generalment estirada per animals de càrrega com bous o cavalls, i el seu ús requereix coordinació entre l’agricultor i l’animal per mantenir una trajectòria constant i eficient. La profunditat del solc pot ajustar-se segons la inclinació i el pes aplicat sobre l’eina.
+
+                Històricament, aquesta eina va ser clau en la transformació de les societats agrícoles, permetent augmentar la producció d’aliments i facilitar l’expansió de poblacions establertes en zones rurals.',
+                'epoca' => 'Tradicional',
+                'imatge' => 'posts/arada.jpg',
+                'user_id' => 1,
+                'tipus_eina_id' => $agricoles->id,
+            ],
+
+            [
+                'titol' => 'Martell de forja pesat',
+                'descripcio' => 'Eina essencial del ferrer, utilitzada per donar forma al metall incandescent sobre l’enclusa mitjançant cops contundents i controlats. El martell de forja pesat està dissenyat amb un cap metàl·lic massís i un mànec llarg de fusta reforçada que permet aprofitar la inèrcia del moviment per generar una força d’impacte elevada.
+
+                El procés de fabricació del martell implica la forja de l’acer fins aconseguir una peça compacta i resistent, capaç de suportar temperatures elevades i impactes repetits sense deformar-se. El mànec és acuradament ajustat per garantir un equilibri òptim i reduir la fatiga del treballador durant sessions prolongades de forja.
+
+                Aquesta eina és fonamental en la creació d’armes, eines agrícoles i components metàl·lics, ja que permet modelar el metall mentre es troba en estat mal·leable. El control del cop és essencial per aconseguir precisió en la forma final de la peça.
+
+                En la tradició de la forja, el martell simbolitza la força, la disciplina i la transformació del metall brut en objectes útils i duradors.',
+                'epoca' => 'General',
+                'imatge' => 'posts/martell_forja.jpg',
+                'user_id' => 2,
+                'tipus_eina_id' => $estris->id,
+            ],
+
+            [
+                'titol' => 'Enclusa de ferrer',
+                'descripcio' => 'Bloc metàl·lic massís utilitzat com a superfície de suport en el procés de forja, dissenyat per resistir impactes repetits de martells i permetre la conformació precisa del metall calent. L’enclusa és una peça central en qualsevol taller de ferreria tradicional, ja que actua com a base estable per al treball del metall.
+
+                Fabricada en acer o ferro colat d’alta densitat, la seva estructura està pensada per absorbir i redistribuir l’energia dels cops, evitant deformacions i garantint una superfície de treball consistent. Inclou diferents zones i formes, com la banya corbada, utilitzada per donar formes arrodonides al metall.
+
+                El seu pes considerable li confereix estabilitat durant el treball, evitant moviments indesitjats fins i tot sota impactes forts. Sovint es fixa sobre un suport de fusta massissa per optimitzar l’alçada de treball del ferrer.
+
+                L’enclusa ha estat un símbol icònic de la metal·lúrgia tradicional, representant el centre del procés de transformació del metall en eines i objectes funcionals.',
+                'epoca' => 'General',
+                'imatge' => 'posts/enclusa.jpg',
+                'user_id' => 3,
+                'tipus_eina_id' => $estris->id,
+            ],
+
+            [
+                'titol' => 'Tècnica del revingut',
+                'descripcio' => 'Procés tèrmic aplicat al metall després del trempat, consistent en un escalfament controlat a temperatures moderades per reduir la fragilitat i alleujar les tensions internes generades durant el refredament ràpid. Aquesta tècnica és essencial per equilibrar la duresa i la tenacitat dels metalls treballats.
+
+                El procediment consisteix a escalfar la peça trempada fins a una temperatura inferior al punt crític, mantenint-la durant un període determinat abans de deixar-la refredar lentament. Aquest procés permet ajustar les propietats mecàniques del metall segons el seu ús final.
+
+                El revingut és especialment important en la fabricació d’armes i eines, on un excés de duresa podria provocar fractures, mentre que una flexibilitat adequada assegura una millor resistència a l’impacte.
+
+                El control precís de la temperatura és fonamental, ja que petites variacions poden alterar significativament les propietats finals del material. Aquesta tècnica complementa el trempat i forma part del conjunt de coneixements bàsics de la metal·lúrgia tradicional.',
+                'epoca' => 'General',
+                'imatge' => 'posts/revingut.jpg',
                 'user_id' => 1,
                 'tipus_eina_id' => $tecniques->id,
             ],
