@@ -13,6 +13,6 @@ SELECT * FROM users;
 
 SELECT * FROM posts;
 
-UPDATE users SET rol = 'user' WHERE email = 'user@test.com';
+UPDATE users SET rol = 'user' WHERE email = 'user@gmail.com';
 UPDATE users SET rol = 'editor' WHERE email = 'izan@gmail.com';
 UPDATE users SET rol = 'admin' WHERE email = 'adria@gmail.com';

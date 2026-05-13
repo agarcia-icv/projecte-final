@@ -5,10 +5,13 @@ function Profile() {
 
   const [user, setUser] = useState(null);
   const [editing, setEditing] = useState(false);
+
   const [form, setForm] = useState({
     bio: "",
     avatar: null
   });
+
+  const [preview, setPreview] = useState(null);
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -19,6 +22,7 @@ function Profile() {
         bio: storedUser.bio || "",
         avatar: null
       });
+      setPreview(storedUser.avatar || null);
     }
   }, []);
 
@@ -27,7 +31,11 @@ function Profile() {
   };
 
   const handleAvatarChange = (e) => {
-    setForm({ ...form, avatar: e.target.files[0] });
+    const file = e.target.files[0];
+    if (!file) return;
+
+    setForm({ ...form, avatar: file });
+    setPreview(URL.createObjectURL(file));
   };
 
   const handleSave = async () => {
@@ -59,10 +67,7 @@ function Profile() {
 
   const getAvatar = (avatar) => {
     if (!avatar) return "https://i.pravatar.cc/150";
-
-    if (avatar.startsWith("http")) return avatar;
-
-    return `http://127.0.0.1:8000/storage/${avatar}`;
+    return avatar;
   };
 
   return (
@@ -70,9 +75,36 @@ function Profile() {
 
       <div className="card p-4">
 
-     
+        <div className="text-center mb-4">
 
-        {/* INFO */}
+          <img
+            src={
+              preview
+                ? (preview instanceof File ? URL.createObjectURL(preview) : preview)
+                : user.avatar || "https://i.pravatar.cc/150"
+            }
+            alt="avatar"
+            style={{
+              width: "120px",
+              height: "120px",
+              borderRadius: "50%",
+              objectFit: "cover",
+              border: "3px solid #ff6a00"
+            }}
+          />
+
+          {editing && (
+            <div className="mt-2">
+              <input
+                type="file"
+                className="form-control"
+                onChange={handleAvatarChange}
+              />
+            </div>
+          )}
+
+        </div>
+
         <div className="mb-3">
           <label>Nom</label>
           <div className="form-control bg-light">{user.name}</div>
@@ -83,15 +115,6 @@ function Profile() {
           <div className="form-control bg-light">{user.email}</div>
         </div>
 
-   {/*   
-        {editing && (
-          <div className="mb-3">
-            <label>Avatar</label>
-            <input type="file" className="form-control" onChange={handleAvatarChange} />
-          </div>
-        )}
-*/}
-        {/* BIO */}
         <div className="mb-3">
           <label>Bio</label>
 
@@ -108,7 +131,6 @@ function Profile() {
           )}
         </div>
 
-        {/* BOTONS */}
         {editing ? (
           <>
             <button className="btn btn-success me-2" onClick={handleSave}>
