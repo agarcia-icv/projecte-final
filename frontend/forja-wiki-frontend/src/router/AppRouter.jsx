@@ -9,6 +9,7 @@ import CreatePost from "../pages/CreatePost.jsx"
 import UpdatePost from "../pages/UpdatePost.jsx"
 import Category from "../pages/Category"
 import AllPosts from "../pages/AllPosts"
+import AdminUsers from "../pages/AdminUsers"
 
 
 function AppRouter() {
@@ -19,15 +20,19 @@ function AppRouter() {
 
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/posts" element={<AllPosts />} />
         <Route path="/post/:id" element={<PostDetail />} />
+
+        <Route path="/category/:id" element={<Category />} />
 
         <Route path="/create-post" element={<CreatePost />} />
         <Route path="/post/:id/edit" element={<UpdatePost />} />
-        <Route path="/posts" element={<AllPosts />} />
+
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/category/:id" element={<Category />} />
         <Route path="/profile" element={<Profile />} />
+        
+        <Route path="/admin/users" element={<AdminUsers />} />
       </Routes>
 
     </BrowserRouter>

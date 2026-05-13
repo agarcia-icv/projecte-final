@@ -38,4 +38,5 @@ Route::middleware(['auth:sanctum', 'role:editor,admin'])->group(function () {
 Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
     Route::get('/users', [AuthController::class, 'indexUsers']);
     Route::post('/users/{user}/role', [AuthController::class, 'updateRole']);
+    Route::delete('/users/{user}', [AuthController::class, 'destroyUser']);
 });

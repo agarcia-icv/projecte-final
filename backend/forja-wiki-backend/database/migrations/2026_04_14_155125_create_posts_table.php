@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('descripcio');
             $table->string('epoca')->nullable();
             $table->string('imatge')->nullable();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('tipus_eina_id')->constrained('tipus_eines');
             $table->timestamps();
         });

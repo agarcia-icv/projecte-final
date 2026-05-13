@@ -63,6 +63,12 @@ function Navbar() {
 
         {user && (
           <>
+            {user?.rol === "admin" && (
+              <Link className="btn btn-success me-2" to="/admin/users">
+                List Users
+              </Link>
+            )}
+
             <Link className="btn btn-outline-light me-2" to="/profile">
               Profile
             </Link>

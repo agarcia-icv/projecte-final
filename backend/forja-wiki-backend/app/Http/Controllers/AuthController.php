@@ -99,4 +99,41 @@ class AuthController extends Controller
                 : null
         ];
     }
+
+    public function indexUsers()
+    {
+        return response()->json(
+            User::orderBy('created_at', 'desc')->get()
+        );
+    }
+
+    public function updateRole(Request $request, User $user)
+    {
+        $request->validate([
+            'rol' => 'required|in:admin,editor,user'
+        ]);
+
+        $user->rol = $request->rol;
+
+        $user->save();
+
+        return response()->json([
+            'message' => 'Rol actualitzat'
+        ]);
+    }
+
+    public function destroyUser(User $user)
+    {
+        if ($user->id === auth()->id()) {
+            return response()->json([
+                'message' => 'No pots eliminar-te a tu mateix'
+            ], 400);
+        }
+
+        $user->delete();
+
+        return response()->json([
+            'message' => 'Usuari eliminat'
+        ]);
+    }
 }
