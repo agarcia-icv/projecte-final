@@ -79,85 +79,93 @@ function Profile() {
   }
 
   return (
-    <div className="container mt-5">
+    <div className="profile-page">
 
-      <div className="card p-4">
+      <div className="container">
 
-        {/* AVATAR */}
-        <div className="text-center mb-4">
+        <div className="profile-card">
 
-          <img
-            src={preview || getAvatarUrl(user.avatar)}
-            alt="avatar"
-            style={{
-              width: "120px",
-              height: "120px",
-              borderRadius: "50%",
-              objectFit: "cover",
-              border: "3px solid #ff6a00"
-            }}
-          />
+          <div className="profile-avatar-section">
 
-          {editing && (
-            <div className="mt-2">
+            <img
+              src={preview || getAvatarUrl(user.avatar)}
+              alt="avatar"
+              className="profile-avatar"
+            />
+
+            {editing && (
               <input
                 type="file"
-                className="form-control"
+                className="home-search-input mt-3"
                 onChange={handleAvatarChange}
               />
+            )}
+
+          </div>
+
+          <div className="profile-info">
+
+            <div className="profile-field">
+              <label>Nom</label>
+              <div className="profile-static">{user.name}</div>
             </div>
-          )}
 
-        </div>
-
-        {/* NOM */}
-        <div className="mb-3">
-          <label>Nom</label>
-          <div className="form-control bg-light">{user.name}</div>
-        </div>
-
-        {/* EMAIL */}
-        <div className="mb-3">
-          <label>Email</label>
-          <div className="form-control bg-light">{user.email}</div>
-        </div>
-
-        {/* BIO */}
-        <div className="mb-3">
-          <label>Bio</label>
-
-          {editing ? (
-            <textarea
-              className="form-control"
-              value={form.bio}
-              onChange={handleBioChange}
-            />
-          ) : (
-            <div className="form-control bg-light">
-              {user.bio || "Sense bio"}
+            <div className="profile-field">
+              <label>Email</label>
+              <div className="profile-static">{user.email}</div>
             </div>
-          )}
-        </div>
 
-        {/* BOTONS */}
-        {editing ? (
-          <>
-            <button className="btn btn-success me-2" onClick={handleSave}>
-              Guardar
-            </button>
-            <button className="btn btn-secondary" onClick={() => setEditing(false)}>
-              Cancel·lar
-            </button>
-          </>
-        ) : (
-          <button className="btn btn-primary" onClick={() => setEditing(true)}>
-            Editar perfil
-          </button>
-        )}
+            <div className="profile-field">
+              <label>Bio</label>
+
+              {editing ? (
+                <textarea
+                  className="home-search-input profile-textarea"
+                  value={form.bio}
+                  onChange={handleBioChange}
+                />
+              ) : (
+                <div className="profile-static">
+                  {user.bio || "Sense bio"}
+                </div>
+              )}
+            </div>
+
+            <div className="profile-actions">
+
+              {editing ? (
+                <>
+                  <button
+                    className="home-search-btn me-2"
+                    onClick={handleSave}
+                  >
+                    Guardar
+                  </button>
+
+                  <button
+                    className="btn forge-btn-logout"
+                    style={{color: "white"}}
+                    onClick={() => setEditing(false)}
+                  >
+                    Cancelar
+                  </button>
+                </>
+              ) : (
+                <button
+                  className="home-main-btn"
+                  onClick={() => setEditing(true)}
+                >
+                  Editar perfil
+                </button>
+              )}
+
+            </div>
+
+          </div>
+
+        </div>
 
       </div>
-
-      <div style={{ minHeight: "100vh", background: "transparent" }}></div>
 
     </div>
   );

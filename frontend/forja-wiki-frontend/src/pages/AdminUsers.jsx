@@ -71,57 +71,29 @@ function AdminUsers() {
 
   if (currentUser?.rol !== "admin") {
     return (
-      <div
-        style={{
-          backgroundImage: `url(${metalBg})`,
-          backgroundSize: "cover",
-          minHeight: "100vh"
-        }}
-        className="text-white d-flex justify-content-center align-items-center"
-      >
+      <div className="adminusers-bg adminusers-denied">
         No tens permisos per accedir aquí
       </div>
     )
   }
 
   return (
-    <div
-      style={{
-        backgroundImage: `url(${metalBg})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundAttachment: "fixed",
-        minHeight: "100vh",
-        padding: "40px 0"
-      }}
-    >
+    <div className="adminusers-bg">
+
       <div className="container">
 
-        <h1
-          className="text-center text-white mb-4"
-          style={{
-            fontFamily: "'Cinzel', serif",
-            textShadow: "0 0 10px #ff6a00"
-          }}
-        >
+        <h1 className="adminusers-title">
           Panell d’Administració
         </h1>
 
         {loading ? (
-          <p className="text-white text-center">
+          <p className="adminusers-loading">
             Carregant usuaris...
           </p>
         ) : (
           <div className="table-responsive">
 
-            <table
-              className="table table-hover text-white"
-              style={{
-                background: "rgba(0,0,0,0.5)",
-                borderRadius: "10px",
-                overflow: "hidden"
-              }}
-            >
+            <table className="adminusers-table table table-hover text-white">
 
               <thead>
                 <tr>
@@ -143,7 +115,7 @@ function AdminUsers() {
 
                     <td>
                       <select
-                        className="form-select form-select-sm"
+                        className="adminusers-select"
                         value={user.rol}
                         onChange={(e) => changeRole(user.id, e.target.value)}
                       >
@@ -155,7 +127,7 @@ function AdminUsers() {
 
                     <td>
                       <button
-                        className="btn btn-danger btn-sm"
+                        className="adminusers-delete-btn"
                         onClick={() => deleteUser(user.id)}
                       >
                         Eliminar

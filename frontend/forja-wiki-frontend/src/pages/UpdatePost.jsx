@@ -2,7 +2,6 @@ import { useState, useEffect } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import api from "../services/api"
 
-
 function UpdatePost() {
   const { id } = useParams()
   const navigate = useNavigate()
@@ -101,85 +100,87 @@ function UpdatePost() {
       console.error("ERROR UPDATE POST:", error)
     }
   }
-
   return (
-    <div className="container mt-5">
-      <h2>Editar post</h2>
+    <div className="createpost-bg">
+      <div className="container">
 
-      <form onSubmit={handleSubmit} className="mt-4">
+        <div className="createpost-card">
 
-        <div className="mb-3">
-          <label>Títol</label>
-          <input
-            type="text"
-            className="form-control"
-            value={titol}
-            onChange={(e) => setTitol(e.target.value)}
-            required
-          />
+          <h2 className="createpost-title">
+            Editar post
+          </h2>
+
+          <form onSubmit={handleSubmit}>
+
+            <div className="mb-3">
+              <label className="createpost-label">Títol</label>
+              <input
+                type="text"
+                className="createpost-input"
+                value={titol}
+                onChange={(e) => setTitol(e.target.value)}
+                required
+              />
+            </div>
+
+            <div className="mb-3">
+              <label className="createpost-label">Descripció</label>
+              <textarea
+                className="createpost-input"
+                value={descripcio}
+                onChange={(e) => setDescripcio(e.target.value)}
+                required
+              />
+            </div>
+
+            <div className="mb-3">
+              <label className="createpost-label">Època</label>
+              <input
+                type="text"
+                className="createpost-input"
+                value={epoca}
+                onChange={(e) => setEpoca(e.target.value)}
+                required
+              />
+            </div>
+
+            <div className="mb-3">
+              <label className="createpost-label">Tipus d'eina</label>
+              <select
+                className="createpost-input"
+                value={tipusEinaId}
+                onChange={(e) => setTipusEinaId(e.target.value)}
+                required
+              >
+                <option value="">Selecciona...</option>
+                {tipusEines.map(t => (
+                  <option key={t.id} value={t.id}>
+                    {t.nom}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="mb-3">
+              <label className="createpost-label">Imatge (opcional)</label>
+              <input
+                type="file"
+                className="createpost-input"
+                onChange={(e) => setImatge(e.target.files[0])}
+              />
+            </div>
+
+            <button className="createpost-btn">
+              Guardar canvis
+            </button>
+
+          </form>
+
         </div>
 
-        <div className="mb-3">
-          <label>Descripció</label>
-          <textarea
-            className="form-control"
-            value={descripcio}
-            onChange={(e) => setDescripcio(e.target.value)}
-            required
-          />
-        </div>
-
-        <div className="mb-3">
-          <label>Època</label>
-          <input
-            type="text"
-            className="form-control"
-            value={epoca}
-            onChange={(e) => setEpoca(e.target.value)}
-            required
-          />
-        </div>
-
-        <div className="mb-3">
-          <label>Tipus d'eina</label>
-          <select
-            className="form-control"
-            value={tipusEinaId}
-            onChange={(e) => setTipusEinaId(e.target.value)}
-            required
-          >
-            <option value="">Selecciona...</option>
-
-            {tipusEines.map(t => (
-              <option key={t.id} value={t.id}>
-                {t.nom}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div className="mb-3">
-          <label>Imatge (opcional)</label>
-          <input
-            type="file"
-            className="form-control"
-            onChange={(e) => setImatge(e.target.files[0])}
-          />
-        </div>
-
-        <button className="btn btn-primary">
-          Guardar canvis
-        </button>
-
-      </form>
-      <div
-  style={{
-    minHeight: "100vh",
-    background: "transparent"
-  }}
-></div>
+      </div>
     </div>
   )
 }
 
-export default UpdatePost
+export default UpdatePost 

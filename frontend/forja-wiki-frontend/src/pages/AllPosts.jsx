@@ -70,7 +70,6 @@ function AllPosts() {
           Resultats: {posts.length}
         </p>
 
-        {/* SORT CONTROLS */}
         <div className="row mb-4">
 
           <div className="col-md-6">

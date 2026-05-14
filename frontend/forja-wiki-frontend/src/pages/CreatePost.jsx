@@ -32,9 +32,7 @@ function CreatePost() {
     const fetchTipus = async () => {
       try {
         const res = await api.get("/tipus-eines")
-
         setTipusEines(res.data.data || res.data)
-
       } catch (error) {
         console.error("ERROR GET TIPUS:", error)
       }
@@ -45,8 +43,8 @@ function CreatePost() {
 
   if (!isAllowed) {
     return (
-      <div className="container mt-5">
-        <h3>No tens permisos per crear posts</h3>
+      <div className="container mt-5 text-white">
+        No tens permisos per crear posts
       </div>
     )
   }
@@ -62,9 +60,7 @@ function CreatePost() {
       formData.append("epoca", epoca)
       formData.append("tipus_eina_id", tipusEinaId)
 
-      if (imatge) {
-        formData.append("imatge", imatge)
-      }
+      if (imatge) formData.append("imatge", imatge)
 
       await api.post("/posts", formData, {
         headers: {
@@ -80,81 +76,84 @@ function CreatePost() {
   }
 
   return (
-    <div className="container mt-5">
-      <h2>Crear nou post</h2>
+    <div className="createpost-bg">
+      <div className="container">
 
-      <form onSubmit={handleSubmit} className="mt-4">
+        <div className="createpost-card">
 
-        <div className="mb-3">
-          <label>Títol</label>
-          <input
-            type="text"
-            className="form-control"
-            value={titol}
-            onChange={(e) => setTitol(e.target.value)}
-            required
-          />
+          <h2 className="createpost-title">
+            Crear nou post
+          </h2>
+
+          <form onSubmit={handleSubmit}>
+
+            <div className="mb-3">
+              <label className="createpost-label">Títol</label>
+              <input
+                type="text"
+                className="createpost-input"
+                value={titol}
+                onChange={(e) => setTitol(e.target.value)}
+                required
+              />
+            </div>
+
+            <div className="mb-3">
+              <label className="createpost-label">Descripció</label>
+              <textarea
+                className="createpost-input"
+                value={descripcio}
+                onChange={(e) => setDescripcio(e.target.value)}
+                required
+              />
+            </div>
+
+            <div className="mb-3">
+              <label className="createpost-label">Època</label>
+              <input
+                type="text"
+                className="createpost-input"
+                value={epoca}
+                onChange={(e) => setEpoca(e.target.value)}
+                required
+              />
+            </div>
+
+            <div className="mb-3">
+              <label className="createpost-label">Tipus d'eina</label>
+              <select
+                className="createpost-input"
+                value={tipusEinaId}
+                onChange={(e) => setTipusEinaId(e.target.value)}
+                required
+              >
+                <option value="">Selecciona...</option>
+                {tipusEines.map(t => (
+                  <option key={t.id} value={t.id}>
+                    {t.nom}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="mb-3">
+              <label className="createpost-label">Imatge</label>
+              <input
+                type="file"
+                className="createpost-input"
+                onChange={(e) => setImatge(e.target.files[0])}
+              />
+            </div>
+
+            <button className="createpost-btn">
+              Crear Post
+            </button>
+
+          </form>
+
         </div>
 
-        <div className="mb-3">
-          <label>Descripció</label>
-          <textarea
-            className="form-control"
-            value={descripcio}
-            onChange={(e) => setDescripcio(e.target.value)}
-            required
-          />
-        </div>
-
-        <div className="mb-3">
-          <label>Època</label>
-          <input
-            type="text"
-            className="form-control"
-            value={epoca}
-            onChange={(e) => setEpoca(e.target.value)}
-            required
-          />
-        </div>
-
-        <div className="mb-3">
-          <label>Tipus d'eina</label>
-          <select
-            className="form-control"
-            value={tipusEinaId}
-            onChange={(e) => setTipusEinaId(e.target.value)}
-            required
-          >
-            <option value="">Selecciona...</option>
-
-            {tipusEines.map(t => (
-              <option key={t.id} value={t.id}>
-                {t.nom}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div className="mb-3">
-          <label>Imatge</label>
-          <input
-            type="file"
-            className="form-control"
-            onChange={(e) => setImatge(e.target.files[0])}
-          />
-        </div>
-
-        <button className="btn btn-primary">
-          Crear Post
-        </button>
-
-      </form>
-      <div
-  style={{
-    minHeight: "100vh",
-    background: "transparent"
-  }}
-></div>
+      </div>
     </div>
   )
 }
