@@ -19,10 +19,12 @@ class DatabaseSeeder extends Seeder
             TipusEinaSeeder::class,
             UserSeeder::class,
             PostSeeder::class,
+            CommentSeeder::class,
         ]);
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
+            
         ]);
     }
 }
