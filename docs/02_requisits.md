@@ -8,8 +8,8 @@ Pot:
 * Visualitzar els posts de la wiki.
 * Cercar eines pel seu nom.
 * Accedir als detalls de cada post, mostrarà la informació completa d'aquest.
-* Visualitzar les valoracions del post.
-* Visualitzar el comentaris dels usuaris registrats
+* Visualitzar la valoració mitjana del post.
+* Visualitzar el comentaris del post.
 * Registrar-se com a nou usuari.
 
 ### Usuari registrat
@@ -18,9 +18,10 @@ Pot:
 * Tot el que pot fer un usuari no registrat.
 * Iniciar sessió com a usuari existent.
 * Valorar els posts ja existents.
-* Comentar en els posts
-* Respondre a comentaris
+* Comentar en els posts.
+* Respondre a comentaris.
 * Modificar la seva valoració d’un post.
+* Modificar el seu perfil.
 
 ### Editor
 
@@ -42,7 +43,7 @@ Pot:
 
 ### Seguretat
 
-* Les contrasenyes dels usuaris es guardaran encriptades. Farem servir bycript que esta incorporat al Laravel
+* Les contrasenyes dels usuaris es guardaran encriptades hashejant-les des del backend.
 * El sistema implementarà control d’accés segons el rol de cada usuari (Els administradors tenen control total).
 * Es realitzaran validacions de dades per evitar atacs com SQL Injection.
 * El sistema protegirà les rutes del backend.
@@ -53,7 +54,7 @@ Pot:
 * El temps de resposta del sistema serà breu.
 * El projecte seguirà una estructura clara separant frontend i backend.
 * L’arquitectura permetrà afegir noves funcionalitats en el futur.
-* Es fara documentacio de tot el projecte per facilitar la comprensió d'aquest.
+* Es fara documentació de tot el projecte per facilitar la comprensió d'aquest.
 
 ### Accessibilitat
 
@@ -61,4 +62,4 @@ Pot:
 * La navegació dins de la pàgina serà accessible i fàcil d'entendre.
 * La interfície de la web serà clara i intuïtiva per a l’usuari.
 * El disseny serà responsive, adaptant-se a dispositius mòbils i tauletes.
-* Es farà ús de Bootstrap per una millor experiència visual.
+* Es farà ús de Bootstrap a part del nostre CSS per una millor experiència visual.
