@@ -13,10 +13,10 @@ rectangle Forja {
   usecase "Veure detalls del post" as UC3
   usecase "Filtrar per nom del post" as UC4
   usecase "Valorar + comentar en un post" as UC5
+  usecase "Modificar perfil" as UC11
   usecase "Crear post" as UC6
   usecase "Editar post" as UC7
   usecase "Eliminar post" as UC8
-  usecase "Crear tipus eina" as UC11
   usecase "Gestionar el contingut de la pàgina" as UC9
   usecase "Gestionar usuaris" as UC10
 }
@@ -30,6 +30,7 @@ Usuari --> noUsuari
 
 Usuari --> UC12
 Usuari --> UC5
+Usuari --> UC11
 
 Editor --> Usuari
 
@@ -41,6 +42,5 @@ Administrador --> Editor
 
 Administrador --> UC9
 Administrador --> UC10
-Administrador --> UC11
 
 @enduml

@@ -2,10 +2,12 @@
 
 class Usuari {
   id : bigint <<PK>>
-  nom : string
+  name : string
   email : string
   password : string
+  bio : string
   rol : string 
+  avatar : string 
 }
 
 class Post {
@@ -18,7 +20,8 @@ class Post {
   usuari_id : bigint <<FK>>
   tipus_eina_id : bigint <<FK>>
 }
-class Comentari {
+
+class Comentaris {
   id : bigint <<PK>>
   contingut : text
   usuari_id : bigint <<FK>>
@@ -27,26 +30,26 @@ class Comentari {
 }
 
 
-class Valoracio {
+class Valoracions {
   id : bigint <<PK>>
   puntuacio : int
   usuari_id : bigint <<FK>>
   post_id : bigint <<FK>>
 }
 
-class TipusEina {
+class Tipus_eines {
   id : bigint <<PK>>
   nom : string
 }
 
 Usuari "1" -- "0..*" Post : crea
-Usuari "1" -- "0..*" Comentari : escriu
-Usuari "1" -- "0..*" Valoracio : fa
-Usuari "1" -- "0.." TipusEina : crea
-Post "1" -- "0..*" Comentari : te
-Post "1" -- "0..*" Valoracio : rep
-Comentari "1" -- "0..*" Comentari : respon a
+Usuari "1" -- "0..*" Comentaris : escriu
+Usuari "1" -- "0..*" Valoracions : fa
+Usuari "1" -- "0.." Tipus_eines : crea
+Post "1" -- "0..*" Comentaris : te
+Post "1" -- "0..*" Valoracions : rep
+Comentaris "1" -- "0..*" Comentaris : respon a
 
-TipusEina "1" -- "0..*" Post : classifica
+Tipus_eines "1" -- "0..*" Post : classifica
 
 @enduml
