@@ -32,7 +32,7 @@ function AllPosts() {
         setPosts(data)
 
       } catch (error) {
-        console.error("❌ ERROR POSTS:", error)
+        console.error("ERROR POSTS:", error)
       }
     }
 
@@ -59,8 +59,8 @@ function AllPosts() {
           style={{
             fontFamily: "'Cinzel', serif",
             color: "#f5f5f5",
+            textShadow: "0 0 10px #ff6a00",
             fontSize: "3rem",
-            textShadow: "0 0 10px black"
           }}
         >
           Tots els Posts

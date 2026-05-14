@@ -66,7 +66,7 @@ function Category() {
             color: "#f5f5f5",
             fontSize: "3rem",
             letterSpacing: "2px",
-            textShadow: "0 0 10px black"
+            textShadow: "0 0 10px #ff6a00"
           }}
         >
           {categoria}

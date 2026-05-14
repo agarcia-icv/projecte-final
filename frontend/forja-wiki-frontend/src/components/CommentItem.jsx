@@ -71,12 +71,12 @@ function CommentItem({ comment, allComments, onAddReply }) {
           onAddReply={onAddReply}
         />
       ))}
-<div
-  style={{
-    minHeight: "100vh",
-    background: "transparent"
-  }}
-></div>
+      <div
+        style={{
+          minHeight: "100vh",
+          background: "transparent"
+        }}
+      ></div>
     </div>
   )
 }

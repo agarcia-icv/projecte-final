@@ -160,14 +160,14 @@ function PostDetail() {
         {showReply && (
           <div className="mt-2">
             <input
-              className="form-control mb-2 postdetail-input"
+              className="home-search-input mb-2 w-100"
               value={replyText}
               onChange={(e) => setReplyText(e.target.value)}
               placeholder="Resposta..."
             />
 
             <button
-              className="btn btn-sm btn-warning"
+              className="home-search-btn"
               onClick={() => {
                 handleReply(comment.id, replyText)
                 setReplyText("")
