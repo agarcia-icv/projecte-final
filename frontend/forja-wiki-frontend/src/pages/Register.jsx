@@ -20,7 +20,7 @@ function Register() {
     })
   }
 
- const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
@@ -42,47 +42,50 @@ function Register() {
     }
   };
   return (
-    <div className="container mt-5">
-      <h2>Register</h2>
+    <div className="register-page container">
 
-      <form onSubmit={handleSubmit}>
+      <div className="register-card">
 
-        <input
-          name="name"
-          placeholder="Nom"
-          className="form-control mb-2"
-          onChange={handleChange}
-          value={form.name}
-        />
+        <h2 className="register-title">Register</h2>
 
-        <input
-          name="email"
-          placeholder="Email"
-          className="form-control mb-2"
-          onChange={handleChange}
-          value={form.email}
-        />
+        <form onSubmit={handleSubmit}>
 
-        <input
-          name="password"
-          type="password"
-          placeholder="Password"
-          className="form-control mb-2"
-          onChange={handleChange}
-          value={form.password}
-        />
+          <input
+            name="name"
+            placeholder="Nom"
+            className="mb-3 register-input w-100"
+            onChange={handleChange}
+            value={form.name}
+          />
 
-        <button className="btn btn-primary" disabled={loading}>
-          {loading ? "Registrant..." : "Registrar"}
-        </button>
+          <input
+            name="email"
+            placeholder="Email"
+            className="mb-3 register-input w-100"
+            onChange={handleChange}
+            value={form.email}
+          />
 
-      </form>
-      <div
-  style={{
-    minHeight: "100vh",
-    background: "transparent"
-  }}
-></div>
+          <input
+            name="password"
+            type="password"
+            placeholder="Password"
+            className="mb-3 register-input w-100"
+            onChange={handleChange}
+            value={form.password}
+          />
+
+          <button
+            className="register-btn w-100"
+            disabled={loading}
+          >
+            {loading ? "Registrant..." : "Registrar"}
+          </button>
+
+        </form>
+
+      </div>
+
     </div>
   )
 }

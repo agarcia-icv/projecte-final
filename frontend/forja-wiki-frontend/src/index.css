@@ -519,4 +519,174 @@ select {
 .postdetail-input:focus {
   outline: none;
   box-shadow: 0 0 10px rgba(255, 106, 0, 0.5);
+} 
+
+.login-bg {
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-card {
+  width: 100%;
+
+  background: rgba(20, 20, 20, 0.65);
+  border: 1px solid rgba(255, 106, 0, 0.4);
+  border-radius: 16px;
+
+  padding: 45px;
+
+  box-shadow:
+    0 0 25px rgba(255, 106, 0, 0.3),
+    inset 0 0 25px rgba(0, 0, 0, 0.7);
+}
+
+.login-title {
+  font-size: 2.2rem;
+
+  text-align: center;
+  color: #fff;
+  font-family: "Cinzel", serif;
+
+  margin-bottom: 30px;
+
+  text-shadow:
+    0 0 12px #ff6a00,
+    0 0 25px rgba(255, 40, 0, 0.5);
+}
+
+.login-input {
+  background-color: rgba(20, 20, 20, 0.6);
+  color: white;
+
+  border: 1px solid #ff6a00;
+  border-radius: 12px;
+
+  padding: 18px;
+  font-size: 1.1rem;
+
+  box-shadow:
+    inset 0 0 12px rgba(0,0,0,0.7),
+    0 0 12px rgba(255,106,0,0.2);
+
+  transition: 0.2s ease;
+}
+
+.login-input:focus {
+  outline: none;
+
+  border-color: #ff8a00;
+
+  box-shadow:
+    0 0 18px rgba(255,106,0,0.6),
+    inset 0 0 14px rgba(0,0,0,0.85);
+}
+
+.login-btn {
+  background: linear-gradient(180deg, #ff8a00, #d45500);
+  color: white;
+
+  font-weight: bold;
+
+  border: none;
+  border-radius: 12px;
+
+  padding: 16px 18px;
+  font-size: 1.1rem;
+
+  box-shadow: 0 0 16px rgba(255,106,0,0.5);
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.login-btn:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 0 25px rgba(255,106,0,0.7);
+}
+
+.register-page {
+  min-height: 58vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.register-card {
+  width: 100%;
+
+  background: rgba(20, 20, 20, 0.65);
+  border: 1px solid rgba(255, 106, 0, 0.4);
+  border-radius: 16px;
+
+  padding: 45px;
+
+  box-shadow:
+    0 0 25px rgba(255, 106, 0, 0.3),
+    inset 0 0 25px rgba(0, 0, 0, 0.7);
+}
+
+.register-title {
+  font-size: 2.2rem;
+
+  text-align: center;
+  color: #fff;
+  font-family: "Cinzel", serif;
+
+  margin-bottom: 30px;
+
+  text-shadow:
+    0 0 12px #ff6a00,
+    0 0 25px rgba(255, 40, 0, 0.5);
+}
+
+.register-input {
+  background-color: rgba(20, 20, 20, 0.6);
+  color: white;
+
+  border: 1px solid #ff6a00;
+  border-radius: 12px;
+
+  padding: 18px;
+  font-size: 1.1rem;
+
+  box-shadow:
+    inset 0 0 12px rgba(0,0,0,0.7),
+    0 0 12px rgba(255,106,0,0.2);
+
+  transition: 0.2s ease;
+}
+
+.register-input:focus {
+  outline: none;
+
+  border-color: #ff8a00;
+
+  box-shadow:
+    0 0 18px rgba(255,106,0,0.6),
+    inset 0 0 14px rgba(0,0,0,0.85);
+}
+
+.register-btn {
+  background: linear-gradient(180deg, #ff8a00, #d45500);
+  color: white;
+
+  font-weight: bold;
+
+  border: none;
+  border-radius: 12px;
+
+  padding: 16px 18px;
+  font-size: 1.1rem;
+
+  box-shadow: 0 0 16px rgba(255,106,0,0.5);
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.register-btn:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 0 25px rgba(255,106,0,0.7);
 }

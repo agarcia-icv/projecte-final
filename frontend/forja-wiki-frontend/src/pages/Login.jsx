@@ -28,7 +28,7 @@ function Login() {
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
 
-          window.location.href = "/";
+      window.location.href = "/";
       alert("Login correcte!");
 
       navigate("/profile");
@@ -40,38 +40,38 @@ function Login() {
   };
 
   return (
-    <div className="container mt-5">
+    <div className="login-bg container">
 
-      <h2>Login</h2>
+      <div className="login-card">
 
-      <form onSubmit={handleSubmit}>
+        <h2 className="login-title">
+          Login
+        </h2>
 
-        <input
-          name="email"
-          className="form-control mb-2"
-          placeholder="Email"
-          onChange={handleChange}
-        />
+        <form onSubmit={handleSubmit}>
 
-        <input
-          name="password"
-          type="password"
-          className="form-control mb-2"
-          placeholder="Password"
-          onChange={handleChange}
-        />
+          <input
+            name="email"
+            className="login-input mb-3 w-100"
+            placeholder="Email"
+            onChange={handleChange}
+          />
 
-        <button className="btn btn-primary">
-          Entrar
-        </button>
+          <input
+            name="password"
+            type="password"
+            className="login-input mb-3 w-100"
+            placeholder="Password"
+            onChange={handleChange}
+          />
 
-      </form>
-<div
-  style={{
-    minHeight: "100vh",
-    background: "transparent"
-  }}
-></div>
+          <button className="login-btn w-100">
+            Entrar
+          </button>
+
+        </form>
+
+      </div>
     </div>
   )
 }
