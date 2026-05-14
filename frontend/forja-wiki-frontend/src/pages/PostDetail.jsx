@@ -102,32 +102,19 @@ function PostDetail() {
   }
 
   const handleDelete = async () => {
-    const confirmDelete = window.confirm(
-      "Segur que vols eliminar aquest post?"
-    )
-
+    const confirmDelete = window.confirm("Segur que vols eliminar aquest post?")
     if (!confirmDelete) return
 
     try {
-
-      const res = await api.delete(`/posts/${id}`)
-
-      console.log(res.data)
-
+      await api.delete(`/posts/${id}`)
       navigate("/")
-
     } catch (error) {
-
-      console.log(error.response)
-
       console.error("ERROR DELETE POST:", error)
     }
   }
 
-  const formatDate = (date) => {
-    if (!date) return ""
-    return new Date(date).toLocaleDateString("ca-ES")
-  }
+  const formatDate = (date) =>
+    date ? new Date(date).toLocaleDateString("ca-ES") : ""
 
   const Stars = ({ current, onClick }) => (
     <div style={{ fontSize: "25px", cursor: isLogged ? "pointer" : "default" }}>
@@ -151,14 +138,7 @@ function PostDetail() {
 
     return (
       <div
-        style={{
-          marginLeft: comment.parent_id ? "30px" : "0",
-          border: "1px solid #ff7b00",
-          borderRadius: "8px",
-          background: "#2f2f2f",
-          color: "#eee"
-        }}
-        className="mb-3 p-3"
+        className={`comment-box ${comment.parent_id ? "comment-reply" : ""}`}
       >
         <strong>{comment.usuari}</strong>
 
@@ -180,7 +160,7 @@ function PostDetail() {
         {showReply && (
           <div className="mt-2">
             <input
-              className="form-control mb-2"
+              className="form-control mb-2 postdetail-input"
               value={replyText}
               onChange={(e) => setReplyText(e.target.value)}
               placeholder="Resposta..."
@@ -213,35 +193,28 @@ function PostDetail() {
     : ""
 
   return (
-    <div
-      className="container mt-5 p-4"
-      style={{
-        backgroundColor: "#3a3a3a",
-        minHeight: "100vh",
-        borderRadius: "10px"
-      }}
-    >
+    <div className="container mt-5 postdetail-bg">
 
-      <div className="mb-4 text-center text-white">
+      <div className="postdetail-header">
 
-        <h1 style={{ fontFamily: "serif" }}>{post.titol}</h1>
+        <h1 className="postdetail-title">{post.titol}</h1>
 
-        <p className="text-light">
-          {formatDate(post.created_at ?? post.created_at)} | {post.user?.name}
+        <p className="postdetail-meta">
+          {formatDate(post.created_at)} | {post.user?.name}
         </p>
 
         {canEdit && (
-          <div className="mt-3 d-flex justify-content-center gap-2">
+          <div className="postdetail-actions">
 
-                  <Link
-                    to={`/post/${post.id}/edit`}
-                    className="btn btn-warning ms-2"
-                  >
-                    Editar Post
-                  </Link>
+            <Link
+              to={`/post/${post.id}/edit`}
+              className="forge-btn-warning btn"
+            >
+              Editar Post
+            </Link>
 
             <button
-              className="btn btn-danger"
+              className="forge-btn-logout btn"
               onClick={handleDelete}
             >
               Eliminar Post
@@ -254,36 +227,45 @@ function PostDetail() {
 
       <div className="row">
 
-        <div className="col-md-8 text-white">
-          <p>{post.descripcio}</p>
+        <div className="col-md-8 postdetail-content">
+
+          <p className="postdetail-text">{post.descripcio}</p>
 
           <div className="mt-4">
-            <h4>Valoració</h4>
+
+            <h4 className="postdetail-rating-title">Valoració</h4>
 
             {isLogged ? (
               <Stars current={userRating} onClick={handleRate} />
             ) : (
-              <Stars current={average} onClick={() => {}} />
+              <Stars current={average} onClick={() => { }} />
             )}
 
             <p className="mt-2">
               Mitjana: <strong>{average}</strong>
             </p>
+
           </div>
 
           {isLogged ? (
             <div className="mt-4">
+
               <h4>Afegir comentari</h4>
 
               <input
-                className="form-control mb-2"
+                className="home-search-input mb-2 w-100"
                 value={newComment}
                 onChange={(e) => setNewComment(e.target.value)}
+                placeholder="Escriu el teu comentari..."
               />
 
-              <button className="btn btn-warning" onClick={handleAddComment}>
+              <button
+                className="home-search-btn"
+                onClick={handleAddComment}
+              >
                 Publicar
               </button>
+
             </div>
           ) : (
             <p className="mt-4 text-light">
@@ -291,39 +273,36 @@ function PostDetail() {
             </p>
           )}
 
-          <h3 className="mt-5">Comentaris</h3>
+          <h3 className="postdetail-comments-title">Comentaris</h3>
 
           {comments
             .filter(c => !c.parent_id)
             .map(c => (
               <Comment key={c.id} comment={c} />
             ))}
+
         </div>
 
         <div className="col-md-4">
-          <div
-            className="card text-white"
-            style={{
-              border: "2px solid #ff7b00",
-              background: "#2f2f2f"
-            }}
-          >
+
+          <div className="postdetail-card">
+
             <img
               src={imageUrl}
               alt={post.titol}
-              style={{
-                height: "300px",
-                width: "100%",
-                objectFit: "contain",
-                background: "#ffffff"
-              }}
+              className="postdetail-img"
             />
 
-            <div className="card-body">
+            <div className="card-body text-white p-3">
+
               <h5>{post.titol}</h5>
+
               <p><strong>Autor:</strong> {post.user?.name}</p>
+
             </div>
+
           </div>
+
         </div>
 
       </div>

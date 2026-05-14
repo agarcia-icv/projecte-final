@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 function Navbar() {
+
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
 
@@ -25,7 +26,9 @@ function Navbar() {
     user && (user.rol === "admin" || user.rol === "editor");
 
   const getAvatar = (avatar) => {
-    if (!avatar) return "http://127.0.0.1:8000/storage/users/default.png";
+    if (!avatar) {
+      return "http://127.0.0.1:8000/storage/users/default.png";
+    }
 
     if (avatar.startsWith("http")) return avatar;
 
@@ -33,38 +36,20 @@ function Navbar() {
   };
 
   return (
-    <nav
-      className="navbar navbar-expand-lg navbar-dark px-3"
-      style={{
-        background: "rgba(0,0,0,0.7)",
-        backdropFilter: "blur(6px)",
-        borderBottom: "1px solid rgba(255,106,0,0.4)"
-      }}
-    >
+    <nav className="navbar navbar-expand-lg forge-navbar px-3">
 
-      {/* LOGO */}
       <Link className="navbar-brand" to="/">
         <img
           src="/logo_forjawiki.png"
           alt="ForjaWiki"
-          style={{
-            height: "60px",
-            width: "auto",
-            objectFit: "contain",
-            filter:
-              "drop-shadow(0 0 10px #ff6a00) drop-shadow(0 0 25px #ff2a00)",
-          }}
+          className="forge-logo"
         />
       </Link>
 
-      {/* CREATE POST */}
       {canCreate && (
         <Link
-          className="btn btn-warning ms-3"
+          className="btn forge-btn-warning ms-3"
           to="/create-post"
-          style={{
-            boxShadow: "0 0 10px #ff6a00"
-          }}
         >
           Crear Post
         </Link>
@@ -72,95 +57,67 @@ function Navbar() {
 
       <div className="ms-auto d-flex align-items-center">
 
-        {/* NO LOGIN */}
         {!user && (
           <>
-            {/* LOGIN PNG */}
             <Link to="/login" className="me-3">
               <img
                 src="/login.png"
                 alt="Login"
-                style={{
-                  height: "55px",
-                  width: "auto",
-                  cursor: "pointer",
-                  objectFit: "contain",
-                  filter:
-                    "drop-shadow(0 0 8px #ff6a00) drop-shadow(0 0 20px #ff2a00)",
-                  transition: "0.2s"
-                }}
+                className="forge-nav-icon"
               />
             </Link>
 
-            {/* REGISTER PNG */}
             <Link to="/register">
               <img
                 src="/register.png"
                 alt="Register"
-                style={{
-                  height: "55px",
-                  width: "auto",
-                  cursor: "pointer",
-                  objectFit: "contain",
-                  filter:
-                    "drop-shadow(0 0 8px #ff6a00) drop-shadow(0 0 20px #ff2a00)",
-                  transition: "0.2s"
-                }}
+                className="forge-nav-icon"
               />
             </Link>
           </>
         )}
 
-        {/* USER LOGGED */}
         {user && (
           <>
+
             {user?.rol === "admin" && (
               <Link
-                className="btn btn-success me-3"
+                className="btn forge-btn-admin me-3"
                 to="/admin/users"
               >
-                List Users
+                Admin Panel
               </Link>
             )}
 
             <Link
               to="/profile"
-              className="d-flex align-items-center text-light me-3 text-decoration-none"
-              style={{ gap: "8px" }}
+              className="forge-profile-link me-3"
             >
+
               <img
                 src={getAvatar(user.avatar)}
                 alt="avatar"
-                style={{
-                  width: "40px",
-                  height: "40px",
-                  borderRadius: "50%",
-                  objectFit: "cover",
-                  border: "2px solid #ff6a00",
-                  boxShadow: "0 0 10px #ff6a00"
-                }}
+                className="forge-avatar"
               />
 
-              <span
-                style={{
-                  fontWeight: "bold",
-                  textShadow: "0 0 10px #ff6a00"
-                }}
-              >
+              <span className="forge-username">
                 {user.name}
               </span>
+
             </Link>
 
             <button
-              className="btn btn-danger"
+              className="btn forge-btn-logout"
               onClick={handleLogout}
             >
               Logout
             </button>
+
           </>
         )}
 
       </div>
+
     </nav>
   );
 }

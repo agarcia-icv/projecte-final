@@ -4,14 +4,14 @@ import PostCard from "../components/PostCard"
 import { useLocation } from "react-router-dom"
 import metalBg from "../assets/fons.avif"
 
-function Home() {
+function PostList() {
   const [posts, setPosts] = useState([])
   const location = useLocation()
 
   const fetchPosts = async () => {
     try {
       const res = await api.get("/posts")
-      setPosts(res.data)
+      setPosts(res.data.posts || res.data)
     } catch (error) {
       console.error("ERROR GET POSTS:", error)
     }
@@ -33,11 +33,9 @@ function Home() {
         backgroundImage: `url(${metalBg})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
         backgroundAttachment: "fixed",
         minHeight: "100vh",
-        paddingTop: "30px",
-        paddingBottom: "30px"
+        padding: "40px 0"
       }}
     >
       <div className="container">
@@ -46,10 +44,10 @@ function Home() {
           style={{
             textAlign: "center",
             fontFamily: "'Cinzel', serif",
-            fontSize: "48px",
-            color: "#e44d12",
-            marginBottom: "30px",
-            textShadow: "0 0 10px black"
+            fontSize: "52px",
+            color: "#ff6a00",
+            marginBottom: "35px",
+            textShadow: "0 0 15px black"
           }}
         >
           ForjaWiki
@@ -57,7 +55,7 @@ function Home() {
 
         <div className="row">
           {posts.map((post) => (
-            <div key={post.id} className="col-md-6 mb-4">
+            <div key={post.id} className="col-md-6 col-lg-4 mb-4">
               <PostCard post={post} />
             </div>
           ))}
@@ -68,4 +66,4 @@ function Home() {
   )
 }
 
-export default Home
+export default PostList

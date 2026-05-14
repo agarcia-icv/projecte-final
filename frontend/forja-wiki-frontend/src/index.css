@@ -28,3 +28,495 @@ select {
 *, *::before, *::after {
   font-family: "CinzelDecorative", serif !important;
 }
+
+.forge-navbar {
+  background:
+    linear-gradient(
+      180deg,
+      #1e1b18 0%,
+      #2b211c 40%,
+      #181311 100%
+    );
+
+  border-bottom: 2px solid #ff6a00;
+
+  box-shadow:
+    0 0 20px rgba(255, 106, 0, 0.25),
+    0 0 40px rgba(255, 80, 0, 0.15);
+
+  backdrop-filter: blur(6px);
+}
+
+.forge-logo {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+
+  filter:
+    drop-shadow(0 0 8px #ff6a00)
+    drop-shadow(0 0 18px #ff2a00);
+
+  transition: 0.25s ease;
+}
+
+.forge-logo:hover {
+  transform: scale(1.03);
+
+  filter:
+    drop-shadow(0 0 12px #ff7b00)
+    drop-shadow(0 0 30px #ff3c00);
+}
+
+.forge-nav-icon {
+  height: 55px;
+  width: auto;
+  object-fit: contain;
+
+  transition: 0.25s ease;
+
+  filter:
+    drop-shadow(0 0 8px #ff6a00)
+    drop-shadow(0 0 20px #ff2a00);
+}
+
+.forge-nav-icon:hover {
+  transform: scale(1.06);
+
+  filter:
+    drop-shadow(0 0 12px #ff9500)
+    drop-shadow(0 0 28px #ff3c00);
+}
+
+.forge-btn-warning {
+  background: linear-gradient(
+    180deg,
+    #ff8a00,
+    #d45500
+  );
+
+  border: 1px solid #ffb347;
+  color: white;
+  font-weight: bold;
+
+  box-shadow:
+    0 0 12px rgba(255, 106, 0, 0.5);
+
+  transition: 0.2s ease;
+}
+
+.forge-btn-warning:hover {
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 0 18px rgba(255, 130, 0, 0.7);
+}
+
+.forge-btn-admin {
+  background: linear-gradient(
+    180deg,
+    #3d3d3d,
+    #1f1f1f
+  );
+
+  border: 1px solid #ff6a00;
+  color: #ffd6b0;
+
+  box-shadow:
+    0 0 10px rgba(255, 106, 0, 0.35);
+
+  transition: 0.2s ease;
+}
+
+.forge-btn-admin:hover {
+  background: linear-gradient(
+    180deg,
+    #4a4a4a,
+    #262626
+  );
+
+  color: white;
+  transform: translateY(-1px);
+}
+
+.forge-btn-logout {
+  background: linear-gradient(
+    180deg,
+    #a61d1d,
+    #5f0f0f
+  );
+
+  border: 1px solid #ff5a5a;
+  color: white;
+
+  transition: 0.2s ease;
+}
+
+.forge-btn-logout:hover {
+  box-shadow:
+    0 0 14px rgba(255, 80, 80, 0.5);
+
+    transform: translateY(-1px);
+}
+
+.forge-profile-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  text-decoration: none;
+}
+
+.forge-avatar {
+  width: 42px;
+  height: 42px;
+
+  border-radius: 50%;
+  object-fit: cover;
+
+  border: 2px solid #ff6a00;
+
+  box-shadow:
+    0 0 12px rgba(255, 106, 0, 0.6);
+
+  transition: 0.2s ease;
+}
+
+.forge-avatar:hover {
+  transform: scale(1.06);
+}
+
+.forge-username {
+  color: #f5e6d3;
+
+  font-weight: bold;
+
+  text-shadow:
+    0 0 8px rgba(255, 106, 0, 0.6);
+
+  transition: 0.2s ease;
+}
+
+.forge-profile-link:hover .forge-username {
+  color: #ffffff;
+}
+
+.forge-navbar .btn {
+  color: white !important;
+}
+
+.forge-navbar .btn:hover {
+  color: white !important;
+}
+
+.home-bg {
+  min-height: 100vh;
+  padding-bottom: 60px;
+}
+
+.home-category-card {
+  cursor: pointer;
+  height: 220px;
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+
+  transition: transform 0.25s ease, filter 0.25s ease;
+
+  filter: drop-shadow(0 0 18px rgba(80, 75, 70, 0.8));
+}
+
+.home-category-card:hover {
+  transform: scale(1.05);
+  filter:
+    drop-shadow(0 0 22px rgba(255, 106, 0, 0.35))
+    drop-shadow(0 0 30px rgba(0, 0, 0, 0.5));
+}
+
+.home-category-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+
+  transition: transform 0.25s ease;
+}
+
+.home-category-card:hover .home-category-img {
+  transform: scale(1.02);
+}
+
+.home-search-input {
+  background-color: rgba(20, 20, 20, 0.6);
+  color: white;
+
+  border: 1px solid #ff6a00;
+  border-radius: 10px;
+
+  padding: 12px;
+
+  box-shadow:
+    inset 0 0 10px rgba(0,0,0,0.6),
+    0 0 10px rgba(255,106,0,0.15);
+}
+
+.home-search-input:focus {
+  outline: none;
+  border-color: #ff8a00;
+
+  box-shadow:
+    0 0 12px rgba(255,106,0,0.5);
+}
+
+.home-search-btn {
+  background: linear-gradient(180deg, #ff8a00, #d45500);
+  color: white;
+
+  font-weight: bold;
+
+  border: none;
+  border-radius: 10px;
+
+  padding: 10px 16px;
+
+  box-shadow: 0 0 12px rgba(255,106,0,0.4);
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.home-search-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 18px rgba(255,106,0,0.6);
+}
+
+.home-main-btn {
+  background: linear-gradient(180deg, #ff6a00, #b94b00);
+  color: white;
+
+  border: none;
+  border-radius: 12px;
+
+  padding: 12px 30px;
+  font-weight: bold;
+
+  box-shadow: 0 0 18px rgba(255, 42, 0, 0.6);
+
+  transition: all 0.25s ease;
+}
+
+.home-main-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(255, 106, 0, 0.8);
+}
+
+.home-info-box {
+  background-color: rgba(15, 15, 15, 0.55);
+  border-radius: 15px;
+
+  color: #eee;
+
+  border: 1px solid rgba(255, 106, 0, 0.4);
+
+  box-shadow: 0 0 15px rgba(255, 106, 0, 0.2);
+
+  padding: 20px;
+}
+
+.postlist-bg {
+  position: relative;
+}
+
+.postlist-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.65);
+  pointer-events: none;
+}
+
+.postlist-bg .container {
+  position: relative;
+  z-index: 2;
+}
+
+.postlist-title {
+  text-align: center;
+  font-family: "Cinzel", serif;
+  font-size: 48px;
+  color: #ff6a00;
+  margin-bottom: 30px;
+  text-shadow: 0 0 12px black, 0 0 15px #ff2a00;
+  letter-spacing: 2px;
+}
+
+.post-card-wrapper {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.post-card-wrapper:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 20px rgba(255, 106, 0, 0.35);
+}
+
+.post-card-forja {
+  height: 340px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+
+  border: 2px solid rgba(255, 106, 0, 0.8);
+  background: rgba(20, 20, 20, 0.6);
+
+  box-shadow:
+    0 0 10px rgba(255, 106, 0, 0.25),
+    inset 0 0 20px rgba(0, 0, 0, 0.6);
+
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.post-card-forja:hover {
+  transform: scale(1.02);
+  box-shadow:
+    0 0 20px rgba(255, 106, 0, 0.6),
+    0 0 40px rgba(255, 40, 0, 0.2);
+}
+
+.post-card-img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  background: rgb(255, 255, 255);
+}
+
+.post-card-rating {
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 4px 8px;
+  border-radius: 8px;
+}
+
+.post-card-title {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  padding: 12px;
+  color: white;
+}
+
+.post-card-title h5 {
+  margin: 0;
+  font-weight: bold;
+  font-family: "Cinzel", serif;
+  text-shadow: 0 0 10px black;
+}
+
+.postdetail-bg {
+  background: rgba(20, 20, 20, 0.75);
+  min-height: 100vh;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow:
+    0 0 25px rgba(255, 106, 0, 0.15),
+    inset 0 0 30px rgba(0, 0, 0, 0.6);
+}
+
+.postdetail-header {
+  text-align: center;
+  color: #fff;
+  margin-bottom: 25px;
+}
+
+.postdetail-title {
+  font-size: 42px;
+  font-weight: bold;
+  color: #ff6a00;
+  text-shadow: 0 0 12px black, 0 0 18px rgba(255, 80, 0, 0.6);
+}
+
+.postdetail-meta {
+  color: #ddd;
+  opacity: 0.9;
+}
+
+.postdetail-actions {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.postdetail-content {
+  color: #eee;
+}
+
+.postdetail-text {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #f0f0f0;
+}
+
+.postdetail-card {
+  background: rgba(30, 30, 30, 0.8);
+  border: 2px solid rgba(255, 106, 0, 0.8);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow:
+    0 0 18px rgba(255, 106, 0, 0.2),
+    inset 0 0 20px rgba(0,0,0,0.5);
+}
+
+.postdetail-img {
+  height: 300px;
+  width: 100%;
+  object-fit: contain;
+  background: #ffffff;
+}
+
+.postdetail-rating-title {
+  margin-top: 20px;
+  font-weight: bold;
+  color: #ffb347;
+}
+
+.postdetail-comments-title {
+  margin-top: 40px;
+  color: #ff6a00;
+  text-shadow: 0 0 10px black;
+}
+
+.comment-box {
+  border: 1px solid rgba(255, 123, 0, 0.6);
+  border-radius: 10px;
+  background: rgba(40, 40, 40, 0.85);
+  color: #eee;
+  padding: 12px;
+  margin-bottom: 12px;
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.comment-box:hover {
+  transform: scale(1.01);
+  box-shadow: 0 0 12px rgba(255, 106, 0, 0.2);
+}
+
+.comment-reply {
+  margin-left: 25px;
+  border-left: 2px solid rgba(255, 106, 0, 0.4);
+  padding-left: 10px;
+}
+
+.postdetail-input {
+  background: rgba(20, 20, 20, 0.7);
+  border: 1px solid #ff6a00;
+  color: white;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.postdetail-input:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(255, 106, 0, 0.5);
+}
