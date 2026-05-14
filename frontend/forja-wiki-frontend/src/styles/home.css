@@ -1,0 +1,89 @@
+.home-bg {
+    min-height: 100vh;
+    padding-bottom: 60px;
+}
+
+.home-category-card {
+    cursor: pointer;
+    height: 220px;
+    position: relative;
+    border-radius: 18px;
+    overflow: hidden;
+    transition: transform 0.25s ease, filter 0.25s ease;
+    filter: drop-shadow(0 0 18px rgba(80, 75, 70, 0.8));
+}
+
+.home-category-card:hover {
+    transform: scale(1.05);
+    filter:
+        drop-shadow(0 0 22px rgba(255, 106, 0, 0.35)) drop-shadow(0 0 30px rgba(0, 0, 0, 0.5));
+}
+
+.home-category-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.25s ease;
+}
+
+.home-category-card:hover .home-category-img {
+    transform: scale(1.02);
+}
+
+.home-search-input {
+    background-color: rgba(20, 20, 20, 0.6);
+    color: white;
+    border: 1px solid #ff6a00;
+    border-radius: 10px;
+    padding: 12px;
+    box-shadow:
+        inset 0 0 10px rgba(0, 0, 0, 0.6),
+        0 0 10px rgba(255, 106, 0, 0.15);
+}
+
+.home-search-input:focus {
+    outline: none;
+    border-color: #ff8a00;
+    box-shadow: 0 0 12px rgba(255, 106, 0, 0.5);
+}
+
+.home-search-btn {
+    background: linear-gradient(180deg, #ff8a00, #d45500);
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 16px;
+    box-shadow: 0 0 12px rgba(255, 106, 0, 0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.home-search-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 18px rgba(255, 106, 0, 0.6);
+}
+
+.home-main-btn {
+    background: linear-gradient(180deg, #ff6a00, #b94b00);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 30px;
+    font-weight: bold;
+    box-shadow: 0 0 18px rgba(255, 42, 0, 0.6);
+    transition: all 0.25s ease;
+}
+
+.home-main-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(255, 106, 0, 0.8);
+}
+
+.home-info-box {
+    background-color: rgba(15, 15, 15, 0.55);
+    border-radius: 15px;
+    color: #eee;
+    border: 1px solid rgba(255, 106, 0, 0.4);
+    box-shadow: 0 0 15px rgba(255, 106, 0, 0.2);
+    padding: 20px;
+}

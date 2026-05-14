@@ -1,0 +1,88 @@
+.postlist-bg {
+    position: relative;
+}
+
+.postlist-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 10, 10, 0.65);
+    pointer-events: none;
+}
+
+.postlist-bg .container {
+    position: relative;
+    z-index: 2;
+}
+
+.postlist-title {
+    text-align: center;
+    font-family: "Cinzel", serif;
+    font-size: 48px;
+    color: #ff6a00;
+    margin-bottom: 30px;
+    text-shadow: 0 0 12px black, 0 0 15px #ff2a00;
+    letter-spacing: 2px;
+}
+
+.post-card-wrapper {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.post-card-wrapper:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 20px rgba(255, 106, 0, 0.35);
+}
+
+.post-card-forja {
+    height: 340px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    border-radius: 14px;
+    border: 2px solid rgba(255, 106, 0, 0.8);
+    background: rgba(20, 20, 20, 0.6);
+    box-shadow:
+        0 0 10px rgba(255, 106, 0, 0.25),
+        inset 0 0 20px rgba(0, 0, 0, 0.6);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.post-card-forja:hover {
+    transform: scale(1.02);
+    box-shadow:
+        0 0 20px rgba(255, 106, 0, 0.6),
+        0 0 40px rgba(255, 40, 0, 0.2);
+}
+
+.post-card-img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    background: rgb(255, 255, 255);
+}
+
+.post-card-rating {
+    position: absolute;
+    top: 8px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 4px 8px;
+    border-radius: 8px;
+}
+
+.post-card-title {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    padding: 12px;
+    color: white;
+}
+
+.post-card-title h5 {
+    margin: 0;
+    font-weight: bold;
+    font-family: "Cinzel", serif;
+    text-shadow: 0 0 10px black;
+}

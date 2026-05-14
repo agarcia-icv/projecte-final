@@ -1,0 +1,70 @@
+.forge-navbar {
+    background: linear-gradient(180deg, #1e1b18 0%, #2b211c 40%, #181311 100%);
+    border-bottom: 2px solid #ff6a00;
+    box-shadow: 0 0 20px rgba(255, 106, 0, 0.25),
+        0 0 40px rgba(255, 80, 0, 0.15);
+    backdrop-filter: blur(6px);
+}
+
+.forge-logo {
+    height: 60px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 8px #ff6a00) drop-shadow(0 0 18px #ff2a00);
+    transition: 0.25s ease;
+}
+
+.forge-logo:hover {
+    transform: scale(1.03);
+    filter: drop-shadow(0 0 12px #ff7b00) drop-shadow(0 0 30px #ff3c00);
+}
+
+.forge-nav-icon {
+    height: 55px;
+    width: auto;
+    object-fit: contain;
+    transition: 0.25s ease;
+    filter: drop-shadow(0 0 8px #ff6a00) drop-shadow(0 0 20px #ff2a00);
+}
+
+.forge-nav-icon:hover {
+    transform: scale(1.06);
+    filter: drop-shadow(0 0 12px #ff9500) drop-shadow(0 0 28px #ff3c00);
+}
+
+.forge-profile-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.forge-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ff6a00;
+    box-shadow: 0 0 12px rgba(255, 106, 0, 0.6);
+    transition: 0.2s ease;
+}
+
+.forge-avatar:hover {
+    transform: scale(1.06);
+}
+
+.forge-username {
+    color: #f5e6d3;
+    font-weight: bold;
+    text-shadow: 0 0 8px rgba(255, 106, 0, 0.6);
+    transition: 0.2s ease;
+}
+
+.forge-profile-link:hover .forge-username {
+    color: #ffffff;
+}
+
+.forge-navbar .btn,
+.forge-navbar .btn:hover {
+    color: white !important;
+}

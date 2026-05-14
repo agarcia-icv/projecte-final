@@ -1,0 +1,107 @@
+.postdetail-bg {
+    background: rgba(20, 20, 20, 0.75);
+    min-height: 100vh;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow:
+        0 0 25px rgba(255, 106, 0, 0.15),
+        inset 0 0 30px rgba(0, 0, 0, 0.6);
+}
+
+.postdetail-header {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 25px;
+}
+
+.postdetail-title {
+    font-size: 42px;
+    font-weight: bold;
+    color: #ff6a00;
+    text-shadow: 0 0 12px black, 0 0 18px rgba(255, 80, 0, 0.6);
+}
+
+.postdetail-meta {
+    color: #ddd;
+    opacity: 0.9;
+}
+
+.postdetail-actions {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.postdetail-content {
+    color: #eee;
+}
+
+.postdetail-text {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #f0f0f0;
+}
+
+.postdetail-card {
+    background: rgba(30, 30, 30, 0.8);
+    border: 2px solid rgba(255, 106, 0, 0.8);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow:
+        0 0 18px rgba(255, 106, 0, 0.2),
+        inset 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.postdetail-img {
+    height: 300px;
+    width: 100%;
+    object-fit: contain;
+    background: #ffffff;
+}
+
+.postdetail-rating-title {
+    margin-top: 20px;
+    font-weight: bold;
+    color: #ffb347;
+}
+
+.postdetail-comments-title {
+    margin-top: 40px;
+    color: #ff6a00;
+    text-shadow: 0 0 10px black;
+}
+
+.comment-box {
+    border: 1px solid rgba(255, 123, 0, 0.6);
+    border-radius: 10px;
+    background: rgba(40, 40, 40, 0.85);
+    color: #eee;
+    padding: 12px;
+    margin-bottom: 12px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.comment-box:hover {
+    transform: scale(1.01);
+    box-shadow: 0 0 12px rgba(255, 106, 0, 0.2);
+}
+
+.comment-reply {
+    margin-left: 25px;
+    border-left: 2px solid rgba(255, 106, 0, 0.4);
+    padding-left: 10px;
+}
+
+.postdetail-input {
+    background: rgba(20, 20, 20, 0.7);
+    border: 1px solid #ff6a00;
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.postdetail-input:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(255, 106, 0, 0.5);
+}
