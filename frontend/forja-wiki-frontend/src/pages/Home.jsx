@@ -10,9 +10,9 @@ function Home() {
     { id: 1,  imatge: "/Proteccio.png" },
     { id: 2,  imatge: "/Armes.png" },
     { id: 3,  imatge: "/EinesAgricoles.png" },
-    { id: 4,  imatge: "/estris.png" },
+    { id: 4,  imatge: "/estrisvaris.png" },
     { id: 5,  imatge: "/materials.png" },
-    { id: 6,  imatge: "/tecniques.png" }
+    { id: 6,  imatge: "/Tecniques.png" }
   ]
 
   const handleSearch = (e) => {
