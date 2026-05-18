@@ -66,7 +66,12 @@ function CommentSection({ comentaris }) {
           onAddReply={handleAddReply}
         />
       ))}
-
+<div
+  style={{
+    minHeight: "100vh",
+    background: "transparent"
+  }}
+></div>
     </div>
   )
 }
