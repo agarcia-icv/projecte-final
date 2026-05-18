@@ -3,7 +3,7 @@ import api from "../services/api";
 
 function Profile() {
 
-  const DEFAULT_AVATAR = "http://127.0.0.1:8000/storage/users/default.png";
+  const DEFAULT_AVATAR = "http://localhost:8080/storage/users/default.png";
 
   const [user, setUser] = useState(null);
   const [editing, setEditing] = useState(false);
@@ -43,7 +43,7 @@ function Profile() {
   const getAvatarUrl = (avatar) => {
     if (!avatar) return DEFAULT_AVATAR;
     if (avatar.startsWith("http")) return avatar;
-    return `http://127.0.0.1:8000/storage/${avatar}`;
+    return `http://localhost:8080/storage/${avatar}`;
   };
 
   const handleSave = async () => {

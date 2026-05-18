@@ -189,7 +189,7 @@ function PostDetail() {
   if (!post) return <p className="container mt-5">Carregant...</p>
 
   const imageUrl = post.imatge
-    ? `http://127.0.0.1:8000/storage/${post.imatge}`
+    ? `http://localhost:8080/storage/${post.imatge}`
     : ""
 
   return (

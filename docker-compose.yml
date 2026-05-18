@@ -1,0 +1,64 @@
+services:
+
+  backend:
+    build:
+      context: ./backend/forja-wiki-backend
+    container_name: forjawiki_backend
+    ports:
+      - "8080:8000"
+    volumes:
+      - ./backend/forja-wiki-backend:/var/www
+    depends_on:
+      - mariadb
+    networks:
+      - forjawiki
+
+  frontend:
+    build:
+      context: ./frontend/forja-wiki-frontend
+    container_name: forjawiki_frontend
+    ports:
+      - "3000:5173"
+    volumes:
+      - ./frontend/forja-wiki-frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+    networks:
+      - forjawiki
+
+  mariadb:
+    image: mariadb:11
+    container_name: forjawiki_mariadb
+    restart: always
+    environment:
+      MARIADB_DATABASE: forja_wiki
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_USER: forjawiki
+      MARIADB_PASSWORD: root
+    ports:
+      - "3308:3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    networks:
+      - forjawiki
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: forjawiki_phpmyadmin
+    restart: always
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: mariadb
+      MYSQL_ROOT_PASSWORD: root
+    depends_on:
+      - mariadb
+    networks:
+      - forjawiki
+
+volumes:
+  mariadb_data:
+
+networks:
+  forjawiki:

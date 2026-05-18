@@ -9,7 +9,7 @@ function PostCard({ post }) {
 
   const imageUrl = post.imatge?.startsWith("http")
     ? post.imatge
-    : `http://127.0.0.1:8000/storage/${post.imatge}`
+    : `http://localhost:8080/storage/${post.imatge}`
 
   const average =
     post.valoracions_avg_puntuacio ??
