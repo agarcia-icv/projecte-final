@@ -145,7 +145,7 @@ function UpdatePost() {
             </div>
 
             <div className="mb-3">
-              <label className="createpost-label">Tipus d'eina</label>
+              <label className="createpost-label">Categoria</label>
               <select
                 className="createpost-input"
                 value={tipusEinaId}

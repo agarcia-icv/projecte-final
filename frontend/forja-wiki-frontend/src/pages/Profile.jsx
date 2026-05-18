@@ -144,7 +144,7 @@ function Profile() {
 
                   <button
                     className="btn forge-btn-logout"
-                    style={{color: "white"}}
+                    style={{ color: "white" }}
                     onClick={() => setEditing(false)}
                   >
                     Cancelar

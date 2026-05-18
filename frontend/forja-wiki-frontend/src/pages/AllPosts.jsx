@@ -97,7 +97,6 @@ function AllPosts() {
 
         </div>
 
-        {/* POSTS */}
         <div className="row">
 
           {posts.length > 0 ? (

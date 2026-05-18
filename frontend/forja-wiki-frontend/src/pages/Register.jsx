@@ -20,21 +20,21 @@ function Register() {
 
     let newErrors = {};
 
-   
+
     if (!form.name.trim()) {
       newErrors.name = "El nom és obligatori";
     } else if (form.name.length > 15) {
       newErrors.name = "El nom no pot superar 15 caràcters";
     }
 
-    
+
     if (!form.email.trim()) {
       newErrors.email = "L'email és obligatori";
     } else if (!form.email.includes("@")) {
       newErrors.email = "has de posar un email valid";
     }
 
-   
+
     if (!form.password) {
       newErrors.password = "La contrasenya és obligatòria";
     } else if (form.password.length < 6) {
@@ -136,7 +136,7 @@ function Register() {
             </div>
           )}
 
-          
+
           <input
             name="password"
             type="password"

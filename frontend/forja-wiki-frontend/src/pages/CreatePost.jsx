@@ -97,7 +97,7 @@ function CreatePost() {
     if (!tipusEinaId) {
 
       newErrors.tipusEinaId =
-        "Has de seleccionar un tipus d'eina";
+        "Has de seleccionar una categoria";
     }
 
     if (!imatge) {
@@ -242,7 +242,7 @@ function CreatePost() {
             <div className="mb-3">
 
               <label className="createpost-label">
-                Tipus d'eina
+                Categoria
               </label>
 
               <select
