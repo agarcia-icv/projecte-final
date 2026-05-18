@@ -30,7 +30,7 @@ class PostSeeder extends Seeder
 
                 Aquesta espasa és pròpia de guerrers entrenats i cavallers experimentats, sent un símbol tant de prestigi com de destresa marcial. La seva presència evoca l’esperit de l’Edat Mitjana, on l’art de la guerra i la forja eren disciplines profundament connectades, i cada arma era considerada una peça única, gairebé viva, forjada amb dedicació i coneixement ancestral.',
                 'epoca' => 'Edat Mitjana',
-                'imatge' => 'posts/espasa.jpg',
+                'imatge' => 'posts/espasa.png',
                 'user_id' => 1,
                 'tipus_eina_id' => $armes->id,
             ],
@@ -68,7 +68,7 @@ class PostSeeder extends Seeder
 
                 Amb el temps, l’escut metàl·lic reforçat es va convertir en un símbol de resistència i supervivència, associat a la perseverança dels guerrers que depenien de la seva solidesa per mantenir-se vius enmig del caos de la guerra medieval.',
                 'epoca' => 'Edat Mitjana',
-                'imatge' => 'posts/escut.jpg',
+                'imatge' => 'posts/escut.png',
                 'user_id' => 2,
                 'tipus_eina_id' => $proteccio->id,
             ],
@@ -90,7 +90,7 @@ class PostSeeder extends Seeder
 
                 Aquesta peça representa no només una eina de guerra, sinó també el resultat d’un coneixement artesanal avançat, on la metal·lúrgia, l’enginyeria i l’art convergeixen per crear una de les formes de protecció més sofisticades de l’època medieval.',
                 'epoca' => 'Edat Mitjana',
-                'imatge' => 'posts/armadura.jpg',
+                'imatge' => 'posts/armadura.png',
                 'user_id' => 2,
                 'tipus_eina_id' => $proteccio->id,
             ],
@@ -168,7 +168,7 @@ class PostSeeder extends Seeder
 
                 Més enllà de la seva funció pràctica, la ferradura també ha adquirit un fort simbolisme cultural associat a la bona sort i la protecció, convertint-se en un element present en tradicions i creences populars en diverses cultures.',
                 'epoca' => 'Tradicional',
-                'imatge' => 'posts/ferradura.jpg',
+                'imatge' => 'posts/ferradura.png',
                 'user_id' => 3,
                 'tipus_eina_id' => $estris->id,
             ],
@@ -188,7 +188,7 @@ class PostSeeder extends Seeder
 
                 Actualment, el lingot de ferro continua essent una peça clau en la indústria metal·lúrgica moderna, servint com a base per a processos de fabricació massiva i producció de materials d’enginyeria avançada.',
                 'epoca' => 'General',
-                'imatge' => 'posts/lingot.jpg',
+                'imatge' => 'posts/lingot.png',
                 'user_id' => 3,
                 'tipus_eina_id' => $materials->id,
             ],
