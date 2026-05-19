@@ -27,12 +27,12 @@ function Navbar() {
 
   const getAvatar = (avatar) => {
     if (!avatar) {
-      return "http://127.0.0.1:8000/storage/users/default.png";
+      return "http://localhost:8080/storage/users/default.png";
     }
 
     if (avatar.startsWith("http")) return avatar;
 
-    return `http://127.0.0.1:8000/storage/${avatar}`;
+    return `http://localhost:8080/storage/${avatar}`;
   };
 
   return (
