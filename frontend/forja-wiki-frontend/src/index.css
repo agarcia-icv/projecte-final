@@ -28,3 +28,7 @@ select {
 *, *::before, *::after {
   font-family: "CinzelDecorative", serif !important;
 }
+
+.postdetail-text {
+  white-space: pre-line;
+}
