@@ -225,7 +225,7 @@ function PostDetail() {
 
       </div>
 
-      <div className="row">
+      <div className="row postdetail-mobile-order">
 
         <div className="col-md-8 postdetail-content">
 

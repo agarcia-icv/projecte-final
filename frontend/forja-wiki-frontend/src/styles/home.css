@@ -87,3 +87,30 @@
     box-shadow: 0 0 15px rgba(255, 106, 0, 0.2);
     padding: 20px;
 }
+
+@media (max-width: 1024px) {
+
+    .home-search-input {
+        padding: 11px;
+        font-size: 0.95rem;
+        border-radius: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .home-search-input {
+        padding: 10px;
+        font-size: 0.9rem;
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .home-search-input {
+        padding: 9px;
+        font-size: 0.85rem;
+        border-radius: 8px;
+    }
+}

@@ -105,3 +105,16 @@
     outline: none;
     box-shadow: 0 0 10px rgba(255, 106, 0, 0.5);
 }
+
+@media (max-width: 768px) {
+
+    .postdetail-mobile-order {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .postdetail-card {
+        margin-bottom: 25px;
+        margin-top: 0;
+    }
+}

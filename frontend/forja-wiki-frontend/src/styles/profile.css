@@ -74,3 +74,144 @@
     display: flex;
     gap: 10px;
 }
+
+@media (max-width: 992px) {
+
+    .profile-card {
+        gap: 25px;
+        padding: 24px;
+    }
+
+    .profile-avatar {
+        width: 140px;
+        height: 140px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .profile-page {
+        padding-top: 20px;
+        padding-bottom: 50px;
+    }
+
+    .profile-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 22px;
+        gap: 20px;
+    }
+
+    .profile-avatar-section {
+        width: 100%;
+    }
+
+    .profile-avatar {
+        width: 130px;
+        height: 130px;
+    }
+
+    .profile-info {
+        width: 100%;
+    }
+
+    .profile-field {
+        text-align: left;
+    }
+
+    .profile-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .profile-actions button {
+        width: 100%;
+    }
+
+    .profile-textarea {
+        min-height: 100px;
+    }
+
+    .profile-avatar-input {
+        width: 100%;
+        max-width: 100%;
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+
+    .profile-avatar-input::file-selector-button {
+        padding: 6px 10px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .profile-page {
+        padding-top: 10px;
+    }
+
+    .profile-card {
+        padding: 16px;
+        border-radius: 12px;
+    }
+
+    .profile-avatar {
+        width: 110px;
+        height: 110px;
+    }
+
+    .profile-field label {
+        font-size: 0.9rem;
+    }
+
+    .profile-static,
+    .profile-textarea {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+
+    .profile-actions button {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+
+    .profile-avatar-input {
+        font-size: 0.85rem;
+        padding: 6px;
+    }
+
+    .profile-avatar-input::file-selector-button {
+        padding: 5px 8px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 1024px) {
+
+    .profile-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: left;
+    }
+
+    .profile-info {
+        width: 100%;
+    }
+
+    .profile-field {
+        width: 100%;
+    }
+
+    .profile-static,
+    .profile-textarea,
+    .profile-avatar-input {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .profile-avatar-input {
+        font-size: 0.95rem;
+    }
+}

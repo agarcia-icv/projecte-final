@@ -28,7 +28,7 @@
 
 .forge-btn-logout {
     background: linear-gradient(180deg, #a61d1d, #5f0f0f);
-    border: 1px solid #ff5a5a;
+    border: 1px solid #5f0f0f;
     color: white;
     transition: 0.2s ease;
 }
