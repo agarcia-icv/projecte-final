@@ -28,7 +28,7 @@ Pot:
 Pot:
 * Tot el que pot fer un usuari registrat.
 * Crear nous posts.
-* Editar posts propis existents.
+* Editar posts existents.
 * Eliminar posts.
 
 ### Administrador
@@ -45,7 +45,7 @@ Pot:
 
 * Les contrasenyes dels usuaris es guardaran encriptades hashejant-les des del backend.
 * El sistema implementarà control d’accés segons el rol de cada usuari (Els administradors tenen control total).
-* Es realitzaran validacions de dades per evitar atacs com SQL Injection.
+* Es realitzaran validacions de dades.
 * El sistema protegirà les rutes del backend.
 * Es farà ús del control de versions amb Git, així podrem disposar de copies de seguretat recuperables de tot el que s’hagi fet.
 
