@@ -327,7 +327,7 @@ function PostDetail() {
 
   const imageUrl =
     post.imatge
-      ? `http://localhost:8080/storage/${post.imatge}`
+      ? `http://172.20.2.204:8080/storage/${post.imatge}`
       : ""
 
   return (
