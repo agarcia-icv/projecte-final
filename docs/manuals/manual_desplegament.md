@@ -69,6 +69,12 @@ Executa el següent comandament des de l’arrel del projecte:
 docker compose up --build
 ```
 
+Executar aixo si no funciona el contenidor del backend:
+
+``` 
+docker run --rm -v $(pwd):/app -w /app composer install
+```
+
 ---
 
 # 5. Configuració del backend (Laravel)
